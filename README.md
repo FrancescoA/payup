@@ -1,1 +1,1 @@
-# pay-up
+# payup
