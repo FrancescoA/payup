@@ -8,7 +8,7 @@ var findPath = function(path_name) {
 
 module.exports = {
   entry: ['./src/main.js', './src/stylesheets/main.scss'],
-  output: { path: __dirname, filename: 'bundle.js' },
+  output: { path: __dirname, filename: '/build/bundle.js' },
   module: {
     loaders: [
       {
