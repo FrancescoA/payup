@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
@@ -7,7 +8,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    return "Hello World!"
+  return render_template('index.html')
+
+@app.route("/landing")
+def landing():
+  return render_template('landing.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

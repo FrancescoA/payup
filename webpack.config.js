@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   devServer: {
-    contentBase: findPath('build'),
+    contentBase: findPath('templates'),
     hot: true,
     inline: true,
     progress: true
