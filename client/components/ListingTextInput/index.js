@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import style from './style.css'
 
-class TodoTextInput extends Component {
+class ListingTextInput extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
@@ -15,7 +15,7 @@ class TodoTextInput extends Component {
     const text = e.target.value.trim()
     if (e.which === 13) {
       this.props.onSave(text)
-      if (this.props.newTodo) {
+      if (this.props.newListing) {
         this.setState({ text: '' })
       }
     }
@@ -27,7 +27,7 @@ class TodoTextInput extends Component {
 
   handleBlur(e) {
     const text = e.target.value.trim()
-    if (!this.props.newTodo) {
+    if (!this.props.newListing) {
       this.props.onSave(text)
     }
   }
@@ -35,7 +35,7 @@ class TodoTextInput extends Component {
   render() {
     const classes = classnames({
       [style.edit]: this.props.editing,
-      [style.new]: this.props.newTodo
+      [style.new]: this.props.newListing
     }, style.normal)
 
     return (
@@ -51,4 +51,4 @@ class TodoTextInput extends Component {
   }
 }
 
-export default TodoTextInput
+export default ListingTextInput

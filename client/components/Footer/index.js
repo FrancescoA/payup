@@ -11,7 +11,7 @@ const FILTER_TITLES = {
 }
 
 class Footer extends Component {
-  renderTodoCount() {
+  renderListingCount() {
     const { activeCount } = this.props
     const itemWord = activeCount === 1 ? 'item' : 'items'
 
@@ -49,7 +49,7 @@ class Footer extends Component {
   render() {
     return (
       <footer className={style.normal}>
-        {this.renderTodoCount()}
+        {this.renderListingCount()}
         <ul className={style.filters}>
           {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
             <li key={filter}>
