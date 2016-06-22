@@ -40,13 +40,13 @@ class ListingTextInput extends Component {
 
     return (
       <input className={classes}
-        type="text"
-        autoFocus="true"
-        placeholder={this.props.placeholder}
-        value={this.state.text}
-        onBlur={::this.handleBlur}
-        onChange={::this.handleChange}
-        onKeyDown={::this.handleSubmit} />
+      type="text"
+      autoFocus="true"
+      placeholder={this.props.placeholder}
+      value={this.state.text}
+      onBlur={::this.handleBlur}
+      onChange={::this.handleChange}
+      onKeyDown={::this.handleSubmit} />
     )
   }
 }

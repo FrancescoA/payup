@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import ListingItem from '../ListingItem'
+import Listing from '../Listing'
 import Footer from '../Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
@@ -69,7 +69,7 @@ class MainSection extends Component {
         {this.renderToggleAll(completedCount)}
         <ul className={style.normal}>
           {filteredListings.map(listing =>
-            <ListingItem key={listing.id} listing={listing} {...actions} />
+            <Listing key={listing.id} listing={listing} {...actions} />
           )}
         </ul>
         {this.renderFooter(completedCount)}

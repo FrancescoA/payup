@@ -1,11 +1,23 @@
 
 import { handleActions } from 'redux-actions'
 
-const initialState = [{
-  text: 'Use Redux',
-  completed: false,
-  id: 0
-}]
+const initialState = [
+  {
+    text: 'Use Redux',
+    completed: false,
+    id: 0
+  },
+  {
+    text: 'Use React',
+    completed: false,
+    id: 1
+  },
+  {
+    text: 'Use My Butt',
+    completed: false,
+    id: 2
+  },
+]
 
 export default handleActions({
   'add listing' (state, action) {

@@ -1,6 +1,6 @@
-
 import React, { Component } from 'react'
 import ListingTextInput from '../ListingTextInput'
+import ListingItemLabel from '../ListingItemLabel'
 import classnames from 'classnames'
 import style from './style.css'
 
@@ -26,44 +26,29 @@ class ListingItem extends Component {
   }
 
   render() {
-    const {listing, completeListing, deleteListing} = this.props
+    // LISTING: compose
+    // const classes = classnames({
+    //   [style.completed]: listing.completed,
+    //   [style.editing]: this.state.editing,
+    //   [style.normal]: !this.state.editing
+    // })
 
+    const {listing, completeListing, deleteListing} = this.props
     let element
     if (this.state.editing) {
       element = (
-        <ListingTextInput text={listing.text}
+        <ListingTextInput className={style.editing} text={listing.text}
            editing={this.state.editing}
            onSave={(text) => this.handleSave(listing.id, text)} />
       )
     } else {
       element = (
-        <div className={style.view}>
-          <input className={style.toggle}
-             type="checkbox"
-             checked={listing.completed}
-             onChange={() => completeListing(listing.id)} />
-
-          <label onDoubleClick={::this.handleDoubleClick}>
-            {listing.text}
-          </label>
-
-          <button className={style.destroy} onClick={() => deleteListing(listing.id)} />
-        </div>
-      )
+        <ListingItemLabel className={style.normal} text={listing.text}
+          handleDoubleClick={::this.handleDoubleClick} />
+        )
     }
 
-    // LISTING: compose
-    const classes = classnames({
-      [style.completed]: listing.completed,
-      [style.editing]: this.state.editing,
-      [style.normal]: !this.state.editing
-    })
-
-    return (
-      <li className={classes}>
-        {element}
-      </li>
-    )
+    return element
   }
 }
 
