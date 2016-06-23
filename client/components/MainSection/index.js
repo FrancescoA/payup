@@ -28,25 +28,25 @@ class MainSection extends Component {
     this.setState({ filter })
   }
 
-  renderToggleAll(completedCount) {
+  renderToggleAll(liveCount) {
     const { listings, actions } = this.props
     if (listings.length > 0) {
       return <input
         className={style.toggleAll}
         type="checkbox"
-        checked={completedCount === listings.length}
+        checked={liveCount === listings.length}
         onChange={actions.completeAll} />
     }
   }
 
-  renderFooter(completedCount) {
+  renderFooter(liveCount) {
     const { listings } = this.props
     const { filter } = this.state
-    const activeCount = listings.length - completedCount
+    const activeCount = listings.length - liveCount
 
     if (listings.length) {
       return (
-        <Footer completedCount={completedCount}
+        <Footer liveCount={liveCount}
           activeCount={activeCount}
           filter={filter}
           onClearCompleted={::this.handleClearCompleted}
@@ -60,19 +60,19 @@ class MainSection extends Component {
     const { filter } = this.state
 
     const filteredListings = listings.filter(LISTING_FILTERS[filter])
-    const completedCount = listings.reduce((count, listing) => {
-      return listing.completed ? count + 1 : count
+    const liveCount = listings.reduce((count, listing) => {
+      return listing.live ? count + 1 : count
     }, 0)
 
     return (
       <section className={style.main}>
-        {this.renderToggleAll(completedCount)}
+        {this.renderToggleAll(liveCount)}
         <ul className={style.normal}>
           {filteredListings.map(listing =>
             <Listing key={listing.id} listing={listing} {...actions} />
           )}
         </ul>
-        {this.renderFooter(completedCount)}
+        {this.renderFooter(liveCount)}
       </section>
     )
   }

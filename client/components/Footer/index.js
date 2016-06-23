@@ -13,11 +13,11 @@ const FILTER_TITLES = {
 class Footer extends Component {
   renderListingCount() {
     const { activeCount } = this.props
-    const itemWord = activeCount === 1 ? 'item' : 'items'
+    const itemWord = activeCount === 1 ? 'listing' : 'listings'
 
     return (
       <span className={style.count}>
-        <strong>{activeCount || 'No'}</strong> {itemWord} left
+        <strong>{activeCount || 'No'}</strong> {itemWord} active
       </span>
     )
   }
@@ -36,8 +36,8 @@ class Footer extends Component {
   }
 
   renderClearButton() {
-    const { completedCount, onClearCompleted } = this.props
-    if (completedCount > 0) {
+    const { liveCount, onClearCompleted } = this.props
+    if (liveCount > 0) {
       return (
         <button className={style.clearCompleted} onClick={onClearCompleted} >
           Clear completed

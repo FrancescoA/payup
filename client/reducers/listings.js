@@ -19,6 +19,45 @@ const initialState = [
   },
 ]
 
+const fakeState = [
+  {
+    id: 'some-hash1',
+    alias: 'Compromising Pictures of Elliot',
+    filename: 'wanker.jpg',
+    fileUrl: 'www.elliot.com/compromising.jpg',
+    available: 10,
+    sold: 5,
+    price: '$5.00',
+    listingPageUrl: 'www.payupd.com/elliot/somelisting',
+    description: 'These are REALLY compromising, dont miss out',
+    live: true
+  },
+  {
+    id: 'some-hash2',
+    alias: 'Odesza tickets',
+    filename: 'tickets.pdf',
+    fileUrl: 'www.firebase.com/lalalfsdfefefs.pdf',
+    available: 1,
+    sold: 0,
+    price: '$50.00',
+    listingPageUrl: 'www.payupd.com/fra/odesza',
+    description: 'Cannot go anymore please buy',
+    live: false
+  },
+  {
+    id: 'some-hash3',
+    alias: 'Amazon PM talk',
+    filename: 'wanker.jpg',
+    fileUrl: 'www.elliot.com/compromising.jpg',
+    available: 2,
+    sold: 2,
+    price: '$10.00',
+    listingPageUrl: 'www.payupd.com/smurf/eventbrightsucks',
+    description: 'Bought these on EventBright but no longer want to go',
+    live: true
+  }
+]
+
 export default handleActions({
   'add listing' (state, action) {
     return [{
@@ -35,7 +74,7 @@ export default handleActions({
   'edit listing' (state, action) {
     return state.map(listing => {
       return listing.id === action.payload.id
-        ? { ...listing, text: action.payload.text }
+        ? { ...listing, [action.payload.field]: action.payload.text }
         : listing
     })
   },
@@ -61,4 +100,4 @@ export default handleActions({
   'clear complete' (state, action) {
     return state.filter(listing => listing.completed === false)
   }
-}, initialState)
+}, fakeState)

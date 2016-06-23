@@ -8,31 +8,35 @@ import style from './style.css'
 class Listing extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = {
-      editing: false
-    }
+    // this.state = {
+    //   editing: false
+    // }
   }
 
-  handleDoubleClick() {
-    this.setState({ editing: true })
-  }
+  // handleDoubleClick() {
+  //   this.setState({ editing: true })
+  // }
 
-  handleSave(id, text) {
-    if (text.length === 0) {
-      this.props.deleteListing(id)
-    } else {
-      this.props.editListing({ id, text })
-    }
-    this.setState({ editing: false })
+  handleSave(field, text) {
+    const id = this.props.listing.id
+    this.props.editListing({ id, field, text })
   }
 
   render() {
     // const {listing, completeListing, deleteListing} = this.props
-    const props = this.props;
+    const props = this.props
+    const {listing, editListing} = props
+    const {id, alias, filename} = listing
     return (
       <li>
-        <ListingItem {...props}/>
-        <ListingItem {...props}/>
+        <ListingItem 
+          text={alias}
+          handleEdit={this.handleSave.bind(this, 'alias')}
+        />
+        <ListingItem 
+          text={filename}
+          handleEdit={this.handleSave.bind(this, 'filename')}
+        />
       </li>
     )
   }

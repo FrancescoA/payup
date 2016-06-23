@@ -16,12 +16,8 @@ class ListingItem extends Component {
     this.setState({ editing: true })
   }
 
-  handleSave(id, text) {
-    if (text.length === 0) {
-      this.props.deleteListing(id)
-    } else {
-      this.props.editListing({ id, text })
-    }
+  handleSave(text) {
+    this.props.handleEdit(text)
     this.setState({ editing: false })
   }
 
@@ -33,17 +29,17 @@ class ListingItem extends Component {
     //   [style.normal]: !this.state.editing
     // })
 
-    const {listing, completeListing, deleteListing} = this.props
+    const {listing, text} = this.props
     let element
     if (this.state.editing) {
       element = (
-        <ListingTextInput className={style.editing} text={listing.text}
+        <ListingTextInput className={style.editing} text={text}
            editing={this.state.editing}
-           onSave={(text) => this.handleSave(listing.id, text)} />
+           onSave={(text) => this.handleSave(text)} />
       )
     } else {
       element = (
-        <ListingItemLabel className={style.normal} text={listing.text}
+        <ListingItemLabel className={style.normal} text={text}
           handleDoubleClick={::this.handleDoubleClick} />
         )
     }
