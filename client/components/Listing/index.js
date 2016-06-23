@@ -26,9 +26,9 @@ class Listing extends Component {
     // const {listing, completeListing, deleteListing} = this.props
     const props = this.props
     const {listing, editListing} = props
-    const {id, alias, filename} = listing
+    const {id, alias, filename, fileurl} = listing
     return (
-      <li>
+      <tr>
         <ListingItem 
           text={alias}
           handleEdit={this.handleSave.bind(this, 'alias')}
@@ -37,7 +37,11 @@ class Listing extends Component {
           text={filename}
           handleEdit={this.handleSave.bind(this, 'filename')}
         />
-      </li>
+        <ListingItem 
+          text={fileurl}
+          handleEdit={this.handleSave.bind(this, 'fileurl')}
+        />
+      </tr>
     )
   }
 }

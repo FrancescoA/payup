@@ -4,12 +4,12 @@ import style from './style.css'
 class ListingItemLabel extends Component {
 
   render() {
-    const {handleDoubleClick, deleteListing, text} = this.props
+    const {handleDoubleClick, text} = this.props
     return (
       <div className={style.view}>
-        <label onDoubleClick={handleDoubleClick}>
+        <span onDoubleClick={handleDoubleClick}>
           {text}
-        </label>
+        </span>
         {/*<button className={style.destroy} onClick={() => deleteListing(listing.id)} />*/}
       </div>
     )

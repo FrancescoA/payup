@@ -17,7 +17,7 @@ class ListingItem extends Component {
   }
 
   handleSave(text) {
-    this.props.handleEdit(text)
+    this.props.handleEdit(text || '--')
     this.setState({ editing: false })
   }
 
@@ -44,7 +44,11 @@ class ListingItem extends Component {
         )
     }
 
-    return element
+    return ( 
+      <td>
+        {element}
+      </td>
+    )
   }
 }
 

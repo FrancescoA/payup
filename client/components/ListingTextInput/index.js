@@ -33,13 +33,13 @@ class ListingTextInput extends Component {
   }
 
   render() {
-    const classes = classnames({
-      [style.edit]: this.props.editing,
-      [style.new]: this.props.newListing
-    }, style.normal)
+    // const classes = classnames({
+    //   [style.edit]: this.props.editing,
+    //   [style.new]: this.props.newListing
+    // }, style.normal)
 
     return (
-      <input className={classes}
+      <input 
       type="text"
       autoFocus="true"
       placeholder={this.props.placeholder}

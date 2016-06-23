@@ -1,7 +1,7 @@
-
 import React, { Component } from 'react'
 import Listing from '../Listing'
 import Footer from '../Footer'
+import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
 
@@ -28,16 +28,16 @@ class MainSection extends Component {
     this.setState({ filter })
   }
 
-  renderToggleAll(liveCount) {
-    const { listings, actions } = this.props
-    if (listings.length > 0) {
-      return <input
-        className={style.toggleAll}
-        type="checkbox"
-        checked={liveCount === listings.length}
-        onChange={actions.completeAll} />
-    }
-  }
+  // renderToggleAll(liveCount) {
+  //   const { listings, actions } = this.props
+  //   if (listings.length > 0) {
+  //     return <input
+  //       className={style.toggleAll}
+  //       type="checkbox"
+  //       checked={liveCount === listings.length}
+  //       onChange={actions.completeAll} />
+  //   }
+  // }
 
   renderFooter(liveCount) {
     const { listings } = this.props
@@ -58,22 +58,23 @@ class MainSection extends Component {
   render() {
     const { listings, actions } = this.props
     const { filter } = this.state
-
+    // this.renderToggleAll(liveCount)
     const filteredListings = listings.filter(LISTING_FILTERS[filter])
     const liveCount = listings.reduce((count, listing) => {
       return listing.live ? count + 1 : count
     }, 0)
 
     return (
-      <section className={style.main}>
-        {this.renderToggleAll(liveCount)}
-        <ul className={style.normal}>
-          {filteredListings.map(listing =>
-            <Listing key={listing.id} listing={listing} {...actions} />
-          )}
-        </ul>
+      <div className={'table-responsive'}>
+        <table className={classnames('table table-hover', style.table)}>
+          <tbody>
+            {filteredListings.map(listing =>
+              <Listing key={listing.id} listing={listing} {...actions} />
+            )}
+          </tbody>
+        </table>
         {this.renderFooter(liveCount)}
-      </section>
+      </div>
     )
   }
 }
