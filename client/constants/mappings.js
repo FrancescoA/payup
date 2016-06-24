@@ -1,9 +1,9 @@
 export const fieldDisplayMappings = {
   alias: 'Title',
-  filename: 'Name',
+  filename: 'Filename',
   fileurl: 'URL',
   price: 'Price ($)',
-  listingPageUrl: 'Link',
+  listingPageUrl: 'Your Link',
   amountToSell: 'Total',
   sold: 'Sold'
 }
