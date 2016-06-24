@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import Listing from '../Listing'
 import style from './style.css'
+import colors from '../../constants/colors.css'
 import {fieldDisplayMappings} from '../../constants/mappings'
 
 class ListingTable extends Component {
@@ -20,6 +21,9 @@ class ListingTable extends Component {
         <table className={classnames('table table-hover', style.table)}>
           <thead>
             <tr>
+              <th>
+                {/* col for edit button */}
+              </th>
               {visibleFields.map(fieldName =>
                 <th key={fieldName}>
                   {fieldDisplayMappings[fieldName]}
@@ -31,15 +35,15 @@ class ListingTable extends Component {
             </tr>
           </thead>
           <tbody>
-            {listings.map(listing =>
-              <Listing 
-                visibleFields={visibleFields}
-                key={listing.id} 
-                listing={listing} 
-                deleteListing={actions.deleteListing}
-                editListing={actions.editListing}
-              />
-            )}
+              {listings.map(listing =>
+                <Listing 
+                  visibleFields={visibleFields}
+                  key={listing.id} 
+                  listing={listing} 
+                  deleteListing={actions.deleteListing}
+                  editListing={actions.editListing}
+                />
+              )}
           </tbody>
         </table>
       </div>

@@ -40,6 +40,10 @@ input[type="checkbox"] {
   outline: none;
 }
 
+.glyphicon-remove {
+  color: #ED5565;
+}
+
 .normal {
   background: #fff;
   margin: 200px 0 40px 0;
