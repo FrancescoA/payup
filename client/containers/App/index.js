@@ -8,7 +8,6 @@ import style from './style.css'
 
 class App extends Component {
   render() {
-    console.log('props', this.props)
     const { listings, actions, children } = this.props
     return (
       <div className={style.normal}>

@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react'
 import ListingItem from '../ListingItem'
+import {fieldEditableMappings} from '../../constants/mappings'
 
 import classnames from 'classnames'
 import style from './style.css'
@@ -13,10 +14,6 @@ class Listing extends Component {
     // }
   }
 
-  // handleDoubleClick() {
-  //   this.setState({ editing: true })
-  // }
-
   handleSave(field, text) {
     const id = this.props.listing.id
     this.props.editListing({ id, field, text })
@@ -24,23 +21,26 @@ class Listing extends Component {
 
   render() {
     // const {listing, completeListing, deleteListing} = this.props
-    const props = this.props
-    const {listing, editListing} = props
+    const {listing, visibleFields, deleteListing} = this.props
     const {id, alias, filename, fileurl} = listing
     return (
       <tr>
-        <ListingItem 
-          text={alias}
-          handleEdit={this.handleSave.bind(this, 'alias')}
-        />
-        <ListingItem 
-          text={filename}
-          handleEdit={this.handleSave.bind(this, 'filename')}
-        />
-        <ListingItem 
-          text={fileurl}
-          handleEdit={this.handleSave.bind(this, 'fileurl')}
-        />
+        {visibleFields.map(fieldName => 
+          <ListingItem 
+            editable={fieldEditableMappings[fieldName]}
+            key={fieldName}
+            text={listing[fieldName]}
+            handleEdit={this.handleSave.bind(this, fieldName)}
+          >
+          </ListingItem>
+        )}
+        <td>
+          <button
+            onClick={() => deleteListing(id)}
+          >
+            <span className='glyphicon glyphicon-remove'></span>
+          </button>
+        </td>
       </tr>
     )
   }

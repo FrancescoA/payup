@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
 import classnames from 'classnames'
-import style from './style.css'
+// import style from './style.css'
 
 class ListingItem extends Component {
   constructor(props, context) {
@@ -13,11 +13,11 @@ class ListingItem extends Component {
   }
 
   handleDoubleClick() {
-    this.setState({ editing: true })
+    this.props.editable && this.setState({ editing: true })
   }
 
   handleSave(text) {
-    this.props.handleEdit(text || '--')
+    this.props.handleEdit(text)
     this.setState({ editing: false })
   }
 
@@ -30,18 +30,23 @@ class ListingItem extends Component {
     // })
 
     const {listing, text} = this.props
+    const {editing} = this.state
     let element
-    if (this.state.editing) {
+    if (editing) {
       element = (
-        <ListingTextInput className={style.editing} text={text}
-           editing={this.state.editing}
-           onSave={(text) => this.handleSave(text)} />
+        <ListingTextInput
+          placeholder='Untitled'
+          text={text}
+          onSave={(text) => this.handleSave(text)} 
+        />
       )
     } else {
       element = (
-        <ListingItemLabel className={style.normal} text={text}
-          handleDoubleClick={::this.handleDoubleClick} />
-        )
+        <ListingItemLabel 
+          text={text}
+          handleDoubleClick={::this.handleDoubleClick} 
+        />
+      )
     }
 
     return ( 

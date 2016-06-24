@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Listing from '../Listing'
+import ListingTable from '../ListingTable'
 import Footer from '../Footer'
+import TableHeading from '../TableHeading'
 import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
@@ -14,7 +15,9 @@ const LISTING_FILTERS = {
 class MainSection extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = { filter: SHOW_ALL }
+    this.state = { 
+      filter: SHOW_ALL
+    }
   }
 
   handleClearCompleted() {
@@ -65,15 +68,16 @@ class MainSection extends Component {
     }, 0)
 
     return (
-      <div className={'table-responsive'}>
-        <table className={classnames('table table-hover', style.table)}>
-          <tbody>
-            {filteredListings.map(listing =>
-              <Listing key={listing.id} listing={listing} {...actions} />
-            )}
-          </tbody>
-        </table>
-        {this.renderFooter(liveCount)}
+      <div className='panel panel-info'>
+        <div className='panel-heading'>
+          <h3 className={style.heading}> Listings </h3>
+        </div>
+        <TableHeading/>
+        <ListingTable
+          listings={filteredListings}
+          actions={actions}
+        />
+        {/* this.renderFooter(liveCount)*/}
       </div>
     )
   }
