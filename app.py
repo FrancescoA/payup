@@ -2,7 +2,7 @@ import os
 from flask import Flask
 from flask import render_template
 
-app = Flask(__name__, static_folder='static', template_folder='static')
+app = Flask(__name__, static_folder='static/landing', template_folder='static')
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 # db = SQLAlchemy(app)
 
