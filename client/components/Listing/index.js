@@ -31,7 +31,6 @@ class Listing extends Component {
             <span
               className={classnames('glyphicon glyphicon-cog')}
             > 
-
             </span>
           </button>
         </td>
