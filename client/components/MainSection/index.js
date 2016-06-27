@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ListingTable from '../ListingTable'
-import Footer from '../Footer'
 import TableHeading from '../TableHeading'
 import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
@@ -42,22 +41,6 @@ class MainSection extends Component {
   //   }
   // }
 
-  renderFooter(liveCount) {
-    const { listings } = this.props
-    const { filter } = this.state
-    const activeCount = listings.length - liveCount
-
-    if (listings.length) {
-      return (
-        <Footer liveCount={liveCount}
-          activeCount={activeCount}
-          filter={filter}
-          onClearCompleted={::this.handleClearCompleted}
-          onShow={::this.handleShow} />
-      )
-    }
-  }
-
   render() {
     const { listings, actions } = this.props
     const { filter } = this.state
@@ -68,16 +51,16 @@ class MainSection extends Component {
     }, 0)
 
     return (
-      <div className='panel panel-info'>
-        <div className='panel-heading'>
-          <h3 className={style.heading}> Listings </h3>
+      <div className='ui raised padded container segment'>
+        <div>
+          <h1 className={classnames(style.heading, 'ui header')}> Listings </h1>
         </div>
+        <div className='ui clearing divider'/>
         <TableHeading/>
         <ListingTable
           listings={filteredListings}
           actions={actions}
         />
-        {/* this.renderFooter(liveCount)*/}
       </div>
     )
   }

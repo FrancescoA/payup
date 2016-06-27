@@ -27,6 +27,11 @@ module.exports = {
         loader: 'file?name=[name].[ext]'
       },
       {
+        test: /\.(jpg|png)$/,
+        loader: 'file?name=[path][name].[hash].[ext]',
+        include: /static/
+      },
+      {
         test: /\.css$/,
         include: /client/,
         loaders: [

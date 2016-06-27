@@ -7,7 +7,6 @@ body {
 
 body {
   display: block !important; /* To fix FOUC */
-  width: 90%;
 }
 
 button {

@@ -30,7 +30,8 @@ const fakeState = [
     price: '5.00',
     listingPageUrl: 'www.payupd.com/elliot/somelisting',
     description: 'These are REALLY compromising, dont miss out',
-    live: true
+    live: true,
+    dateCreated: '01-01-2016'
   },
   {
     id: 'some-hash2',
@@ -42,7 +43,8 @@ const fakeState = [
     price: '50.00',
     listingPageUrl: 'www.payupd.com/fra/odesza',
     description: 'Cannot go anymore please buy',
-    live: false
+    live: false,
+    dateCreated: '01-01-2016'
   },
   {
     id: 'some-hash3',
@@ -54,7 +56,8 @@ const fakeState = [
     price: '10.00',
     listingPageUrl: 'www.payupd.com/smurf/eventbrightsucks',
     description: 'Bought these on EventBright but no longer want to go',
-    live: true
+    live: true,
+    dateCreated: '01-01-2016'
   }
 ]
 
@@ -74,7 +77,7 @@ export default handleActions({
   'edit listing' (state, action) {
     return state.map(listing => {
       return listing.id === action.payload.id
-        ? { ...listing, [action.payload.field]: action.payload.text }
+        ? { ...listing, [action.payload.field]: action.payload.value }
         : listing
     })
   },

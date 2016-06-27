@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
-import ListingTextInput from '../ListingTextInput'
+import img from '../../../static/img/LogoExport.png'
 
 class Header extends Component {
-  handleSave(text) {
-    if (text.length) {
-      this.props.addListing(text)
-    }
-  }
 
   render() {
     return (
-      <header>
-        <h1>Listings</h1>
-        <ListingTextInput
-          newListing
-          onSave={::this.handleSave}
-          placeholder="What needs to be done?" />
-      </header>
+      <div className='ui large menu'>
+        <div className='ui container'>
+          <div className='item'>
+            <img className='ui image tiny' src={img}/>
+          </div>
+          <div className='right menu'>
+            <div className='item'>
+              FrancescoA
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

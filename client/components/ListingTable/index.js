@@ -9,7 +9,7 @@ class ListingTable extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      visibleFields: ['alias', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell']
+      visibleFields: ['alias', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell', 'live']
     }
   }
 
@@ -17,36 +17,31 @@ class ListingTable extends Component {
     const { listings, actions } = this.props
     const { visibleFields } = this.state 
     return (
-      <div className='table-responsive'>
-        <table className={classnames('table table-hover', style.table)}>
-          <thead>
-            <tr>
-              <th>
-                {/* col for edit button */}
+      <table className={classnames('ui compact definition table', style.table)}>
+        <thead>
+          <tr>
+            <th>
+              {/* col for edit/delete buttons */}
+            </th>
+            {visibleFields.map(fieldName =>
+              <th key={fieldName}>
+                {fieldDisplayMappings[fieldName]}
               </th>
-              {visibleFields.map(fieldName =>
-                <th key={fieldName}>
-                  {fieldDisplayMappings[fieldName]}
-                </th>
-              )}
-              <th>
-                {/* col for delete button */}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-              {listings.map(listing =>
-                <Listing 
-                  visibleFields={visibleFields}
-                  key={listing.id} 
-                  listing={listing} 
-                  deleteListing={actions.deleteListing}
-                  editListing={actions.editListing}
-                />
-              )}
-          </tbody>
-        </table>
-      </div>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+            {listings.map(listing =>
+              <Listing 
+                visibleFields={visibleFields}
+                key={listing.id} 
+                listing={listing} 
+                deleteListing={actions.deleteListing}
+                editListing={actions.editListing}
+              />
+            )}
+        </tbody>
+      </table>
     )
   }
 }

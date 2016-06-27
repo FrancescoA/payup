@@ -5,7 +5,8 @@ export const fieldDisplayMappings = {
   price: 'Price ($)',
   listingPageUrl: 'Your Link',
   amountToSell: 'Total',
-  sold: 'Sold'
+  sold: 'Sold',
+  live: 'Live'
 }
 
 export const fieldEditableMappings = {
@@ -15,5 +16,6 @@ export const fieldEditableMappings = {
   price: true,
   listingPageUrl: false,
   amountToSell: true,
-  sold: false
+  sold: false,
+  live: true
 }

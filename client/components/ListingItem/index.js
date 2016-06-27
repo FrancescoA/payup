@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SliderToggle from '../SliderToggle'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
 import classnames from 'classnames'
@@ -16,8 +17,8 @@ class ListingItem extends Component {
     this.props.editable && this.setState({ editing: true })
   }
 
-  handleSave(text) {
-    this.props.handleEdit(text)
+  handleSave(value) {
+    this.props.handleEdit(value)
     this.setState({ editing: false })
   }
 
@@ -29,21 +30,32 @@ class ListingItem extends Component {
     //   [style.normal]: !this.state.editing
     // })
 
-    const {listing, text} = this.props
+    const {listing, value, name} = this.props
     const {editing} = this.state
+    if (name === 'live') {
+      return (
+        <td className='collapsing'> 
+          <SliderToggle 
+            value={value}
+            onSave={(value) => this.handleSave(value)}
+          />
+        </td>
+      )
+    }
+
     let element
     if (editing) {
       element = (
         <ListingTextInput
           placeholder='Untitled'
-          text={text}
-          onSave={(text) => this.handleSave(text)} 
+          text={value}
+          onSave={(value) => this.handleSave(value)} 
         />
       )
     } else {
       element = (
         <ListingItemLabel 
-          text={text}
+          text={value}
           handleDoubleClick={::this.handleDoubleClick} 
         />
       )

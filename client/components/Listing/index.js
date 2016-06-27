@@ -15,9 +15,9 @@ class Listing extends Component {
     // }
   }
 
-  handleSave(field, text) {
+  handleSave(field, value) {
     const id = this.props.listing.id
-    this.props.editListing({ id, field, text })
+    this.props.editListing({ id, field, value })
   }
 
   render() {
@@ -26,30 +26,23 @@ class Listing extends Component {
     const {id, alias, filename, fileurl} = listing
     return (
       <tr>
-        <td>
-          <button> 
-            <span
-              className={classnames('glyphicon glyphicon-cog')}
-            > 
-            </span>
-          </button>
+        <td className='collapsing'>
+            <button> 
+              <i className='large setting icon'/>
+            </button>
+            <button onClick={() => deleteListing(id)}>
+              <i className='large red remove icon'/>
+            </button>
         </td>
         {visibleFields.map(fieldName => 
           <ListingItem 
             editable={fieldEditableMappings[fieldName]}
             key={fieldName}
-            text={listing[fieldName]}
+            name={fieldName}
+            value={listing[fieldName]}
             handleEdit={this.handleSave.bind(this, fieldName)}
           />
         )}
-        <td>
-          <button onClick={() => deleteListing(id)}>
-            <span 
-              className={classnames('glyphicon glyphicon-remove-circle', colors.grapefruit)}
-            >
-            </span>
-          </button>
-        </td>
       </tr>
     )
   }
