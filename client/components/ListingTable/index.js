@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 import Listing from '../Listing'
 import style from './style.css'
-import colors from '../../constants/colors.css'
 import {fieldDisplayMappings} from '../../constants/mappings'
 
 class ListingTable extends Component {

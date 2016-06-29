@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import img from '../../../static/img/LogoExport.png'
+import {prefixUrl} from '../../helpers/config'
 
 class Header extends Component {
 
@@ -8,7 +9,7 @@ class Header extends Component {
       <div className='ui large menu'>
         <div className='ui container'>
           <div className='item'>
-            <img className='ui image tiny' src={img}/>
+            <img className='ui image tiny' src={prefixUrl(img)}/>
           </div>
           <div className='right menu'>
             <div className='item'>

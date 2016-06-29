@@ -4,7 +4,6 @@ import ListingItem from '../ListingItem'
 import {fieldEditableMappings} from '../../constants/mappings'
 import classnames from 'classnames'
 import style from './style.css'
-import colors from '../../constants/colors.css'
 
 
 class Listing extends Component {

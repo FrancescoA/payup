@@ -24,7 +24,7 @@ webpackJsonp([1],[
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _store = __webpack_require__(444);
+	var _store = __webpack_require__(443);
 
 	var _store2 = _interopRequireDefault(_store);
 
@@ -338,19 +338,19 @@ webpackJsonp([1],[
 
 	var _MainSection2 = _interopRequireDefault(_MainSection);
 
-	var _Header = __webpack_require__(426);
+	var _Header = __webpack_require__(424);
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _Footer = __webpack_require__(428);
+	var _Footer = __webpack_require__(427);
 
 	var _Footer2 = _interopRequireDefault(_Footer);
 
-	var _listings = __webpack_require__(429);
+	var _listings = __webpack_require__(428);
 
 	var ListingActions = _interopRequireWildcard(_listings);
 
-	var _style = __webpack_require__(442);
+	var _style = __webpack_require__(441);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -1976,7 +1976,7 @@ webpackJsonp([1],[
 
 	var _ListingTable2 = _interopRequireDefault(_ListingTable);
 
-	var _TableHeading = __webpack_require__(420);
+	var _TableHeading = __webpack_require__(418);
 
 	var _TableHeading2 = _interopRequireDefault(_TableHeading);
 
@@ -1984,9 +1984,9 @@ webpackJsonp([1],[
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _filters = __webpack_require__(423);
+	var _filters = __webpack_require__(421);
 
-	var _style = __webpack_require__(424);
+	var _style = __webpack_require__(422);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -2156,13 +2156,9 @@ webpackJsonp([1],[
 
 	var _Listing2 = _interopRequireDefault(_Listing);
 
-	var _style = __webpack_require__(418);
+	var _style = __webpack_require__(416);
 
 	var _style2 = _interopRequireDefault(_style);
-
-	var _colors = __webpack_require__(416);
-
-	var _colors2 = _interopRequireDefault(_colors);
 
 	var _mappings = __webpack_require__(413);
 
@@ -2335,10 +2331,6 @@ webpackJsonp([1],[
 	var _style = __webpack_require__(414);
 
 	var _style2 = _interopRequireDefault(_style);
-
-	var _colors = __webpack_require__(416);
-
-	var _colors2 = _interopRequireDefault(_colors);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6372,8 +6364,8 @@ webpackJsonp([1],[
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./colors.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../node_modules/postcss-loader/index.js!./colors.css");
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./style.css", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./style.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -6391,49 +6383,6 @@ webpackJsonp([1],[
 
 
 	// module
-	exports.push([module.id, ".colors__blue-jeans___15hYq {\n  color: #5D9CEC;\n}\n\n.colors__grapefruit___2HQjE {\n  color: #ED5565;\n}", "", {"version":3,"sources":["/./constants/colors.css"],"names":[],"mappings":"AAAA;EACE,eAAe;CAChB;;AAED;EACE,eAAe;CAChB","file":"colors.css","sourcesContent":[".blue-jeans {\n  color: #5D9CEC;\n}\n\n.grapefruit {\n  color: #ED5565;\n}"],"sourceRoot":"webpack://"}]);
-
-	// exports
-	exports.locals = {
-		"blue-jeans": "colors__blue-jeans___15hYq",
-		"grapefruit": "colors__grapefruit___2HQjE"
-	};
-
-/***/ },
-/* 418 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(419);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(409)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./style.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!./../../../node_modules/postcss-loader/index.js!./style.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 419 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(408)();
-	// imports
-
-
-	// module
 	exports.push([module.id, ".style__table___1xTE9 {\n  margin-bottom: 0px;\n}", "", {"version":3,"sources":["/./components/ListingTable/style.css"],"names":[],"mappings":"AAAA;EACE,mBAAmB;CACpB","file":"style.css","sourcesContent":[".table {\n  margin-bottom: 0px;\n}"],"sourceRoot":"webpack://"}]);
 
 	// exports
@@ -6442,7 +6391,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 420 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6477,7 +6426,7 @@ webpackJsonp([1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _style = __webpack_require__(421);
+	var _style = __webpack_require__(419);
 
 	var _style2 = _interopRequireDefault(_style);
 
@@ -6514,13 +6463,13 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 421 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(422);
+	var content = __webpack_require__(420);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(409)(content, {});
@@ -6540,7 +6489,7 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 422 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(408)();
@@ -6554,7 +6503,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 423 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6571,13 +6520,13 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "filters.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 424 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(425);
+	var content = __webpack_require__(423);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(409)(content, {});
@@ -6597,7 +6546,7 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 425 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(408)();
@@ -6616,7 +6565,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 426 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6651,9 +6600,11 @@ webpackJsonp([1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _LogoExport = __webpack_require__(427);
+	var _LogoExport = __webpack_require__(425);
 
 	var _LogoExport2 = _interopRequireDefault(_LogoExport);
+
+	var _config = __webpack_require__(426);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6668,6 +6619,7 @@ webpackJsonp([1],[
 	  (0, _createClass3.default)(Header, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log((0, _config.prefixUrl)(_LogoExport2.default));
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'ui large menu' },
@@ -6677,7 +6629,7 @@ webpackJsonp([1],[
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'item' },
-	            _react2.default.createElement('img', { className: 'ui image tiny', src: _LogoExport2.default })
+	            _react2.default.createElement('img', { className: 'ui image tiny', src: (0, _config.prefixUrl)(_LogoExport2.default) })
 	          ),
 	          _react2.default.createElement(
 	            'div',
@@ -6700,13 +6652,31 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 427 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "_/static/img/LogoExport.d02ad1ef83c134d64abead14993ce29a.png";
 
 /***/ },
-/* 428 */
+/* 426 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var prefixUrl = exports.prefixUrl = function prefixUrl(url) {
+	  var prefix =  false ? '' : 'static/';
+	  return prefix + url;
+	};
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "config.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6777,7 +6747,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 429 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -6789,7 +6759,7 @@ webpackJsonp([1],[
 	});
 	exports.clearCompleted = exports.completeAll = exports.completeListing = exports.editListing = exports.deleteListing = exports.addListing = undefined;
 
-	var _reduxActions = __webpack_require__(430);
+	var _reduxActions = __webpack_require__(429);
 
 	var addListing = exports.addListing = (0, _reduxActions.createAction)('add listing');
 	var deleteListing = exports.deleteListing = (0, _reduxActions.createAction)('delete listing');
@@ -6801,7 +6771,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "listings.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 430 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6810,15 +6780,15 @@ webpackJsonp([1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _createAction = __webpack_require__(431);
+	var _createAction = __webpack_require__(430);
 
 	var _createAction2 = _interopRequireDefault(_createAction);
 
-	var _handleAction = __webpack_require__(432);
+	var _handleAction = __webpack_require__(431);
 
 	var _handleAction2 = _interopRequireDefault(_handleAction);
 
-	var _handleActions = __webpack_require__(439);
+	var _handleActions = __webpack_require__(438);
 
 	var _handleActions2 = _interopRequireDefault(_handleActions);
 
@@ -6827,7 +6797,7 @@ webpackJsonp([1],[
 	exports.handleActions = _handleActions2['default'];
 
 /***/ },
-/* 431 */
+/* 430 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -6867,7 +6837,7 @@ webpackJsonp([1],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 432 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6875,7 +6845,7 @@ webpackJsonp([1],[
 	exports.__esModule = true;
 	exports['default'] = handleAction;
 
-	var _fluxStandardAction = __webpack_require__(433);
+	var _fluxStandardAction = __webpack_require__(432);
 
 	function isFunction(val) {
 	  return typeof val === 'function';
@@ -6903,7 +6873,7 @@ webpackJsonp([1],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 433 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -6914,7 +6884,7 @@ webpackJsonp([1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _lodashIsplainobject = __webpack_require__(434);
+	var _lodashIsplainobject = __webpack_require__(433);
 
 	var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -6933,7 +6903,7 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 434 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -6944,9 +6914,9 @@ webpackJsonp([1],[
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseFor = __webpack_require__(435),
-	    isArguments = __webpack_require__(436),
-	    keysIn = __webpack_require__(437);
+	var baseFor = __webpack_require__(434),
+	    isArguments = __webpack_require__(435),
+	    keysIn = __webpack_require__(436);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -7042,7 +7012,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 435 */
+/* 434 */
 /***/ function(module, exports) {
 
 	/**
@@ -7096,7 +7066,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 436 */
+/* 435 */
 /***/ function(module, exports) {
 
 	/**
@@ -7345,7 +7315,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 437 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7356,8 +7326,8 @@ webpackJsonp([1],[
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var isArguments = __webpack_require__(436),
-	    isArray = __webpack_require__(438);
+	var isArguments = __webpack_require__(435),
+	    isArray = __webpack_require__(437);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -7483,7 +7453,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 438 */
+/* 437 */
 /***/ function(module, exports) {
 
 	/**
@@ -7669,7 +7639,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 439 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7679,15 +7649,15 @@ webpackJsonp([1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _handleAction = __webpack_require__(432);
+	var _handleAction = __webpack_require__(431);
 
 	var _handleAction2 = _interopRequireDefault(_handleAction);
 
-	var _ownKeys = __webpack_require__(440);
+	var _ownKeys = __webpack_require__(439);
 
 	var _ownKeys2 = _interopRequireDefault(_ownKeys);
 
-	var _reduceReducers = __webpack_require__(441);
+	var _reduceReducers = __webpack_require__(440);
 
 	var _reduceReducers2 = _interopRequireDefault(_reduceReducers);
 
@@ -7705,7 +7675,7 @@ webpackJsonp([1],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 440 */
+/* 439 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -7730,7 +7700,7 @@ webpackJsonp([1],[
 	module.exports = exports['default'];
 
 /***/ },
-/* 441 */
+/* 440 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7753,13 +7723,13 @@ webpackJsonp([1],[
 	module.exports = exports["default"];
 
 /***/ },
-/* 442 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(443);
+	var content = __webpack_require__(442);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(409)(content, {});
@@ -7779,7 +7749,7 @@ webpackJsonp([1],[
 	}
 
 /***/ },
-/* 443 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(408)();
@@ -7793,7 +7763,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 444 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -7807,9 +7777,9 @@ webpackJsonp([1],[
 
 	var _redux = __webpack_require__(107);
 
-	var _middleware = __webpack_require__(445);
+	var _middleware = __webpack_require__(444);
 
-	var _reducers = __webpack_require__(447);
+	var _reducers = __webpack_require__(446);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -7835,7 +7805,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 445 */
+/* 444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -7847,7 +7817,7 @@ webpackJsonp([1],[
 	});
 	exports.logger = undefined;
 
-	var _logger = __webpack_require__(446);
+	var _logger = __webpack_require__(445);
 
 	var _logger2 = _interopRequireDefault(_logger);
 
@@ -7858,7 +7828,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 446 */
+/* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -7881,7 +7851,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "logger.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 447 */
+/* 446 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -7896,7 +7866,7 @@ webpackJsonp([1],[
 
 	var _redux = __webpack_require__(107);
 
-	var _listings = __webpack_require__(448);
+	var _listings = __webpack_require__(447);
 
 	var _listings2 = _interopRequireDefault(_listings);
 
@@ -7912,7 +7882,7 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "index.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 448 */
+/* 447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -7927,15 +7897,15 @@ webpackJsonp([1],[
 
 	var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
-	var _extends3 = __webpack_require__(449);
+	var _extends3 = __webpack_require__(448);
 
 	var _extends4 = _interopRequireDefault(_extends3);
 
-	var _toConsumableArray2 = __webpack_require__(454);
+	var _toConsumableArray2 = __webpack_require__(453);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
-	var _reduxActions = __webpack_require__(430);
+	var _reduxActions = __webpack_require__(429);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8036,14 +8006,14 @@ webpackJsonp([1],[
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/FrancescoA/Dropbox/Projects/PayUp/payup/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "listings.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 449 */
+/* 448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _assign = __webpack_require__(450);
+	var _assign = __webpack_require__(449);
 
 	var _assign2 = _interopRequireDefault(_assign);
 
@@ -8064,29 +8034,29 @@ webpackJsonp([1],[
 	};
 
 /***/ },
+/* 449 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(450), __esModule: true };
+
+/***/ },
 /* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(451), __esModule: true };
+	__webpack_require__(451);
+	module.exports = __webpack_require__(264).Object.assign;
 
 /***/ },
 /* 451 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(452);
-	module.exports = __webpack_require__(264).Object.assign;
-
-/***/ },
-/* 452 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// 19.1.3.1 Object.assign(target, source)
 	var $export = __webpack_require__(263);
 
-	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(453)});
+	$export($export.S + $export.F, 'Object', {assign: __webpack_require__(452)});
 
 /***/ },
-/* 453 */
+/* 452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8124,14 +8094,14 @@ webpackJsonp([1],[
 	} : $assign;
 
 /***/ },
-/* 454 */
+/* 453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	exports.__esModule = true;
 
-	var _from = __webpack_require__(455);
+	var _from = __webpack_require__(454);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -8150,34 +8120,34 @@ webpackJsonp([1],[
 	};
 
 /***/ },
+/* 454 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(455), __esModule: true };
+
+/***/ },
 /* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(456), __esModule: true };
-
-/***/ },
-/* 456 */
-/***/ function(module, exports, __webpack_require__) {
-
 	__webpack_require__(286);
-	__webpack_require__(457);
+	__webpack_require__(456);
 	module.exports = __webpack_require__(264).Array.from;
 
 /***/ },
-/* 457 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var ctx            = __webpack_require__(265)
 	  , $export        = __webpack_require__(263)
 	  , toObject       = __webpack_require__(254)
-	  , call           = __webpack_require__(458)
-	  , isArrayIter    = __webpack_require__(459)
+	  , call           = __webpack_require__(457)
+	  , isArrayIter    = __webpack_require__(458)
 	  , toLength       = __webpack_require__(302)
-	  , createProperty = __webpack_require__(460)
-	  , getIterFn      = __webpack_require__(461);
+	  , createProperty = __webpack_require__(459)
+	  , getIterFn      = __webpack_require__(460);
 
-	$export($export.S + $export.F * !__webpack_require__(463)(function(iter){ Array.from(iter); }), 'Array', {
+	$export($export.S + $export.F * !__webpack_require__(462)(function(iter){ Array.from(iter); }), 'Array', {
 	  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
 	  from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
 	    var O       = toObject(arrayLike)
@@ -8207,7 +8177,7 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 458 */
+/* 457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -8224,7 +8194,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 459 */
+/* 458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
@@ -8237,7 +8207,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 460 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8250,10 +8220,10 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 461 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var classof   = __webpack_require__(462)
+	var classof   = __webpack_require__(461)
 	  , ITERATOR  = __webpack_require__(307)('iterator')
 	  , Iterators = __webpack_require__(292);
 	module.exports = __webpack_require__(264).getIteratorMethod = function(it){
@@ -8263,7 +8233,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 462 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
@@ -8291,7 +8261,7 @@ webpackJsonp([1],[
 	};
 
 /***/ },
-/* 463 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ITERATOR     = __webpack_require__(307)('iterator')
