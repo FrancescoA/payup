@@ -5,7 +5,10 @@ class TableHeading extends Component {
   render() {
     return (
       <div>
-        <button className='ui basic green button'> 
+        <button 
+          className='ui basic green button'
+          onClick={() => console.log('hello')}
+        > 
           <i className='cloud upload icon'/>
           Add File 
         </button>

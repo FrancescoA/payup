@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Checkbox} from 'react-semantify'
 import classnames from 'classnames'
 
 
@@ -11,6 +10,10 @@ class SliderToggle extends Component {
     }
   }
 
+  componentDidMount() {
+    $(this.refs.checkbox).checkbox()
+  }
+
   handleToggle() {
     this.props.onSave(!this.state.checked)
   }
@@ -18,17 +21,16 @@ class SliderToggle extends Component {
   render() {
     const { checked } = this.state
     return (
-      <Checkbox 
-        init={true} 
-        className={classnames('fitted toggle', {checked: checked})}
+      <div 
+        className={classnames('ui checkbox fitted toggle', {checked: checked})}
         onClick={() => this.handleToggle()}
-        >
+      >
         <input 
           type='checkbox' 
           defaultChecked={checked}
           />
         <label/>
-      </Checkbox>
+      </div>
     )
 
   }

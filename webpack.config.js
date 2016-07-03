@@ -18,6 +18,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './static'),
+    publicPath: '/static/',
     filename: 'bundle.js',
   },
   module: {
@@ -70,7 +71,7 @@ module.exports = {
     })
   ],
   devServer: {
-    // contentBase: './',
+    contentBase: './static',
     hot: true
   }
 }
