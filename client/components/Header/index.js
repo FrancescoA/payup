@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import img from '../../../static/img/LogoExport.png'
-import {prefixUrl} from '../../helpers/config'
+import { prefixUrl } from '../../helpers/config'
 
 class Header extends Component {
 

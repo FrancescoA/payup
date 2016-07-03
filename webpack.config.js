@@ -70,7 +70,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: './client',
+    // contentBase: './',
     hot: true
   }
 }
