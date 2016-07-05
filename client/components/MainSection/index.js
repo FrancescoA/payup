@@ -50,6 +50,19 @@ class MainSection extends Component {
       return listing.live ? count + 1 : count
     }, 0)
 
+    let content = ( 
+      <ListingTable
+        listings={filteredListings}
+        actions={actions}
+      /> 
+    )
+
+    if (!listings.length) {
+      content = (
+        <h3> You have no listings! </h3>
+      )
+    }
+
     return (
       <div className='ui raised padded container segment'>
         <div>
@@ -57,10 +70,7 @@ class MainSection extends Component {
         </div>
         <div className='ui clearing divider'/>
         <TableHeading/>
-        <ListingTable
-          listings={filteredListings}
-          actions={actions}
-        />
+        {content}
       </div>
     )
   }
