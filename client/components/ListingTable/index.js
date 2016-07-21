@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import Modal from '../Modal'
 import Listing from '../Listing'
 import style from './style.css'
-import {fieldDisplayMappings} from '../../constants/mappings'
+import { fieldDisplayMappings } from '../../constants/mappings'
 
 class ListingTable extends Component {
   constructor(props, context) {

@@ -24,3 +24,7 @@
 .destroy {
   display: inline;
 }
+
+a {
+  cursor: pointer;
+}

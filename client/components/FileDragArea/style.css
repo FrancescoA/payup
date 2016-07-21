@@ -1,0 +1,25 @@
+.base {
+  width: 100%;
+  height: 200px;
+  outline: 2px dashed #2185d0;
+  outline-offset: -10px;
+  background-color: white;
+}
+
+.dragEnter, .dropSuccess {
+  outline: 2px dashed #21ba45;
+}
+
+.dropFail {
+  outline: 2px dashed #db2828;
+}
+
+.fileInfoContainer div {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.fileInfoContainer i {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

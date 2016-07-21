@@ -36,8 +36,9 @@ class ListingItem extends Component {
       return (
         <td className='collapsing'> 
           <SliderToggle 
-            value={value}
+            checked={value}
             onSave={(value) => this.handleSave(value)}
+            classes='fitted'
           />
         </td>
       )

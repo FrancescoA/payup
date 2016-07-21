@@ -9,9 +9,6 @@ import style from './style.css'
 class Listing extends Component {
   constructor(props, context) {
     super(props, context)
-    // this.state = {
-    //   editing: false
-    // }
   }
 
   handleSave(field, value) {
@@ -26,12 +23,12 @@ class Listing extends Component {
     return (
       <tr>
         <td className='collapsing'>
-            <button> 
+            <a> 
               <i className='large setting icon'/>
-            </button>
-            <button onClick={() => deleteListing(id)}>
+            </a>
+            <a onClick={() => deleteListing(id)}>
               <i className='large red remove icon'/>
-            </button>
+            </a>
         </td>
         {visibleFields.map(fieldName => 
           <ListingItem 

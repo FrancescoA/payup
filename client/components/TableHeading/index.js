@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
+import FileDragArea from '../FileDragArea'
 import style from './style.css'
 
 class TableHeading extends Component {
-  constructor(props, context) {
-    super(props, context) 
-  }
-
   render() {
+    const { openAddEditModal } = this.props
     return (
-      <div>
+      <div className='ui container'>
         <button 
-          className='ui basic green button'
+          className='ui basic green button fluid massive'
+          onClick={openAddEditModal}
         > 
           <i className='cloud upload icon'/>
           Add File 
         </button>
+        <FileDragArea/>
       </div>
     )
   }
