@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import FileDragArea from '../FileDragArea'
 import style from './style.css'
 
 class TableHeading extends Component {
@@ -14,7 +13,6 @@ class TableHeading extends Component {
           <i className='cloud upload icon'/>
           Add a Listing 
         </button>
-        <FileDragArea/>
       </div>
     )
   }

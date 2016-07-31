@@ -19,9 +19,9 @@ class FileDragArea extends Component {
      * delete
      */
     this.state = {
-      displayMode: 'default',
-      iconMode: 'default',
-      file: undefined
+      displayMode: props.displayMode || 'default',
+      iconMode: props.iconMode || 'default',
+      file: props.file || undefined
     }
   }
 
@@ -30,13 +30,12 @@ class FileDragArea extends Component {
       displayMode: 'dropSuccess',
       file: files.length ? files[0] : undefined
     })
+    this.props.onDropSuccess && this.props.onDropSuccess()
   }
 
   onDropFail(files, e) {
     this.setState({displayMode: 'dropFail'})
   }
-
-  //way to transition back to default
 
   supportsAdvancedUpload() {
     const div = document.createElement('div')
@@ -115,7 +114,6 @@ class FileDragArea extends Component {
           </div>
         </div>
       </DropZone>
-
     )
   }
 }

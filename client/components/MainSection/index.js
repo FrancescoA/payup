@@ -3,6 +3,7 @@ import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
 import SliderToggle from '../SliderToggle'
 import Modal from '../Modal'
+import FileDragArea from '../FileDragArea'
 import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
@@ -45,13 +46,14 @@ class MainSection extends Component {
     return (
       <Modal showing={this.state.editAddModalShowing}>
         <i 
-        onClick={() => this.setState({editAddModalShowing: false})}
+        onClick={::this.closeAddEditModal}
         className='close icon'
         />
         <div className='header'>
           Add a Listing
         </div>
         <div className='content'>
+          <FileDragArea/>
           <form className='ui form'>
             <div className='field'>
               <label>Title</label>

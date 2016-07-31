@@ -27,7 +27,7 @@ class Modal extends Component {
   render() {
     const { classes } = this.props 
     return (
-      <div ref={(c) => this.modal = c }
+      <div ref={(c) => this.modal = c}
         className={classnames('ui modal', classes)}>
         {this.props.children}
       </div>
