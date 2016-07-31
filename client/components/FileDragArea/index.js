@@ -8,14 +8,19 @@ class FileDragArea extends Component {
     super(props, context)
 
     /**
-     * Possible states:
+     * Possible displayModes:
      * default
      * dragEnter
      * dropSuccess
      * dropFail
+     *
+     * Possible iconModes:
+     * default
+     * delete
      */
     this.state = {
       displayMode: 'default',
+      iconMode: 'default',
       file: undefined
     }
   }
@@ -48,40 +53,59 @@ class FileDragArea extends Component {
     }
   } 
 
+  determineIcon() {
+    const { iconMode, file } = this.state
+    if (iconMode == 'delete') {
+      return 'trash outline'
+    } else {
+      return file ? this.iconForFileType(file.type) : 'cloud upload'
+    }
+  }
+
+  handleIconClick() {
+    if (this.state.iconMode == 'delete') {
+      this.setState({
+        iconMode: 'default',
+        displayMode: 'default',
+        file: undefined
+      })
+    }
+  }
+
   render() {
-    const { displayMode, file } = this.state
+    const { displayMode, file, iconMode } = this.state
     const iconName = file ? this.iconForFileType(file.type) : undefined
     return (
       <DropZone
         multiple={false}
-        disableClick={true}
+        disableClick={iconMode === 'delete'}
         className={classnames(style.base, 'ui center aligned very padded container segment',{
           [style.dragEnter]: displayMode === 'dragEnter',
           [style.dropFail]: displayMode === 'dropFail'
         })}
         onDragEnter={() => this.setState({displayMode: 'dragEnter'})}
+        onDragLeave={() => this.setState({displayMode: 'default'})}
         onDropAccepted={::this.onDropSuccess}
         onDropRejected={::this.onDropFail}
       >
         <div className={style.fileInfoContainer}>
-          <i className={classnames('icon huge', {
+          <i 
+          onMouseEnter={() => displayMode === 'dropSuccess' && this.setState({iconMode: 'delete'})}
+          onMouseLeave={() => this.setState({iconMode: 'default'})}
+          onClick={::this.handleIconClick}
+          className={classnames(this.determineIcon(), style.fileIcon, 'icon huge', {
             blue: displayMode === 'default' || displayMode === 'dropSuccess',
             green: displayMode === 'dragEnter',
-            red: displayMode === 'dropFail',
-            'cloud upload': displayMode !== 'dropSuccess',
-            [iconName]: displayMode === 'dropSuccess'
+            red: displayMode === 'dropFail'
           })}/>
           <div>
             <h3>
               { 
                 (() => {
-                  if (file) {
-                    return file.name
-                  } else {
-                    switch (displayMode) {
-                      case 'dragEnter': return 'Now drop it!'
-                      default: return 'Drag your file here!' 
-                    }
+                  switch (displayMode) {
+                    case 'dragEnter': return 'Now drop it!'
+                    case 'dropFail': return 'Oops! Something went wrong.'
+                    default: return file ? file.name : 'Click or drag your file here!' 
                   }
                 })()  
               }
