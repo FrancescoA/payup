@@ -44,7 +44,10 @@ class MainSection extends Component {
   renderEditAddListingModal() {
     return (
       <Modal showing={this.state.editAddModalShowing}>
-        <i className='close icon'/>
+        <i 
+        onClick={() => this.setState({editAddModalShowing: false})}
+        className='close icon'
+        />
         <div className='header'>
           Add a Listing
         </div>

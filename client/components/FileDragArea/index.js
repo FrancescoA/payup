@@ -88,12 +88,14 @@ class FileDragArea extends Component {
         onDropAccepted={::this.onDropSuccess}
         onDropRejected={::this.onDropFail}
       >
-        <div className={style.fileInfoContainer}>
-          <i 
+        <div 
+          className={style.fileInfoContainer}
           onMouseEnter={() => displayMode === 'dropSuccess' && this.setState({iconMode: 'delete'})}
           onMouseLeave={() => this.setState({iconMode: 'default'})}
           onClick={::this.handleIconClick}
-          className={classnames(this.determineIcon(), style.fileIcon, 'icon huge', {
+        >
+          <i 
+          className={classnames(this.determineIcon(), 'icon huge', {
             blue: displayMode === 'default' || displayMode === 'dropSuccess',
             green: displayMode === 'dragEnter',
             red: displayMode === 'dropFail'

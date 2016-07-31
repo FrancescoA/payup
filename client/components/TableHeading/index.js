@@ -12,7 +12,7 @@ class TableHeading extends Component {
           onClick={openAddEditModal}
         > 
           <i className='cloud upload icon'/>
-          Add File 
+          Add a Listing 
         </button>
         <FileDragArea/>
       </div>
