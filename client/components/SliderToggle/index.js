@@ -23,13 +23,11 @@ class SliderToggle extends Component {
     return (
       <div 
         className={classnames('ui checkbox toggle', classes, {checked: checked})}
-        onClick={() => this.handleToggle()}
       >
         <input 
           type='checkbox' 
-          tabIndex="0"
           checked={checked}
-          readOnly
+          onChange={::this.handleToggle}
           />
         <label> {label} </label>
       </div>
