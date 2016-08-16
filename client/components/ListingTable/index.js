@@ -11,7 +11,7 @@ class ListingTable extends Component {
     this.state = {
       visibleFields: ['alias', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell', 'live'],
       deleteModalShowing: false,
-      deleteModalId: undefined
+      deleteModalId: null
     }
   }
 
@@ -51,7 +51,7 @@ class ListingTable extends Component {
   closeDeleteModal() {
     this.setState({
       deleteModalShowing: false,
-      deleteModalId: undefined
+      deleteModalId: null
     })
   }
 

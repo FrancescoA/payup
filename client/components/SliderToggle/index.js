@@ -10,12 +10,11 @@ class SliderToggle extends Component {
     }
   }
 
-  componentDidMount() {
-    $(this.refs.checkbox).checkbox()
-  }
-
   handleToggle() {
-    this.props.onSave(!this.state.checked)
+    const { checked } = this.state
+    this.setState({ checked: !checked }, () => {
+      this.props.onSave && this.props.onSave(this.state.checked)
+    })
   }
 
   render() {
@@ -29,7 +28,8 @@ class SliderToggle extends Component {
         <input 
           type='checkbox' 
           tabIndex="0"
-          defaultChecked={checked}
+          checked={checked}
+          readOnly
           />
         <label> {label} </label>
       </div>

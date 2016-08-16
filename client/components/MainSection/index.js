@@ -3,6 +3,7 @@ import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
 import SliderToggle from '../SliderToggle'
 import Modal from '../Modal'
+import ListingForm from '../ListingForm'
 import FileDragArea from '../FileDragArea'
 import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
@@ -42,7 +43,9 @@ class MainSection extends Component {
     this.setState({editAddModalShowing: false})
   }
 
+  // TODO: Move this to own component
   renderEditAddListingModal() {
+    const { actions } = this.props
     return (
       <Modal showing={this.state.editAddModalShowing}>
         <i 
@@ -52,39 +55,13 @@ class MainSection extends Component {
         <div className='header'>
           Add a Listing
         </div>
-        <div className='content'>
-          <FileDragArea/>
-          <form className='ui form'>
-            <div className='field'>
-              <label>Title</label>
-              <input type='text' name='first-name' placeholder=''/>
-            </div>
-            <div className='field'>
-              <label>File Name</label>
-              <input type='text' name='last-name' placeholder=''/>
-            </div>
-            <div className='two fields'>
-              <div className='field'>
-                <label> Price </label>
-                <input type='number' name='price'/>
-              </div>
-              <div className='field'>
-                <label> Amount </label>
-                <input type='number' name='amount'/>
-              </div>
-            </div>
-            <div className='field'>
-              <label> Description </label>
-              <textarea rows="3"></textarea>
-            </div>
-            <div className='inline field'>
-              <SliderToggle
-                label='Live' 
-              />
-            </div>
-            <button className='ui button' type='submit'>Submit</button>
-          </form>
-        </div>
+        <ListingForm 
+          handleSubmit={(formData) => {
+              actions.addListing(formData)
+              this.closeAddEditModal()
+            }}
+          classes='content'
+        />
       </Modal>
     )
   }

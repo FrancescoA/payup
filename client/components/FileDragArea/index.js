@@ -21,16 +21,17 @@ class FileDragArea extends Component {
     this.state = {
       displayMode: props.displayMode || 'default',
       iconMode: props.iconMode || 'default',
-      file: props.file || undefined
+      file: props.file || null
     }
   }
 
   onDropSuccess(files, e) {
+    const file = files.length ? files[0] : null
     this.setState({
       displayMode: 'dropSuccess',
-      file: files.length ? files[0] : undefined
+      file: file
     })
-    this.props.onDropSuccess && this.props.onDropSuccess()
+    this.props.onDropSuccess && this.props.onDropSuccess(file, e)
   }
 
   onDropFail(files, e) {
@@ -66,14 +67,14 @@ class FileDragArea extends Component {
       this.setState({
         iconMode: 'default',
         displayMode: 'default',
-        file: undefined
+        file: null
       })
     }
   }
 
   render() {
     const { displayMode, file, iconMode } = this.state
-    const iconName = file ? this.iconForFileType(file.type) : undefined
+    const iconName = file ? this.iconForFileType(file.type) : null
     return (
       <DropZone
         multiple={false}
@@ -105,7 +106,7 @@ class FileDragArea extends Component {
                 (() => {
                   switch (displayMode) {
                     case 'dragEnter': return 'Now drop it!'
-                    case 'dropFail': return 'Oops! Something went wrong.'
+                    case 'dropFail': return 'Oops! Something went wrong. Please try again. '
                     default: return file ? file.name : 'Click or drag your file here!' 
                   }
                 })()  

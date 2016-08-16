@@ -26,6 +26,7 @@ const fakeState = [
     filename: 'wanker.jpg',
     fileurl: 'www.elliot.com/compromising.jpg',
     amountToSell: 10,
+    noSellLimit: true,
     sold: 5,
     price: '5.00',
     listingPageUrl: 'www.payupd.com/elliot/somelisting',
@@ -39,6 +40,7 @@ const fakeState = [
     filename: 'tickets.pdf',
     fileurl: 'www.firebase.com/lalalfsdfefefs.pdf',
     amountToSell: 1,
+    noSellLimit: true,
     sold: 0,
     price: '50.00',
     listingPageUrl: 'www.payupd.com/fra/odesza',
@@ -52,6 +54,7 @@ const fakeState = [
     filename: 'wanker.jpg',
     fileurl: 'www.elliot.com/compromising.jpg',
     amountToSell: 2,
+    noSellLimit: true,
     sold: 2,
     price: '10.00',
     listingPageUrl: 'www.payupd.com/smurf/eventbrightsucks',
@@ -63,10 +66,20 @@ const fakeState = [
 
 export default handleActions({
   'add listing' (state, action) {
+    const newListing = action.payload
     return [{
-      id: state.reduce((maxId, listing) => Math.max(listing.id, maxId), -1) + 1,
-      completed: false,
-      text: action.payload
+      id: newListing.id,
+      alias: newListing.alias,
+      filename: newListing.filename,
+      fileurl: newListing.fileurl,
+      amountToSell: newListing.amountToSell,
+      noSellLimit: newListing.noSellLimit,
+      sold: 0,
+      price: newListing.price,
+      listingPageUrl: 'fake-for-now',
+      description: newListing.description,
+      live: newListing.live,
+      dateCreated: 'some-value-not-date-now'
     }, ...state]
   },
 

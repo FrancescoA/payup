@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import classnames from 'classnames'
 
 class Modal extends Component {
-  constructor(props, context) {
-    super(props, context)
-  }
 
   syncState() {
     const $modal = $(this.modal)
