@@ -27,6 +27,7 @@ class FileDragArea extends Component {
 
   onDropSuccess(files, e) {
     const file = files.length ? files[0] : null
+    console.log(file)
     this.setState({
       displayMode: 'dropSuccess',
       file: file
@@ -103,7 +104,7 @@ class FileDragArea extends Component {
           <div>
             <h3>
               { 
-                (() => {
+                (() => { // TODO: Display file.size = # bytes
                   switch (displayMode) {
                     case 'dragEnter': return 'Now drop it!'
                     case 'dropFail': return 'Oops! Something went wrong. Please try again. '

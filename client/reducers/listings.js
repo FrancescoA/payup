@@ -22,7 +22,7 @@ const initialState = [
 const fakeState = [
   {
     id: 'some-hash1',
-    alias: 'Compromising Pictures of Elliot',
+    title: 'Compromising Pictures of Elliot',
     filename: 'wanker.jpg',
     fileurl: 'www.elliot.com/compromising.jpg',
     amountToSell: 10,
@@ -36,7 +36,7 @@ const fakeState = [
   },
   {
     id: 'some-hash2',
-    alias: 'Odesza tickets',
+    title: 'Odesza tickets',
     filename: 'tickets.pdf',
     fileurl: 'www.firebase.com/lalalfsdfefefs.pdf',
     amountToSell: 1,
@@ -50,7 +50,7 @@ const fakeState = [
   },
   {
     id: 'some-hash3',
-    alias: 'Amazon PM talk',
+    title: 'Amazon PM talk',
     filename: 'wanker.jpg',
     fileurl: 'www.elliot.com/compromising.jpg',
     amountToSell: 2,
@@ -69,7 +69,7 @@ export default handleActions({
     const newListing = action.payload
     return [{
       id: newListing.id,
-      alias: newListing.alias,
+      title: newListing.title,
       filename: newListing.filename,
       fileurl: newListing.fileurl,
       amountToSell: newListing.amountToSell,

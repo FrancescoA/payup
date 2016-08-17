@@ -9,9 +9,9 @@ class ListingTable extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      visibleFields: ['alias', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell', 'live'],
+      visibleFields: ['title', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell', 'live'],
       deleteModalShowing: false,
-      deleteModalId: null
+      deleteModalId: null,
     }
   }
 
@@ -51,7 +51,7 @@ class ListingTable extends Component {
   closeDeleteModal() {
     this.setState({
       deleteModalShowing: false,
-      deleteModalId: null
+      deleteModalId: null,
     })
   }
 

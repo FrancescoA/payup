@@ -18,8 +18,8 @@ class Listing extends Component {
 
   render() {
     // const {listing, completeListing, deleteListing} = this.props
-    const {listing, visibleFields, deleteListing} = this.props
-    const {id, alias, filename, fileurl} = listing
+    const { listing, visibleFields, deleteListing } = this.props 
+    const { id } = listing
     return (
       <tr>
         <td className='collapsing'>

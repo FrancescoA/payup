@@ -1,5 +1,5 @@
 export const fieldDisplayMappings = {
-  alias: 'Title',
+  title: 'Title',
   filename: 'Filename',
   fileurl: 'URL',
   price: 'Price ($)',
@@ -10,7 +10,7 @@ export const fieldDisplayMappings = {
 }
 
 export const fieldEditableMappings = {
-  alias: true,
+  title: true,
   filename: true,
   fileurl: false,
   price: true,
