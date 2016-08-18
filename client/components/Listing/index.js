@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import ListingItem from '../ListingItem'
 import {fieldEditableMappings} from '../../constants/mappings'
