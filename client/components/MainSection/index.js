@@ -3,8 +3,8 @@ import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
 import SliderToggle from '../SliderToggle'
 import Modal from '../Modal'
+import EditAddListingModal from '../EditAddListingModal'
 import ListingForm from '../ListingForm'
-import FileDragArea from '../FileDragArea'
 import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
@@ -21,6 +21,7 @@ class MainSection extends Component {
     this.state = { 
       filter: SHOW_ALL,
       editAddModalShowing: false,
+      listingInModal: null,
     }
   }
 
@@ -35,40 +36,23 @@ class MainSection extends Component {
     this.setState({ filter })
   }
 
-  openAddEditModal() {
-    this.setState({editAddModalShowing: true})
+  openAddEditModal(listing) {
+    this.setState({
+      editAddModalShowing: true,
+      listingInModal: listing
+    })
   }
 
   closeAddEditModal() {
-    this.setState({editAddModalShowing: false})
-  }
-
-  // TODO: Move this to own component
-  renderEditAddListingModal() {
-    const { actions } = this.props
-    return (
-      <Modal showing={this.state.editAddModalShowing}>
-        <i 
-        onClick={::this.closeAddEditModal}
-        className='close icon'
-        />
-        <div className='header'>
-          Add a Listing
-        </div>
-        <ListingForm 
-          handleSubmit={(formData) => {
-              actions.addListing(formData)
-              this.closeAddEditModal()
-            }}
-          classes='content'
-        />
-      </Modal>
-    )
+    this.setState({
+      editAddModalShowing: false,
+      listingInModal: null
+    })
   }
 
   render() {
     const { listings, actions } = this.props
-    const { filter } = this.state
+    const { filter, editAddModalShowing, listingInModal } = this.state
     // this.renderToggleAll(liveCount)
     const filteredListings = listings.filter(LISTING_FILTERS[filter])
     const liveCount = listings.reduce((count, listing) => {
@@ -79,6 +63,7 @@ class MainSection extends Component {
       <ListingTable
         listings={filteredListings}
         actions={actions}
+        openEditListingModal={::this.openAddEditModal}
       /> 
     )
 
@@ -90,13 +75,18 @@ class MainSection extends Component {
 
     return (
       <div className='ui raised padded container segment'>
-        {this.renderEditAddListingModal()}
+        <EditAddListingModal
+          showing={editAddModalShowing}
+          close={::this.closeAddEditModal}
+          listing={listingInModal}
+          actions={actions}
+        />
         <div>
           <h1 className={classnames(style.heading, 'ui header')}> Listings </h1>
         </div>
         <div className='ui clearing divider'/>
         <TableHeading
-          openAddEditModal={::this.openAddEditModal}
+          openAddModal={::this.openAddEditModal}
         />
         <div className='ui divider hidden'/>
         {content}

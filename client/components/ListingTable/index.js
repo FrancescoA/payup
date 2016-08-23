@@ -17,14 +17,14 @@ class ListingTable extends Component {
 
   renderDeleteModal() {
     return (
-      <Modal showing={this.state.deleteModalShowing} classes={'small basic'}>
+      <Modal showing={this.state.deleteModalShowing} classes='small basic'>
         <div className='header'>
           Are you sure you want to delete this listing?
         </div>
         <div className='actions'>
           <div 
-          onClick={::this.closeDeleteModal} 
-          className='ui red basic cancel button'> 
+            onClick={::this.closeDeleteModal} 
+            className='ui red basic cancel button'> 
           <i className='remove icon'/>
             No 
           </div>
@@ -32,7 +32,7 @@ class ListingTable extends Component {
             this.props.actions.deleteListing(this.state.deleteModalId)
             this.closeDeleteModal()
           }} 
-          className='ui green basic ok button'> 
+            className='ui green basic ok button'> 
             <i className='checkmark icon'/>
             Yes 
           </div>
@@ -56,7 +56,7 @@ class ListingTable extends Component {
   }
 
   render() {
-    const { listings, actions } = this.props
+    const { listings, actions, openEditListingModal } = this.props
     const { visibleFields } = this.state 
     return (
       <div>
@@ -82,6 +82,7 @@ class ListingTable extends Component {
                   listing={listing} 
                   deleteListing={::this.openDeleteModal}
                   editListing={actions.editListing}
+                  openEditListingModal={openEditListingModal}
                 />
               )}
           </tbody>
