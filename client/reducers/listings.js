@@ -1,23 +1,4 @@
-
 import { handleActions } from 'redux-actions'
-
-const initialState = [
-  {
-    text: 'Use Redux',
-    completed: false,
-    id: 0
-  },
-  {
-    text: 'Use React',
-    completed: false,
-    id: 1
-  },
-  {
-    text: 'Use My Butt',
-    completed: false,
-    id: 2
-  },
-]
 
 const fakeState = [
   {
@@ -91,6 +72,14 @@ export default handleActions({
     return state.map(listing => {
       return listing.id === action.payload.id
         ? { ...listing, [action.payload.field]: action.payload.value }
+        : listing
+    })
+  },
+
+  'bulk edit listing' (state, action) {
+    return state.map(listing => {
+      return listing.id === action.payload.id
+        ? Object.assign(listing, action.payload)
         : listing
     })
   },

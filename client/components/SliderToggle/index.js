@@ -10,6 +10,10 @@ class SliderToggle extends Component {
     }
   }
 
+  componentWillReceiveProps(props) {
+    this.setState({checked: props.checked})
+  }
+
   handleToggle() {
     const { checked } = this.state
     this.setState({ checked: !checked }, () => {

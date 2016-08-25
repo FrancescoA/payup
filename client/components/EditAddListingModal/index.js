@@ -14,10 +14,10 @@ class EditAddListingModal extends Component {
         </div>
         <ListingForm
           classes='content'
-          formData={listing}
+          defaultFormData={listing} 
           handleSubmit={(formData) => {
             if (listing) { // Existing listing
-              actions.editListing(listing.id, formData)
+              actions.bulkEditListing(formData)
             } else {
               formData.id = 'some-random-id' // TODO: Figure this out
               actions.addListing(formData)

@@ -20,7 +20,6 @@ const formConstraints = {
   },
 }
 
-// TODO: move to a different file
 const createDefaultFormState = () => {
   return {
     title: '',
@@ -37,17 +36,18 @@ const createDefaultFormState = () => {
 class ListingForm extends Component {
   constructor(props, context) {
     super(props, context)
-    console.log(props)
     this.state = {
       formErrors: {},
-      form: this.props.formData || createDefaultFormState(),
+      form: this.props.defaultFormData 
+        ? Object.assign({}, this.props.defaultFormData) 
+        : createDefaultFormState(),
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.formData) {
+    if (nextProps.defaultFormData) {
       this.setState({
-        form: nextProps.formData
+        form: Object.assign({}, nextProps.defaultFormData)
       })
     }
   }
