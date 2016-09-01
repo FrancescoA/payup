@@ -39,7 +39,7 @@ class MainSection extends Component {
   openAddEditModal(listing) {
     this.setState({
       editAddModalShowing: true,
-      listingInModal: listing
+      listingInModal: listing || null
     })
   }
 

@@ -36,20 +36,24 @@ const createDefaultFormState = () => {
 class ListingForm extends Component {
   constructor(props, context) {
     super(props, context)
+    const initialForm = this.getNewFormDataOrDefault(this.props)
     this.state = {
       formErrors: {},
-      form: this.props.defaultFormData 
-        ? Object.assign({}, this.props.defaultFormData) 
-        : createDefaultFormState(),
+      form: initialForm
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.defaultFormData) {
-      this.setState({
-        form: Object.assign({}, nextProps.defaultFormData)
-      })
-    }
+    const newForm = this.getNewFormDataOrDefault(nextProps)
+    this.setState({
+      form: newForm
+    })
+  }
+
+  getNewFormDataOrDefault(props) {
+    return props.defaultFormData
+      ? Object.assign({}, props.defaultFormData)
+      : createDefaultFormState()
   }
 
   handleChange(event) {
