@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as ListingActions from '../../actions/listings'
 import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
 import SliderToggle from '../SliderToggle'
@@ -95,4 +98,19 @@ class MainSection extends Component {
   }
 }
 
-export default MainSection
+function mapStateToProps(state) {
+  return {
+    listings: state.listings
+  }
+}
+
+function mapDispatchToProps(dispath) {
+  return { 
+    actions: bindActionCreators(ListingActions, dispath)
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainSection)
