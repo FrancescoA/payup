@@ -2,24 +2,35 @@ import { handleActions } from 'redux-actions'
 import firebase from '../constants/firebase'
 import auth from '../constants/firebase'
 
-const initialState = {
-  auth: false,
-  status: auth.DEFAULT,
-  user: null
+const initialState = () => {
+  return {
+    auth: false,
+    status: auth.DEFAULT,
+    user: null
+  }
 }
 
 export default handleActions({
-  'log in request' (state, action) {
-    return {...state, status: auth.PENDING}
+  'log in attempt' (state, action) {
+    return {...state, status: auth.LOGIN_PENDING}
   },
   'log in success' (state, action) {
     return {...state, 
       auth: true,
-      status: auth.SUCCESS,
+      status: auth.LOGIN_SUCCESS,
       user: action.payload
     }
   },
   'log in failure' (state, action) {
-    return {...state, status: auth.FAILURE}
+    return {...state, status: auth.LOGIN_FAILURE}
+  },
+  'log out attempt' (state, action) {
+    return {...state, status: auth.LOGOUT_PENDING}
+  },
+  'log out success' (state, action) {
+    return initialState()
+  },
+  'log out faiure' (state, action) {
+    return {...state, status: auth.LOGOUT_FAILURE}
   }
-}, initialState)
+}, initialState())

@@ -1,9 +1,19 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
+import classnames from 'classnames'
+
+import * as AuthActions from '../../actions/auth'
 import img from '../../../static/img/LogoExport.png'
 import { prefixUrl } from '../../helpers/config'
+import SimpleDropDown from '../SimpleDropDown'
+import firebase from '../../constants/firebase'
 
 class Header extends Component {
   render() {
+    const { auth, actions, router } = this.props
     return (
       <div className='ui large menu'>
         <div className='ui container'>
@@ -11,9 +21,14 @@ class Header extends Component {
             <img className='ui image tiny' src={prefixUrl(img)}/>
           </div>
           <div className='right menu'>
-            <div className='item'>
-              FrancescoA
-            </div>
+            <SimpleDropDown
+              title={auth.auth ? 
+                auth.user.email : 
+                <LogInButton/>
+              }
+            >
+              {auth.auth && <LogOutItem actions={actions} router={router}/>}
+            </SimpleDropDown>
           </div>
         </div>
       </div>
@@ -21,4 +36,39 @@ class Header extends Component {
   }
 }
 
-export default Header
+const LogInButton = () => {
+  return (
+    <Link to="login"><div className='ui primary button'>Login</div></Link>
+  )
+}
+
+const LogOutItem = (props) => {
+  return (
+    <a className='item' onClick={() => {
+      const { router } = props
+      const { logOutAttempt, logOutSuccess, logOutFailure } = props.actions
+      logOutAttempt()
+      firebase.auth().signOut().then(() => {
+        logOutSuccess()
+        router.push('login')
+      }, logOutFailure)
+    }}>Logout</a>
+  )
+}
+
+function mapStateToProps(state) {
+  return {
+    auth: state.auth
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(AuthActions, dispatch)
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header))

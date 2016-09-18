@@ -1,4 +1,9 @@
 export const DEFAULT = 'DEFAULT'
-export const SUCCESS = 'SUCCESS'
-export const FAILURE = 'FAILURE'
-export const PENDING = 'PENDING'
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const LOGIN_PENDING = 'LOGIN_PENDING'
+
+// LOGOUT_SUCCESS should just be DEFAULT.
+export const LOGOUT_PENDING = 'LOGOUT_PENDING'
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'

@@ -13,11 +13,19 @@ import configure from './store'
 const store = configure()
 const history = syncHistoryWithStore(browserHistory, store)
 
+// This needs to be here so we can make a closure around store
+const requireAuth = (nextState, replace) => {
+  const { auth } = store.getState()
+  if (!auth.auth) {
+    replace('login')
+  }
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={App}>
-        <IndexRoute component={MainSection}/>
+        <IndexRoute component={MainSection} onEnter={requireAuth}/>
         <Route path="login" component={LoginSection}/>
         <Route path="account" component={AccountSection}/>
       </Route>

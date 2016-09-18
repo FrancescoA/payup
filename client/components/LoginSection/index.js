@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AuthActions from '../../actions/auth'
@@ -8,10 +9,11 @@ import firebase, { facebookAuthProvider } from '../../constants/firebase'
 class LoginSection extends Component {
 
   facebookLogIn() {
-    const { actions } = this.props
+    const { actions, router } = this.props
     actions.logInAttempt()
     firebase.auth().signInWithPopup(facebookAuthProvider).then((result) => {
       actions.logInSuccess(result.user)
+      router.push('/')
     }).catch((err) => {
       actions.logInFailure()
     })
@@ -45,7 +47,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(LoginSection)
+)(LoginSection))
