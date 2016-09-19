@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions'
+import { initialStateFromStorage } from '../helpers/localstorage'
 
 const fakeState = [
   {
@@ -105,4 +106,4 @@ export default handleActions({
   'clear complete' (state, action) {
     return state.filter(listing => listing.completed === false)
   }
-}, fakeState)
+}, initialStateFromStorage.listings || fakeState)

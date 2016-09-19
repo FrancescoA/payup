@@ -1,8 +1,11 @@
 import { handleActions } from 'redux-actions'
+
 import firebase from '../constants/firebase'
 import auth from '../constants/firebase'
+import { initialStateFromStorage } from '../helpers/localstorage'
 
-const initialState = () => {
+
+const defaultAuthState = () => {
   return {
     auth: false,
     status: auth.DEFAULT,
@@ -28,9 +31,9 @@ export default handleActions({
     return {...state, status: auth.LOGOUT_PENDING}
   },
   'log out success' (state, action) {
-    return initialState()
+    return defaultAuthState()
   },
   'log out faiure' (state, action) {
     return {...state, status: auth.LOGOUT_FAILURE}
   }
-}, initialState())
+}, initialStateFromStorage.auth || defaultAuthState())

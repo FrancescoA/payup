@@ -8,5 +8,3 @@ export default combineReducers({
   listings,
   auth
 })
-
-// We would add an auth reducer as well. 
