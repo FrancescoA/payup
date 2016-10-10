@@ -26,7 +26,7 @@ class LoginSection extends Component {
           <h1 className='ui header'> Login </h1>
         </div>
         <div className='ui clearing divider'/>
-        <button onClick={::this.facebookLogIn} className='ui facebook button'>
+        <button onClick={::this.facebookLogIn} className='ui big facebook button'>
           <i className='facebook icon'/>
           Log in with Facebook
         </button>
