@@ -10,3 +10,4 @@ const firebaseApp = firebase.initializeApp({
 export default firebaseApp
 
 export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider()
+export const database = firebase.database()

@@ -1,4 +1,4 @@
-export const DEFAULT = 'DEFAULT'
+export const DEFAULT = 'AUTH_DEFAULT'
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'

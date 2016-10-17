@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions'
 
-import auth from '../constants/firebase'
+import * as auth from '../constants/auth'
 import { initialStateFromStorage } from '../helpers/localstorage'
 
 
