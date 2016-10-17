@@ -1,3 +1,16 @@
 {
-  "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "semi": [2, "never"],
+    "import/newline-after-import": 0,
+    "global-require": 0,
+    "import/prefer-default-export": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "arrow-body-style": 0,
+    "no-unused-vars": [2, { "vars": "all", "args": "none" }]
+  },
+  "env": {
+    "browser": true
+  }
 }

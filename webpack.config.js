@@ -6,7 +6,7 @@ require('dotenv').config()
 module.exports = {
   context: path.join(__dirname, './client'),
   entry: {
-    jsx: './index.js',
+    jsx: './index.jsx',
     html: './index.html',
     vendor: [
       'react',

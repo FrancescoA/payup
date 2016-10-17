@@ -8,8 +8,8 @@ const getInitialState = () => {
   const initialState = {}
   reducersToSync.forEach((reducer) => {
     try {
-      initialState[reducer] = JSON.parse(window.localStorage.getItem(storageKey+reducer))
-    } catch(e) {
+      initialState[reducer] = JSON.parse(window.localStorage.getItem(storageKey + reducer))
+    } catch (e) {
       initialState[reducer] = null
     }
   })

@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import { persistStore, autoRehydrate, getStoredState } from 'redux-persist'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 import { logger } from '../middleware'
 import rootReducer from '../reducers'
@@ -13,11 +13,11 @@ export default function configure(initialState) {
   const createStoreWithMiddleware = applyMiddleware(
     logger,
   )(create)
-  
+
   const store = createStoreWithMiddleware(rootReducer, initialState, autoRehydrate())
   persistStore(store, {
     whitelist: reducersToSync,
-    keyPrefix: storageKey
+    keyPrefix: storageKey,
   })
 
   if (module.hot) {
