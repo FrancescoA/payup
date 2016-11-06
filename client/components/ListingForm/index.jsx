@@ -96,7 +96,10 @@ class ListingForm extends Component {
     const { form, formErrors } = this.state
     return (
       <div className={this.props.classes}>
-        <FileDragArea onDropSuccess={::this.handleFileDropSuccess}/>
+        <FileDragArea 
+          shouldReset={form.filename == ''}
+          onDropSuccess={::this.handleFileDropSuccess}
+          />
         <form className={classnames('ui form', {error: !_.isEmpty(formErrors)})}>
           <div className={classnames('field', {error: formErrors.title})}>
             <label>Title</label>

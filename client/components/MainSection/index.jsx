@@ -54,7 +54,8 @@ class MainSection extends Component {
   }
 
   render() {
-    const { listings, actions } = this.props
+    const { listings, auth, actions } = this.props
+
     const { filter, editAddModalShowing, listingInModal } = this.state
     // this.renderToggleAll(liveCount)
     const filteredListings = listings.filter(LISTING_FILTERS[filter])
@@ -81,6 +82,7 @@ class MainSection extends Component {
         <EditAddListingModal
           showing={editAddModalShowing}
           close={::this.closeAddEditModal}
+          user={auth.user}
           listing={listingInModal}
           actions={actions}
         />
@@ -100,7 +102,8 @@ class MainSection extends Component {
 
 function mapStateToProps(state) {
   return {
-    listings: state.listings
+    listings: state.listings,
+    auth: state.auth,
   }
 }
 

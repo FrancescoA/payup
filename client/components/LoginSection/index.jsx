@@ -3,7 +3,7 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AuthActions from '../../actions/auth'
-import firebase, { facebookAuthProvider } from '../../constants/firebase'
+import firebase, { facebookAuthProvider, database } from '../../constants/firebase'
 
 
 class LoginSection extends Component {
@@ -12,8 +12,23 @@ class LoginSection extends Component {
     const { actions, router } = this.props
     actions.logInAttempt()
     firebase.auth().signInWithPopup(facebookAuthProvider).then((result) => {
-      actions.logInSuccess(result.user)
-      router.push('/')
+      const { user } = result
+      database.ref('users/' + user.uid).set({
+        // save only some user info
+        displayName: user.displayName,
+        email: user.email,
+        uid: user.uid,
+        photoURL: user.photoURL,
+        emailVerified: user.emailVerified
+      }, (error) => {
+        if (error) {
+          console.log(error)
+          actions.logInFailure()
+        } else {
+          actions.logInSuccess(user)
+          router.push('/')
+        }
+      })
     }).catch((err) => {
       actions.logInFailure()
     })

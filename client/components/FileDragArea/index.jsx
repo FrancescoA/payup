@@ -3,6 +3,14 @@ import DropZone from 'react-dropzone'
 import classnames from 'classnames'
 import style from './style.css'
 
+const createDefaultDragAreaState = () => {
+  return {
+    displayMode: 'default',
+    iconMode: 'default',
+    file: null
+  }
+}
+
 class FileDragArea extends Component {
   constructor(props, context) {
     super(props, context)
@@ -22,6 +30,12 @@ class FileDragArea extends Component {
       displayMode: props.displayMode || 'default',
       iconMode: props.iconMode || 'default',
       file: props.file || null
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.shouldReset) {
+      this.setState(createDefaultDragAreaState())
     }
   }
 
