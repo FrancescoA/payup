@@ -13,7 +13,7 @@ class ListingTable extends Component {
     this.state = {
       visibleFields: ['title', 'filename', 'listingPageUrl', 'price', 'sold', 'amountToSell', 'live'],
       deleteModalShowing: false,
-      deleteModalId: null,
+      deleteModalListing: null,
     }
   }
 
@@ -31,7 +31,7 @@ class ListingTable extends Component {
             No 
           </div>
           <div onClick={() => {
-            this.props.actions.deleteListing(this.state.deleteModalId)
+            this.deleteListing(this.state.deleteModalListing)
             this.closeDeleteModal()
           }} 
             className='ui green basic ok button'> 
@@ -43,17 +43,33 @@ class ListingTable extends Component {
     )
   }
 
-  openDeleteModal(listingId) {
+  openDeleteModal(listing) {
     this.setState({
       deleteModalShowing: true,
-      deleteModalId: listingId
+      deleteModalListing: listing
     })
   }
 
   closeDeleteModal() {
     this.setState({
       deleteModalShowing: false,
-      deleteModalId: null,
+      deleteModalListing: null,
+    })
+  }
+
+  deleteListing(listing) {
+    const { id, owner } = listing
+    const { deleteListing, deleteListingPending, deleteListingFailure } = this.props.actions
+    let updates = {}
+    updates['listings/' + id] = null
+    updates['users/' + owner + '/listings/' + id] = null
+    deleteListingPending(id)
+    database.ref().update(updates, (error) => {
+      if (error) {
+        editListingFailure(id)
+      } else {
+        deleteListing(id)
+      }
     })
   }
 

@@ -17,14 +17,13 @@ class Listing extends Component {
 
   render() {
     const { listing, visibleFields, deleteListing, openEditListingModal } = this.props 
-    const { id } = listing
     return (
       <tr>
         <td className='collapsing'>
             <a onClick={() => openEditListingModal(listing)}> 
               <i className='large setting icon'/>
             </a>
-            <a onClick={() => deleteListing(id)}>
+            <a onClick={() => deleteListing(listing)}>
               <i className='large red remove icon'/>
             </a>
         </td>
