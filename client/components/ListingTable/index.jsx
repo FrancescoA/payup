@@ -4,6 +4,8 @@ import Modal from '../Modal'
 import Listing from '../Listing'
 import style from './style.css'
 import { fieldDisplayMappings } from '../../constants/mappings'
+import { database } from '../../constants/firebase'
+import * as status from '../../constants/listings'
 
 class ListingTable extends Component {
   constructor(props, context) {
@@ -55,11 +57,34 @@ class ListingTable extends Component {
     })
   }
 
+  editListing(listing, field, value) {
+    const { id, owner } = listing
+    const { editListing, editListingPending, editListingFailure } = this.props.actions
+    let updates = {}
+    updates['listings/' + id + '/' + field] = value
+    updates['users/' + owner + '/listings/' + id + '/' + field] = value
+    editListingPending(id)
+    database.ref().update(updates, (error) => {
+      if (error) {
+        editListingFailure(id)
+      } else {
+        editListing({id, field, value})
+      }
+    })
+  }
+
   render() {
     const { listings, actions, openEditListingModal } = this.props
     const { visibleFields } = this.state 
     return (
-      <div>
+      <div style={{padding: 0}}
+      className={classnames('ui basic segment', {
+        'loading': listings.some((listing) => {
+          return listing.status == status.EDIT_PENDING || 
+                 listing.status == status.ADD_CONFIRMATION_PENDING ||
+                 listing.status == status.DELETE_PENDING
+          })
+      })}>
         {this.renderDeleteModal()}
         <table className={classnames('ui compact definition table', style.table)}>
           <thead>
@@ -81,7 +106,7 @@ class ListingTable extends Component {
                   key={listing.id} 
                   listing={listing} 
                   deleteListing={::this.openDeleteModal}
-                  editListing={actions.editListing}
+                  editListing={::this.editListing}
                   openEditListingModal={openEditListingModal}
                 />
               )}

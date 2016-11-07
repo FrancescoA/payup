@@ -6,7 +6,6 @@ import { database } from '../../constants/firebase'
 class EditAddListingModal extends Component {
   setListingRef(formData, success, failure) {
     const { id, owner } = formData
-    const { actions } = this.props
     let updates = {}
     updates['listings/' + id] = formData
     updates['users/' + owner + '/listings/' + id] = formData

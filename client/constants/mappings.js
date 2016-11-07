@@ -11,7 +11,7 @@ export const fieldDisplayMappings = {
 
 export const fieldEditableMappings = {
   title: true,
-  filename: true,
+  filename: false,
   fileurl: false,
   price: true,
   listingPageUrl: false,

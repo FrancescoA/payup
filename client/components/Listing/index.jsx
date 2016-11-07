@@ -11,8 +11,8 @@ class Listing extends Component {
   }
 
   handleSave(field, value) {
-    const id = this.props.listing.id
-    this.props.editListing({ id, field, value })
+    const listing = this.props.listing
+    this.props.editListing(listing, field, value)
   }
 
   render() {

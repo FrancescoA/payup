@@ -93,7 +93,6 @@ class MainSection extends Component {
         <TableHeading
           openAddModal={::this.openAddEditModal}
         />
-        <div className='ui divider hidden'/>
         {content}
       </div>
     )
