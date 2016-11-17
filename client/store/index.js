@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware } from 'redux'
 import { persistStore, autoRehydrate } from 'redux-persist'
+import thunk from 'redux-thunk'
 
 import { logger } from '../middleware'
 import rootReducer from '../reducers'
+import * as api from '../helpers/api'
 import { reducersToSync, storageKey } from '../constants/localstorage'
 
 export default function configure(initialState) {
@@ -11,6 +13,7 @@ export default function configure(initialState) {
     : createStore
 
   const createStoreWithMiddleware = applyMiddleware(
+    thunk.withExtraArgument(api),
     logger,
   )(create)
 

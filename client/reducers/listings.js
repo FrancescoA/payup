@@ -63,35 +63,6 @@ const modifiedState = (state, listingId, field, newValue) => {
 }
 
 export default handleActions({
-  // add pending should add an empty listing
-  'add listing': (state, action) => {
-    const newListing = action.payload
-    return [{
-      id: newListing.id,
-      owner: newListing.owner,
-      status: status.ADD_CONFIRMATION_PENDING,
-      title: newListing.title,
-      filename: newListing.filename,
-      fileurl: newListing.fileurl,
-      amountToSell: newListing.amountToSell,
-      noSellLimit: newListing.noSellLimit,
-      sold: 0,
-      price: newListing.price,
-      listingPageUrl: 'fake-for-now',
-      description: newListing.description,
-      live: newListing.live,
-      dateCreated: 'some-value-not-date-now',
-    }, ...state]
-  },
-
-  'add listing success': (state, action) => {
-    return modifiedState(state, action.payload, 'status', status.DEFAULT)
-  },
-
-  'add listing failure': (state, action) => {
-    return modifiedState(state, action.payload, 'status', status.ADD_FAILURE)
-  },
-
   'delete listing pending': (state, action) => {
     return modifiedState(state, action.payload, 'status', status.DELETE_PENDING)
   },
@@ -105,27 +76,66 @@ export default handleActions({
   },
 
   'edit listing pending': (state, action) => {
-    return modifiedState(state, action.payload, 'status', status.EDIT_PENDING)
+    return modifiedState(state, action.payload.id, 'status', status.EDIT_PENDING)
   },
 
-  'edit listing': (state, action) => {
-    const { id, field, value } = action.payload
-    return modifiedState(modifiedState(state, id, field, value), id, 'status', status.DEFAULT)
+  'edit listing': {
+    next: (state, action) => {
+      const { id, field, value } = action.payload
+      return modifiedState(modifiedState(state, id, field, value), id, 'status', status.DEFAULT)
+    },
+    reject: (state, action) => {
+      return modifiedState(state, action.payload.id, 'status', status.EDIT_FAILURE)
+    },
   },
 
-  'bulk edit listing': (state, action) => {
-    const { payload } = action
-    payload.status = status.DEFAULT
-    return state.map((listing) => {
-      return listing.id === payload.id
-        ? Object.assign(listing, payload)
-        : listing
-    })
+  'add listing pending': (state, action) => {
+    return state // TODO: Add pending case for adding a listing
   },
 
-  'edit listing failure': (state, action) => {
-    return modifiedState(state, action.payload, 'status', status.EDIT_FAILURE)
+  'add listing': {
+    next: (state, action) => {
+      const newListing = action.payload
+      return [{
+        id: newListing.id,
+        owner: newListing.owner,
+        status: status.DEFAULT,
+        title: newListing.title,
+        filename: newListing.filename,
+        fileurl: newListing.fileurl,
+        amountToSell: newListing.amountToSell,
+        noSellLimit: newListing.noSellLimit,
+        sold: 0,
+        price: newListing.price,
+        listingPageUrl: 'fake-for-now',
+        description: newListing.description,
+        live: newListing.live,
+        dateCreated: 'some-value-not-date-now',
+      }, ...state]
+    },
+    reject: (state, action) => {
+      return state // TODO: Add failure case for adding a listing
+    },
   },
+
+  'update listing': {
+    next: (state, action) => {
+      const { payload } = action
+      payload.status = status.DEFAULT
+      return state.map((listing) => {
+        return listing.id === payload.id
+          ? Object.assign(listing, payload)
+          : listing
+      })
+    },
+    reject: (state, action) => {
+      return modifiedState(state, action.payload.id, 'status', status.EDIT_FAILURE)
+    },
+  },
+
+  // 'edit listing failure': (state, action) => {
+  //   return modifiedState(state, action.payload, 'status', status.EDIT_FAILURE)
+  // },
 
   'complete listing': (state, action) => {
     return state.map((listing) => {
