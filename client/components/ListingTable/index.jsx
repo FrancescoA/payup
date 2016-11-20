@@ -31,7 +31,7 @@ class ListingTable extends Component {
             No 
           </div>
           <div onClick={() => {
-            this.deleteListing(this.state.deleteModalListing)
+            this.props.actions.deleteListing(this.state.deleteModalListing)
             this.closeDeleteModal()
           }} 
             className='ui green basic ok button'> 
@@ -57,38 +57,6 @@ class ListingTable extends Component {
     })
   }
 
-  deleteListing(listing) {
-    const { id, owner } = listing
-    const { deleteListing, deleteListingPending, deleteListingFailure } = this.props.actions
-    let updates = {}
-    updates['listings/' + id] = null
-    updates['users/' + owner + '/listings/' + id] = null
-    deleteListingPending(id)
-    database.ref().update(updates, (error) => {
-      if (error) {
-        editListingFailure(id)
-      } else {
-        deleteListing(id)
-      }
-    })
-  }
-
-  editListing(listing, field, value) {
-    const { id, owner } = listing
-    const { editListing, editListingPending, editListingFailure } = this.props.actions
-    let updates = {}
-    updates['listings/' + id + '/' + field] = value
-    updates['users/' + owner + '/listings/' + id + '/' + field] = value
-    editListingPending(id)
-    database.ref().update(updates, (error) => {
-      if (error) {
-        editListingFailure(id)
-      } else {
-        editListing({id, field, value})
-      }
-    })
-  }
-
   render() {
     const { listings, actions, openEditListingModal } = this.props
     const { visibleFields } = this.state 
@@ -96,9 +64,9 @@ class ListingTable extends Component {
       <div style={{padding: 0}}
       className={classnames('ui basic segment', {
         'loading': listings.some((listing) => {
-          return listing.status == status.EDIT_PENDING || 
-                 listing.status == status.ADD_CONFIRMATION_PENDING ||
-                 listing.status == status.DELETE_PENDING
+          return listing.status == status.EDIT_PENDING 
+                || listing.status == status.ADD_CONFIRMATION_PENDING 
+                || listing.status == status.DELETE_PENDING
           })
       })}>
         {this.renderDeleteModal()}
@@ -122,7 +90,7 @@ class ListingTable extends Component {
                   key={listing.id} 
                   listing={listing} 
                   deleteListing={::this.openDeleteModal}
-                  editListing={::this.editListing}
+                  editListing={actions.editListing}
                   openEditListingModal={openEditListingModal}
                 />
               )}

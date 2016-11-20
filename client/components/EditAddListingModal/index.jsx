@@ -7,7 +7,7 @@ class EditAddListingModal extends Component {
   render() {
     const { showing, close, listing, user, actions } = this.props
     const { addListing } = actions
-    const { editListingPending, updateListing } = actions
+    const { updateListing } = actions
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
       <Modal showing={showing}>
@@ -20,11 +20,10 @@ class EditAddListingModal extends Component {
           defaultFormData={listing} 
           handleSubmit={(formData) => {
             if (formData.id) { // existing listing
-              editListingPending(formData)
               updateListing(formData)
             } else { // new listing
               formData.owner = user.uid
-              addListing2(formData)
+              addListing(formData)
             }
             close()
           }}
