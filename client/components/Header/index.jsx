@@ -43,16 +43,10 @@ const LogInButton = () => {
 }
 
 const LogOutItem = (props) => {
+  const { router } = props
+  const { logOut } = props.actions
   return (
-    <a className='item' onClick={() => {
-      const { router } = props
-      const { logOutAttempt, logOutSuccess, logOutFailure } = props.actions
-      logOutAttempt()
-      firebase.auth().signOut().then(() => {
-        logOutSuccess()
-        router.push('login')
-      }, logOutFailure)
-    }}>Logout</a>
+    <a className='item' onClick={() => logOut().then(() => router.push('login'))}>Logout</a>
   )
 }
 

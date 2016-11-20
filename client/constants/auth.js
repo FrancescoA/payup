@@ -1,3 +1,0 @@
-// LOGOUT_SUCCESS should just be DEFAULT.
-export const LOGOUT_PENDING = 'LOGOUT_PENDING'
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'

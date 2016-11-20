@@ -1,6 +1,5 @@
 import { handleActions } from 'redux-actions'
 
-import * as auth from '../constants/auth'
 import { initialStateFromStorage } from '../helpers/localstorage'
 
 
@@ -18,13 +17,7 @@ export default handleActions({
       user: action.payload,
     }
   },
-  'log out attempt': (state, action) => {
-    return { ...state, status: auth.LOGOUT_PENDING }
-  },
-  'log out success': (state, action) => {
+  'log out': (state, action) => {
     return defaultAuthState()
-  },
-  'log out faiure': (state, action) => {
-    return { ...state, status: auth.LOGOUT_FAILURE }
   },
 }, initialStateFromStorage.auth || defaultAuthState())
