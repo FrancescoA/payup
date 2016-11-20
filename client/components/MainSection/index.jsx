@@ -54,7 +54,7 @@ class MainSection extends Component {
   }
 
   render() {
-    const { listings, auth, actions } = this.props
+    const { listings, auth, actions, loadingState } = this.props
 
     const { filter, editAddModalShowing, listingInModal } = this.state
     // this.renderToggleAll(liveCount)
@@ -65,6 +65,7 @@ class MainSection extends Component {
 
     let content = ( 
       <ListingTable
+        isLoading={loadingState.pendingRequests.length}
         listings={filteredListings}
         actions={actions}
         openEditListingModal={::this.openAddEditModal}
@@ -103,6 +104,7 @@ function mapStateToProps(state) {
   return {
     listings: state.listings,
     auth: state.auth,
+    loadingState: state.loadingState,
   }
 }
 

@@ -5,7 +5,6 @@ import Listing from '../Listing'
 import style from './style.css'
 import { fieldDisplayMappings } from '../../constants/mappings'
 import { database } from '../../constants/firebase'
-import * as status from '../../constants/listings'
 
 class ListingTable extends Component {
   constructor(props, context) {
@@ -58,16 +57,12 @@ class ListingTable extends Component {
   }
 
   render() {
-    const { listings, actions, openEditListingModal } = this.props
+    const { listings, actions, openEditListingModal, isLoading } = this.props
     const { visibleFields } = this.state 
     return (
       <div style={{padding: 0}}
       className={classnames('ui basic segment', {
-        'loading': listings.some((listing) => {
-          return listing.status == status.EDIT_PENDING 
-                || listing.status == status.ADD_CONFIRMATION_PENDING 
-                || listing.status == status.DELETE_PENDING
-          })
+        'loading': isLoading,
       })}>
         {this.renderDeleteModal()}
         <table className={classnames('ui compact definition table', style.table)}>
