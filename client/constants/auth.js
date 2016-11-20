@@ -1,9 +1,3 @@
-export const DEFAULT = 'AUTH_DEFAULT'
-
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
-export const LOGIN_PENDING = 'LOGIN_PENDING'
-
 // LOGOUT_SUCCESS should just be DEFAULT.
 export const LOGOUT_PENDING = 'LOGOUT_PENDING'
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
