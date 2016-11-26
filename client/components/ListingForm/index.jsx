@@ -25,11 +25,13 @@ const createDefaultFormState = () => {
     title: '',
     filename: '',
     fileurl: '',
-    amountToSell: 1, 
-    noSellLimit: true,
-    price: 0, 
+    amountToSell: 1,
+    noSellLimit: false,
+    sold: 0,
+    price: '',
+    listingPageUrl: '',
     description: '',
-    live: false,
+    live: true,
   }
 }
 
@@ -87,7 +89,8 @@ class ListingForm extends Component {
     this.setState({formErrors: errors || {}})
 
     if (!errors) {
-      this.props.handleSubmit && this.props.handleSubmit(form)
+      const timeStampedListing = Object.assign(form, { dateCreated: Date.now() })
+      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing)
       this.setFormState(createDefaultFormState())
     }
   }

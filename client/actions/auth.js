@@ -25,5 +25,5 @@ export const logOut = () => (dispatch, getState, api) => {
     type: 'log out',
     data: { id: 1 }, // id doesn't really matter in this case
   }
-  return api.wrapPromise(api.logOut(), req, dispatch, logOutLocally())
+  return api.wrapPromise(api.logOut(), logOutLocally, req, dispatch)
 }

@@ -28,6 +28,11 @@ class MainSection extends Component {
     }
   }
 
+  componentDidMount() {
+    const { actions, auth } = this.props
+    actions.refreshListings(auth.user.uid)
+  }
+
   handleClearCompleted() {
     const atLeastOneCompleted = this.props.listings.some(listing => listing.completed)
     if (atLeastOneCompleted) {

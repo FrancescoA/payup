@@ -1,53 +1,7 @@
 import { handleActions } from 'redux-actions'
 import { initialStateFromStorage } from '../helpers/localstorage'
 
-const fakeState = [
-  {
-    id: 'some-hash1',
-    owner: 'some-id',
-    title: 'Compromising Pictures of Elliot',
-    filename: 'wanker.jpg',
-    fileurl: 'www.elliot.com/compromising.jpg',
-    amountToSell: 10,
-    noSellLimit: true,
-    sold: 5,
-    price: '5.00',
-    listingPageUrl: 'www.payupd.com/elliot/somelisting',
-    description: 'These are REALLY compromising, dont miss out',
-    live: true,
-    dateCreated: '01-01-2016',
-  },
-  {
-    id: 'some-hash2',
-    owner: 'some-id-2',
-    title: 'Odesza tickets',
-    filename: 'tickets.pdf',
-    fileurl: 'www.firebase.com/lalalfsdfefefs.pdf',
-    amountToSell: 1,
-    noSellLimit: true,
-    sold: 0,
-    price: '50.00',
-    listingPageUrl: 'www.payupd.com/fra/odesza',
-    description: 'Cannot go anymore please buy',
-    live: false,
-    dateCreated: '01-01-2016',
-  },
-  {
-    id: 'some-hash3',
-    owner: 'some-id-3',
-    title: 'Amazon PM talk',
-    filename: 'wanker.jpg',
-    fileurl: 'www.elliot.com/compromising.jpg',
-    amountToSell: 2,
-    noSellLimit: true,
-    sold: 2,
-    price: '10.00',
-    listingPageUrl: 'www.payupd.com/smurf/eventbrightsucks',
-    description: 'Bought these on EventBright but no longer want to go',
-    live: true,
-    dateCreated: '01-01-2016',
-  },
-]
+const fakeState = []
 
 // Returns a new state that reflects the modification
 const modifiedState = (state, listingId, field, newValue) => {
@@ -83,6 +37,9 @@ export default handleActions({
       live: newListing.live,
       dateCreated: 'some-value-not-date-now',
     }, ...state]
+  },
+  'replace listings': (state, action) => {
+    return action.payload
   },
   'update listing': (state, action) => {
     const { payload } = action

@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions'
 
 const addListingLocally = createAction('add listing')
+const replaceListingsLocally = createAction('replace listings')
 const deleteListingLocally = createAction('delete listing')
 const editListingLocally = createAction('edit listing')
 const updateListingLocally = createAction('update listing')
@@ -14,7 +15,7 @@ export const addListing = listing => (dispatch, getState, api) => {
     type: 'add',
     data: listing,
   }
-  return api.wrapPromise(api.addListing(listing), req, dispatch, addListingLocally(listing))
+  return api.wrapPromise(api.addListing(listing), addListingLocally, req, dispatch)
 }
 
 export const updateListing = listing => (dispatch, getState, api) => {
@@ -22,7 +23,7 @@ export const updateListing = listing => (dispatch, getState, api) => {
     type: 'update',
     data: listing,
   }
-  return api.wrapPromise(api.updateListing(listing), req, dispatch, updateListingLocally(listing))
+  return api.wrapPromise(api.updateListing(listing), updateListingLocally, req, dispatch)
 }
 
 export const deleteListing = listing => (dispatch, getState, api) => {
@@ -30,15 +31,21 @@ export const deleteListing = listing => (dispatch, getState, api) => {
     type: 'delete',
     data: listing,
   }
-  return api.wrapPromise(api.deleteListing(listing), req, dispatch, deleteListingLocally(listing))
+  return api.wrapPromise(api.deleteListing(listing), deleteListingLocally, req, dispatch)
 }
 
 export const editListing = (listing, field, value) => (dispatch, getState, api) => {
-  const { id } = listing
   const req = {
     type: 'edit',
     data: listing,
   }
-  return api.wrapPromise(api.editListing(listing, field, value),
-    req, dispatch, editListingLocally({ id, field, value }))
+  return api.wrapPromise(api.editListing(listing, field, value), editListingLocally, req, dispatch)
+}
+
+export const refreshListings = userId => (dispatch, getState, api) => {
+  const req = {
+    type: 'get listings',
+    data: { id: 1 },
+  }
+  return api.wrapPromise(api.getListings(userId), replaceListingsLocally, req, dispatch)
 }
