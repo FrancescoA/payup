@@ -57,7 +57,7 @@ class ListingTable extends Component {
   }
 
   render() {
-    const { listings, actions, openEditListingModal, isLoading } = this.props
+    const { listings, actions, openEditListingModal, isLoading, fileToUrlMapping } = this.props
     const { visibleFields } = this.state 
     return (
       <div style={{padding: 0}}
@@ -82,6 +82,7 @@ class ListingTable extends Component {
               {listings.map(listing =>
                 <Listing 
                   visibleFields={visibleFields}
+                  fileUrl={fileToUrlMapping[listing.fileId]}
                   key={listing.id} 
                   listing={listing} 
                   deleteListing={::this.openDeleteModal}

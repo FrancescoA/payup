@@ -11,7 +11,7 @@ export const facebookLogIn = () => (dispatch, getState, api) => {
   }
   dispatch(loadingState.addPendingRequest(req))
   return api.signInWithFacebook()
-    .then(({ user }) => api.setUser(user))
+    .then(({ user }) => api.updateUser(user))
     .then(user => dispatch(logInLocally(user)))
     .then(() => dispatch(loadingState.removePendingRequest(req)))
     .catch(() => {

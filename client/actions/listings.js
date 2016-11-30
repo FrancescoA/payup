@@ -5,12 +5,15 @@ const replaceListingsLocally = createAction('replace listings')
 const deleteListingLocally = createAction('delete listing')
 const editListingLocally = createAction('edit listing')
 const updateListingLocally = createAction('update listing')
+const replaceFileUrlsLocally = createAction('update urls')
 
+export const updateFileUrl = createAction('update url')
+export const addToLocalFileUrls = createAction('add url')
 export const completeListing = createAction('complete listing')
 export const completeAll = createAction('complete all')
 export const clearCompleted = createAction('clear complete')
 
-export const addListing = listing => (dispatch, getState, api) => {
+export const addListing = (listing, fileUrl) => (dispatch, getState, api) => {
   const req = {
     type: 'add',
     data: listing,
@@ -47,5 +50,12 @@ export const refreshListings = userId => (dispatch, getState, api) => {
     type: 'get listings',
     data: { id: 1 },
   }
-  return api.wrapPromise(api.getListings(userId), replaceListingsLocally, req, dispatch)
+
+  return api.wrapPromise(Promise.all([api.getListings(userId), api.getFileUrls(userId)])
+    .then((values) => {
+      const listings = values[0]
+      const urlMapping = values[1]
+      dispatch(replaceFileUrlsLocally(urlMapping))
+      dispatch(replaceListingsLocally(listings))
+    }), null, req, dispatch)
 }

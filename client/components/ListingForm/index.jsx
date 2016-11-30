@@ -24,12 +24,13 @@ const createDefaultFormState = () => {
   return {
     title: '',
     filename: '',
-    fileurl: '',
+    fileSize: '',
+    fileId: '',
+    fileUrl: '',
     amountToSell: 1,
     noSellLimit: false,
     sold: 0,
-    price: '',
-    listingPageUrl: '',
+    price: 0,
     description: '',
     live: true,
   }
@@ -72,14 +73,31 @@ class ListingForm extends Component {
 
   setFormState(form) {
     this.setState(previousState => {
-      previousState.form = form
+      previousState.form = Object.assign({}, previousState.form, form)
       return previousState
     })
   }
 
   handleFileDropSuccess(file, event) {
-    // TODO: figure out exactly what to do with file
-    this.setFormField('filename', file.name)
+    this.props.uploadNewFile(file).then(
+      ({ fileId, fileUrl }) => {
+        this.setFormState({
+          filename: file.name,
+          fileSize: file.size,
+          fileId: fileId,
+          fileUrl: fileUrl,
+        })
+      }, 
+      () => {
+        // TODO: Handle error
+        // this.setFormState({
+        //   filename: '',
+        //   fileSize: '',
+        //   fileId: '',
+        //   fileUrl: null,
+        // })
+      }
+    )
   }
 
   handleSubmit(event) {
@@ -90,7 +108,9 @@ class ListingForm extends Component {
 
     if (!errors) {
       const timeStampedListing = Object.assign(form, { dateCreated: Date.now() })
-      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing)
+      const fileUrl = timeStampedListing.fileUrl
+      delete timeStampedListing.fileUrl
+      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing, fileUrl)
       this.setFormState(createDefaultFormState())
     }
   }

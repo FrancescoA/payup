@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import SliderToggle from '../SliderToggle'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
 import classnames from 'classnames'
-// import style from './style.css'
 
 class ListingItem extends Component {
   constructor(props, context) {
@@ -30,8 +30,8 @@ class ListingItem extends Component {
     //   [style.normal]: !this.state.editing
     // })
 
-    const {listing, value, name} = this.props
-    const {editing} = this.state
+    const { fileUrl, listing, value, name } = this.props
+    const { editing } = this.state
     if (name === 'live') {
       return (
         <td className='collapsing'> 
@@ -40,6 +40,21 @@ class ListingItem extends Component {
             onSave={(value) => this.handleSave(value)}
             classes='fitted'
           />
+        </td>
+      )
+    } else if (name === 'listingPageUrl') { // Compute this field
+      return (
+        <ListingPageUrlDisplay
+          key={name}
+          listingId={listing.id}
+        />
+      )
+    } else if (name === 'filename') {
+      return (
+        <td>
+          <a target='_blank' href={fileUrl}> 
+          {value} 
+          </a>
         </td>
       )
     }
@@ -68,6 +83,17 @@ class ListingItem extends Component {
       </td>
     )
   }
+}
+
+const ListingPageUrlDisplay = (props) => {
+  const { listingId } = props
+  return (
+    <td>
+      <Link target='_blank' to={`${window.location.origin}/listings/${listingId}`}> 
+        {`${window.location.hostname}/listings/${listingId}`}
+      </Link>
+    </td>
+  )
 }
 
 export default ListingItem

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import Modal from '../Modal'
 import ListingForm from '../ListingForm'
+import { uploadNewFile } from '../../helpers/api'
 import { database } from '../../constants/firebase'
 
 class EditAddListingModal extends Component {
   render() {
     const { showing, close, listing, user, actions } = this.props
-    const { addListing } = actions
-    const { updateListing } = actions
+    const { addListing, updateListing, updateFileUrl } = actions
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
       <Modal showing={showing}>
@@ -17,13 +17,18 @@ class EditAddListingModal extends Component {
         </div>
         <ListingForm
           classes='content'
-          defaultFormData={listing} 
-          handleSubmit={(formData) => {
-            if (formData.id) { // existing listing
-              updateListing(formData)
+          defaultFormData={listing}
+          uploadNewFile={uploadNewFile(user.uid)} 
+          handleSubmit={(listingFormData, fileUrl) => {
+            if (listingFormData.id) { // existing listing
+              updateListing(listingFormData)
             } else { // new listing
-              formData.owner = user.uid
-              addListing(formData)
+              listingFormData.owner = user.uid
+              updateFileUrl({
+                key: listingFormData.fileId,
+                value: fileUrl,
+              })
+              addListing(listingFormData)
             }
             close()
           }}

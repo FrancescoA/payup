@@ -1,7 +1,6 @@
 export const fieldDisplayMappings = {
   title: 'Title',
   filename: 'Filename',
-  fileurl: 'URL',
   price: 'Price ($)',
   listingPageUrl: 'Your Link',
   amountToSell: 'Total',
@@ -12,7 +11,6 @@ export const fieldDisplayMappings = {
 export const fieldEditableMappings = {
   title: true,
   filename: false,
-  fileurl: false,
   price: true,
   listingPageUrl: false,
   amountToSell: true,

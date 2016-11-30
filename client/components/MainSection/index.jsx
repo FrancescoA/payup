@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as ListingActions from '../../actions/listings'
+import * as listingActions from '../../actions/listings'
 import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
 import SliderToggle from '../SliderToggle'
@@ -72,6 +72,7 @@ class MainSection extends Component {
       <ListingTable
         isLoading={loadingState.pendingRequests.length}
         listings={filteredListings}
+        fileToUrlMapping={auth.fileIdToURL}
         actions={actions}
         openEditListingModal={::this.openAddEditModal}
       /> 
@@ -115,7 +116,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispath) {
   return { 
-    actions: bindActionCreators(ListingActions, dispath)
+    actions: bindActionCreators(listingActions, dispath)
   }
 }
 

@@ -46,7 +46,12 @@ const LogOutItem = (props) => {
   const { router } = props
   const { logOut } = props.actions
   return (
-    <a className='item' onClick={() => logOut().then(() => router.push('login'))}>Logout</a>
+    <a className='item' 
+    onClick={() => {
+      router.push('login')
+      logOut()
+    }
+    }>Logout</a>
   )
 }
 

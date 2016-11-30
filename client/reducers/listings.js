@@ -27,15 +27,15 @@ export default handleActions({
       owner: newListing.owner,
       title: newListing.title,
       filename: newListing.filename,
-      fileurl: newListing.fileurl,
+      fileSize: newListing.fileSize,
+      fileId: newListing.fileId,
       amountToSell: newListing.amountToSell,
       noSellLimit: newListing.noSellLimit,
       sold: 0,
       price: newListing.price,
-      listingPageUrl: 'fake-for-now',
       description: newListing.description,
       live: newListing.live,
-      dateCreated: 'some-value-not-date-now',
+      dateCreated: newListing.dateCreated,
     }, ...state]
   },
   'replace listings': (state, action) => {
