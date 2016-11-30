@@ -20,11 +20,11 @@ class EditAddListingModal extends Component {
           defaultFormData={listing}
           uploadNewFile={uploadNewFile(user.uid)} 
           handleSubmit={(listingFormData, fileUrl) => {
+            updateFileUrl({ [listingFormData.fileId]: fileUrl })
             if (listingFormData.id) { // existing listing
               updateListing(listingFormData)
             } else { // new listing
               listingFormData.owner = user.uid
-              updateFileUrl({ [listingFormData.fileId]: fileUrl })
               addListing(listingFormData)
             }
             close()

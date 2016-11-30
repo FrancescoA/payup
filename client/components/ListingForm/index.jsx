@@ -26,6 +26,7 @@ const createDefaultFormState = () => {
     filename: '',
     fileSize: '',
     fileId: '',
+    fileType: '',
     fileUrl: '',
     amountToSell: 1,
     noSellLimit: false,
@@ -78,12 +79,28 @@ class ListingForm extends Component {
     })
   }
 
+  hasAllFileInfo() {
+    const { filename, fileSize, fileType } = this.state.form
+    return filename && fileSize && fileType
+  }
+
+  createMockFile() {
+    // The FileDragArea wants something that looks like a File
+    const { filename, fileSize, fileType } = this.state.form
+    return this.hasAllFileInfo() ? {
+      name: filename,
+      size: fileSize,
+      type: fileType,
+    } : null
+  }
+
   handleFileDropSuccess(file, event) {
     this.props.uploadNewFile(file).then(
       ({ fileId, fileUrl }) => {
         this.setFormState({
           filename: file.name,
           fileSize: file.size,
+          fileType: file.type,
           fileId: fileId,
           fileUrl: fileUrl,
         })
@@ -98,6 +115,15 @@ class ListingForm extends Component {
         // })
       }
     )
+  }
+
+  handleFileDelete() {
+    // TODO: Delete file
+    this.setFormState({
+      filename: '',
+      fileSize: '',
+      fileType: '',
+    })
   }
 
   handleSubmit(event) {
@@ -120,8 +146,9 @@ class ListingForm extends Component {
     return (
       <div className={this.props.classes}>
         <FileDragArea 
-          shouldReset={form.filename == ''}
+          file={this.createMockFile()}
           onDropSuccess={::this.handleFileDropSuccess}
+          onFileDelete={::this.handleFileDelete}
           />
         <form className={classnames('ui form', {error: !_.isEmpty(formErrors)})}>
           <div className={classnames('field', {error: formErrors.title})}>

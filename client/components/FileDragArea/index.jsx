@@ -11,42 +11,41 @@ const createDefaultDragAreaState = () => {
   }
 }
 
+/**
+ * Possible displayModes:
+ * default
+ * dragEnter
+ * dropSuccess
+ * dropFail
+ *
+ * Possible iconModes:
+ * default
+ * delete
+ */
 class FileDragArea extends Component {
   constructor(props, context) {
     super(props, context)
-
-    /**
-     * Possible displayModes:
-     * default
-     * dragEnter
-     * dropSuccess
-     * dropFail
-     *
-     * Possible iconModes:
-     * default
-     * delete
-     */
-    this.state = {
-      displayMode: props.displayMode || 'default',
-      iconMode: props.iconMode || 'default',
-      file: props.file || null
-    }
+    this.state = this.stateForFile(props.file)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.shouldReset) {
       this.setState(createDefaultDragAreaState())
+    } else {
+      this.setState(this.stateForFile(nextProps.file))
+    }
+  }
+
+  stateForFile(file) {
+    return {
+      displayMode: file ? 'dropSuccess' : 'default',
+      iconMode: 'default',
     }
   }
 
   onDropSuccess(files, e) {
     const file = files.length ? files[0] : null
-    console.log(file)
-    this.setState({
-      displayMode: 'dropSuccess',
-      file: file
-    })
-    this.props.onDropSuccess && this.props.onDropSuccess(file, e)
+    this.props.onDropSuccess(file, e)
   }
 
   onDropFail(files, e) {
@@ -69,7 +68,8 @@ class FileDragArea extends Component {
   } 
 
   determineIcon() {
-    const { iconMode, file } = this.state
+    const { iconMode } = this.state
+    const { file } = this.props
     if (iconMode == 'delete') {
       return 'trash outline'
     } else {
@@ -79,17 +79,13 @@ class FileDragArea extends Component {
 
   handleIconClick() {
     if (this.state.iconMode == 'delete') {
-      this.setState({
-        iconMode: 'default',
-        displayMode: 'default',
-        file: null
-      })
+      this.props.onFileDelete()
     }
   }
 
   render() {
-    const { displayMode, file, iconMode } = this.state
-    const iconName = file ? this.iconForFileType(file.type) : null
+    const { displayMode, iconMode } = this.state
+    const { file } = this.props
     return (
       <DropZone
         multiple={false}

@@ -29,6 +29,7 @@ export default handleActions({
       filename: newListing.filename,
       fileSize: newListing.fileSize,
       fileId: newListing.fileId,
+      fileType: newListing.fileType,
       amountToSell: newListing.amountToSell,
       noSellLimit: newListing.noSellLimit,
       sold: 0,
