@@ -24,10 +24,7 @@ class EditAddListingModal extends Component {
               updateListing(listingFormData)
             } else { // new listing
               listingFormData.owner = user.uid
-              updateFileUrl({
-                key: listingFormData.fileId,
-                value: fileUrl,
-              })
+              updateFileUrl({ [listingFormData.fileId]: fileUrl })
               addListing(listingFormData)
             }
             close()
