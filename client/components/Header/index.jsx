@@ -6,7 +6,7 @@ import { Link } from 'react-router'
 import SimpleDropdown from '../SimpleDropdown'
 import classnames from 'classnames'
 
-import * as authActions from '../../actions/auth'
+import * as AuthActions from '../../actions/auth'
 import img from '../../../static/img/LogoExport.png'
 import { prefixUrl } from '../../helpers/config'
 import firebase from '../../constants/firebase'
