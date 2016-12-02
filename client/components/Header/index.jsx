@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import SimpleDropDown from '../SimpleDropDown'
+import SimpleDropdown from '../SimpleDropdown'
 import classnames from 'classnames'
 
 import * as authActions from '../../actions/auth'
@@ -21,14 +21,14 @@ class Header extends Component {
             <img className='ui image tiny' src={prefixUrl(img)}/>
           </div>
           <div className='right menu'>
-            <SimpleDropDown
+            <SimpleDropdown
               title={auth.auth ? 
                 auth.user.email : 
                 <LogInButton/>
               }
             >
               {auth.auth && <LogOutItem actions={actions} router={router}/>}
-            </SimpleDropDown>
+            </SimpleDropdown>
           </div>
         </div>
       </div>
