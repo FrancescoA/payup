@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 
 import App from './containers/App'
-import LoginSection from './Components/LoginSection'
-import MainSection from './Components/MainSection'
-import AccountSection from './Components/AccountSection'
+import LoginSection from './components/LoginSection'
+import MainSection from './components/MainSection'
+import AccountSection from './components/AccountSection'
 import configure from './store'
 
 const store = configure()
