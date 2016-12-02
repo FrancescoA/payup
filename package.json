@@ -4,7 +4,8 @@
   "private": true,
   "description": "A boilerplate of things that shouldn't exist",
   "engines": {
-    "node": "4.4.4"
+    "node": "4.4.4",
+    "npm": "3.9.0"
   },
   "main": "index.js",
   "scripts": {
