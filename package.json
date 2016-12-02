@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "description": "A boilerplate of things that shouldn't exist",
+  "engines": {
+    "node": "4.4.4"
+  },
   "main": "index.js",
   "scripts": {
     "lint": "eslint client/*.js client/**/*.js client/components/**/*.js",
