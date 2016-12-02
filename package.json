@@ -26,7 +26,7 @@
     "redux-actions": "^0.9.1",
     "redux-persist": "^4.0.0-alpha4",
     "redux-thunk": "^2.1.0",
-    "webpack": "^1.13.3",
+    "webpack": "^1.13.3"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
