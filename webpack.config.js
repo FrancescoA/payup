@@ -1,7 +1,16 @@
 var rucksack = require('rucksack-css')
 var webpack = require('webpack')
 var path = require('path')
-require('dotenv').config()
+
+var preLoaders = []
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+  preLoaders.push({
+    test: /\.js?$/,
+    loaders: ['eslint-loader'],
+    exclude: /node_modules/
+  })
+}
 
 var config = {
   context: path.join(__dirname, './client'),
@@ -26,7 +35,7 @@ var config = {
     emitWarning: true
   },
   module: {
-    preLoaders: [],
+    preLoaders: preLoaders,
     loaders: [
       {
         test: /\.html$/,
@@ -82,14 +91,6 @@ var config = {
     contentBase: './static',
     hot: true
   }
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  config.module.preLoaders.push({
-    test: /\.js?$/,
-    loaders: ['eslint-loader'],
-    exclude: /node_modules/
-  })
 }
 
 module.exports = config
