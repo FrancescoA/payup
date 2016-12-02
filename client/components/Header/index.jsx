@@ -3,12 +3,12 @@ import { bindActionCreators } from 'redux'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import SimpleDropDown from '../SimpleDropDown'
 import classnames from 'classnames'
 
-import * as AuthActions from '../../actions/auth'
+import * as authActions from '../../actions/auth'
 import img from '../../../static/img/LogoExport.png'
 import { prefixUrl } from '../../helpers/config'
-import SimpleDropDown from '../SimpleDropDown'
 import firebase from '../../constants/firebase'
 
 class Header extends Component {
@@ -50,8 +50,7 @@ const LogOutItem = (props) => {
     onClick={() => {
       router.push('login')
       logOut()
-    }
-    }>Logout</a>
+    }}>Logout</a>
   )
 }
 
