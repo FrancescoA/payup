@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var path = require('path')
 require('dotenv').config()
 
-module.exports = {
+var config = {
   context: path.join(__dirname, './client'),
   entry: {
     jsx: './index.jsx',
@@ -26,13 +26,7 @@ module.exports = {
     emitWarning: true
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.js?$/,
-        loaders: ['eslint-loader'],
-        exclude: /node_modules/
-      }
-    ],
+    preLoaders: [],
     loaders: [
       {
         test: /\.html$/,
@@ -89,3 +83,13 @@ module.exports = {
     hot: true
   }
 }
+
+if (process.env.NODE_ENV !== 'production') {
+  config.module.preLoaders.push({
+    test: /\.js?$/,
+    loaders: ['eslint-loader'],
+    exclude: /node_modules/
+  })
+}
+
+module.exports = config
