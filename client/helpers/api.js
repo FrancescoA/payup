@@ -95,7 +95,23 @@ export const getListings = (userId) => {
   return database.ref(`users/${userId}/listings`).once('value').then(snapshot => Object.values(snapshot.val() || {}))
 }
 
-export const uploadNewFile = userId => (file) => {
+export const deleteFile = (userId, fileId, filename) => {
+  const userFileRef = database.ref(`users/${userId}/files/${fileId}`)
+  const fileRef = storage.ref(`listingFiles/${userId}/${fileId}/${filename}`)
+  return Promise.all([userFileRef.remove(), fileRef.delete()])
+}
+
+export const deleteFileOfListing = (listing) => {
+  const { owner, fileId, filename } = listing
+  return deleteFile(owner, fileId, filename)
+}
+
+export const deleteListingAndFile = (listing) => {
+  return Promise.all([deleteListing(listing), deleteFileOfListing(listing)])
+    .then(() => listing)
+}
+
+export const uploadNewFile = (userId, file) => {
   const userFileRef = database.ref(`users/${userId}/files`).push()
   const fileId = userFileRef.key
   // We want to allow duplicate files
@@ -110,4 +126,3 @@ export const uploadNewFile = userId => (file) => {
       }
     })
 }
-

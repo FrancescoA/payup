@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Modal from '../Modal'
 import ListingForm from '../ListingForm'
-import { uploadNewFile } from '../../helpers/api'
-import { database } from '../../constants/firebase'
+import { uploadNewFile, deleteFileOfListing } from '../../helpers/api'
 
 class EditAddListingModal extends Component {
   render() {
@@ -18,16 +17,32 @@ class EditAddListingModal extends Component {
         <ListingForm
           classes='content'
           defaultFormData={listing}
-          uploadNewFile={uploadNewFile(user.uid)} 
-          handleSubmit={(listingFormData, fileUrl) => {
-            updateFileUrl({ [listingFormData.fileId]: fileUrl })
+          fileIsUploading={this.state.fileIsUploading}
+          handleSubmit={(listingFormData, file) => {
             if (listingFormData.id) { // existing listing
-              updateListing(listingFormData)
+              if (file) { // We should delete the previous file
+                Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
+                .then((res) => Promise.resolve(res[1]))
+                .then(({ fileId, fileUrl }) => {
+                  updateFileUrl({ [fileId]: fileUrl })
+                  listingFormData.fileId = fileId
+                  updateListing(listingFormData)
+                  close()
+                })
+              } else { // There was no update to the file
+                updateListing(listingFormData)
+                close()
+              }
             } else { // new listing
               listingFormData.owner = user.uid
-              addListing(listingFormData)
+              // there has to be a file if it's a new listing
+              uploadNewFile(user.uid, file).then(({ fileId, fileUrl }) => {
+                updateFileUrl({ [fileId]: fileUrl })
+                listingFormData.fileId = fileId
+                addListing(listingFormData)
+                close()
+              })
             }
-            close()
           }}
         />
       </Modal>

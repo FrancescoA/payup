@@ -13,7 +13,7 @@ export const completeListing = createAction('complete listing')
 export const completeAll = createAction('complete all')
 export const clearCompleted = createAction('clear complete')
 
-export const addListing = (listing, fileUrl) => (dispatch, getState, api) => {
+export const addListing = listing => (dispatch, getState, api) => {
   const req = {
     type: 'add',
     data: listing,
@@ -34,7 +34,11 @@ export const deleteListing = listing => (dispatch, getState, api) => {
     type: 'delete',
     data: listing,
   }
-  return api.wrapPromise(api.deleteListing(listing), deleteListingLocally, req, dispatch)
+  return api.wrapPromise(
+    api.deleteListingAndFile(listing),
+    deleteListingLocally,
+    req,
+    dispatch)
 }
 
 export const editListing = (listing, field, value) => (dispatch, getState, api) => {

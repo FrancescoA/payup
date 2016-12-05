@@ -25,9 +25,7 @@ const createDefaultFormState = () => {
     title: '',
     filename: '',
     fileSize: '',
-    fileId: '',
     fileType: '',
-    fileUrl: '',
     amountToSell: 1,
     noSellLimit: false,
     sold: 0,
@@ -43,7 +41,8 @@ class ListingForm extends Component {
     const initialForm = this.getNewFormDataOrDefault(this.props)
     this.state = {
       formErrors: {},
-      form: initialForm
+      form: initialForm,
+      newFile: null,
     }
   }
 
@@ -66,14 +65,14 @@ class ListingForm extends Component {
   }
 
   setFormField(name, value) {
-    this.setState(previousState => {
+    this.setState((previousState) => {
       previousState.form[name] = value
       return previousState
     })
   }
 
   setFormState(form) {
-    this.setState(previousState => {
+    this.setState((previousState) => {
       previousState.form = Object.assign({}, previousState.form, form)
       return previousState
     })
@@ -95,30 +94,15 @@ class ListingForm extends Component {
   }
 
   handleFileDropSuccess(file, event) {
-    this.props.uploadNewFile(file).then(
-      ({ fileId, fileUrl }) => {
-        this.setFormState({
-          filename: file.name,
-          fileSize: file.size,
-          fileType: file.type,
-          fileId: fileId,
-          fileUrl: fileUrl,
-        })
-      }, 
-      () => {
-        // TODO: Handle error
-        // this.setFormState({
-        //   filename: '',
-        //   fileSize: '',
-        //   fileId: '',
-        //   fileUrl: null,
-        // })
-      }
-    )
+    this.setState({ newFile: file })
+    this.setFormState({
+      filename: file.name,
+      fileSize: file.size,
+      fileType: file.type,
+    })
   }
 
   handleFileDelete() {
-    // TODO: Delete file
     this.setFormState({
       filename: '',
       fileSize: '',
@@ -134,9 +118,7 @@ class ListingForm extends Component {
 
     if (!errors) {
       const timeStampedListing = Object.assign(form, { dateCreated: Date.now() })
-      const fileUrl = timeStampedListing.fileUrl
-      delete timeStampedListing.fileUrl
-      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing, fileUrl)
+      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing, this.state.newFile)
       this.setFormState(createDefaultFormState())
     }
   }

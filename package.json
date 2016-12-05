@@ -12,7 +12,7 @@
     "lint": "eslint client/*.js client/**/*.js client/components/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
-    "build": "NODE_ENV=production webpack --progress --colors",
+    "build": "webpack --progress --colors",
     "heroku-postbuild": "NODE_ENV=production webpack --colors"
   },
   "license": "MIT",
