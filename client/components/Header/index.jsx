@@ -8,7 +8,6 @@ import classnames from 'classnames'
 
 import * as AuthActions from '../../actions/auth'
 import img from '../../../static/img/LogoExport.png'
-import { prefixUrl } from '../../helpers/config'
 import firebase from '../../constants/firebase'
 
 class Header extends Component {
@@ -18,7 +17,7 @@ class Header extends Component {
       <div className='ui large menu'>
         <div className='ui container'>
           <div className='item'>
-            <img className='ui image tiny' src={prefixUrl(img)}/>
+            <img className='ui image tiny' src={img}/>
           </div>
           <div className='right menu'>
             <SimpleDropdown
