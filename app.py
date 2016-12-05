@@ -7,6 +7,7 @@ app = Flask(__name__, static_folder='static', template_folder='static')
 # db = SQLAlchemy(app)
 
 @app.route("/")
+@app.route("/login")
 def main():
   return render_template('index.html')
 
