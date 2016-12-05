@@ -21,8 +21,6 @@ const requireAuth = (nextState, replace) => {
   }
 }
 
-console.log(process.env.FIREBASE_KEY)
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>

@@ -14,8 +14,9 @@ export const facebookLogIn = () => (dispatch, getState, api) => {
     .then(({ user }) => api.updateUser(user))
     .then(user => dispatch(logInLocally(user)))
     .then(() => dispatch(loadingState.removePendingRequest(req)))
-    .catch(() => {
+    .catch((reason) => {
       dispatch(loadingState.removePendingRequest(req))
+      req.data.reason = reason
       dispatch(loadingState.addFailedRequest(req))
     })
 }
