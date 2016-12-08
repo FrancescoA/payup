@@ -7,6 +7,7 @@ export default handleActions({
     return action.payload
   },
   'update file url': (state, action) => {
-    return Object.assign({}, state, action.payload)
+    const obj = action.payload
+    return { ...state, [obj.fileId]: obj.fileUrl }
   },
 }, defaultFileState())

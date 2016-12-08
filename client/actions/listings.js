@@ -6,16 +6,32 @@ const deleteListingLocally = createAction('delete listing')
 const editListingLocally = createAction('edit listing')
 const updateListingLocally = createAction('update listing')
 const replaceFileUrlsLocally = createAction('replace file urls')
+const updateFileUrl = createAction('update file url')
 
-export const updateFileUrl = createAction('update file url')
 export const addToLocalFileUrls = createAction('add url')
 export const completeListing = createAction('complete listing')
 export const completeAll = createAction('complete all')
 export const clearCompleted = createAction('clear complete')
 
+export const deleteFileOfListing = listing => (dispatch, getState, api) => {
+  const req = {
+    type: 'delete file',
+    data: listing,
+  }
+  return api.wrapPromise(api.deleteFileOfListing(listing), null, req, dispatch)
+}
+
+export const uploadNewFile = (userId, file) => (dispatch, getState, api) => {
+  const req = {
+    type: 'upload new file',
+    data: { id: 1 },
+  }
+  return api.wrapPromise(api.uploadNewFile(userId, file), updateFileUrl, req, dispatch)
+}
+
 export const addListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'add',
+    type: 'add listing',
     data: listing,
   }
   return api.wrapPromise(api.addListing(listing), addListingLocally, req, dispatch)
@@ -23,7 +39,7 @@ export const addListing = listing => (dispatch, getState, api) => {
 
 export const updateListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'update',
+    type: 'update listing',
     data: listing,
   }
   return api.wrapPromise(api.updateListing(listing), updateListingLocally, req, dispatch)
@@ -31,7 +47,7 @@ export const updateListing = listing => (dispatch, getState, api) => {
 
 export const deleteListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'delete',
+    type: 'delete listing',
     data: listing,
   }
   return api.wrapPromise(
@@ -43,7 +59,7 @@ export const deleteListing = listing => (dispatch, getState, api) => {
 
 export const editListing = (listing, field, value) => (dispatch, getState, api) => {
   const req = {
-    type: 'edit',
+    type: 'edit listing',
     data: listing,
   }
   return api.wrapPromise(api.editListing(listing, field, value), editListingLocally, req, dispatch)

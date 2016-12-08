@@ -8,7 +8,10 @@ export const wrapPromise = (promise, successActionCreator, req, dispatch) => {
     return data
   })
   .then(
-    data => successActionCreator && dispatch(successActionCreator(data)),
+    (data) => {
+      if (successActionCreator) dispatch(successActionCreator(data))
+      return data
+    },
     () => dispatch(loadingState.addFailedRequest(req))
   )
 }

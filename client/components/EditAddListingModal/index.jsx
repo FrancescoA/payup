@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import Modal from '../Modal'
 import ListingForm from '../ListingForm'
-import { uploadNewFile, deleteFileOfListing } from '../../helpers/api'
 
 class EditAddListingModal extends Component {
   render() {
     const { showing, close, listing, user, actions } = this.props
-    const { addListing, updateListing, updateFileUrl } = actions
+    const { addListing, updateListing, uploadNewFile, deleteFileOfListing } = actions
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
       <Modal showing={showing}>
@@ -17,17 +16,15 @@ class EditAddListingModal extends Component {
         <ListingForm
           classes='content'
           defaultFormData={listing}
-          fileIsUploading={this.state.fileIsUploading}
           handleSubmit={(listingFormData, file) => {
             if (listingFormData.id) { // existing listing
               if (file) { // We should delete the previous file
                 Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
                 .then((res) => Promise.resolve(res[1]))
                 .then(({ fileId, fileUrl }) => {
-                  updateFileUrl({ [fileId]: fileUrl })
+                  close()
                   listingFormData.fileId = fileId
                   updateListing(listingFormData)
-                  close()
                 })
               } else { // There was no update to the file
                 updateListing(listingFormData)
@@ -37,10 +34,9 @@ class EditAddListingModal extends Component {
               listingFormData.owner = user.uid
               // there has to be a file if it's a new listing
               uploadNewFile(user.uid, file).then(({ fileId, fileUrl }) => {
-                updateFileUrl({ [fileId]: fileUrl })
+                close()
                 listingFormData.fileId = fileId
                 addListing(listingFormData)
-                close()
               })
             }
           }}
