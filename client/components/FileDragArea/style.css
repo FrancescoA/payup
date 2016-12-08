@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.dragEnter, .dropSuccess {
+.dragEnter, .fileUploading {
   outline: 2px dashed #21ba45;
 }
 
@@ -18,9 +18,4 @@
 .fileInfoContainer div {
   padding-top: 20px;
   padding-bottom: 20px;
-}
-
-.fileInfoContainer i {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }

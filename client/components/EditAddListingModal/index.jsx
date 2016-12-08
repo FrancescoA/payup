@@ -3,6 +3,13 @@ import Modal from '../Modal'
 import ListingForm from '../ListingForm'
 
 class EditAddListingModal extends Component {
+  constructor(props, context) {
+    super(props, context)
+    this.state = {
+      isFileUploading: false
+    }
+  }
+
   render() {
     const { showing, close, listing, user, actions } = this.props
     const { addListing, updateListing, uploadNewFile, deleteFileOfListing } = actions
@@ -15,13 +22,16 @@ class EditAddListingModal extends Component {
         </div>
         <ListingForm
           classes='content'
+          isFileUploading={this.state.isFileUploading}
           defaultFormData={listing}
           handleSubmit={(listingFormData, file) => {
             if (listingFormData.id) { // existing listing
               if (file) { // We should delete the previous file
+                this.setState({ isFileUploading: true })
                 Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
                 .then((res) => Promise.resolve(res[1]))
                 .then(({ fileId, fileUrl }) => {
+                  this.setState({ isFileUploading: false })
                   close()
                   listingFormData.fileId = fileId
                   updateListing(listingFormData)
@@ -33,7 +43,9 @@ class EditAddListingModal extends Component {
             } else { // new listing
               listingFormData.owner = user.uid
               // there has to be a file if it's a new listing
+              this.setState({ isFileUploading: true })
               uploadNewFile(user.uid, file).then(({ fileId, fileUrl }) => {
+                this.setState({ isFileUploading: false })
                 close()
                 listingFormData.fileId = fileId
                 addListing(listingFormData)

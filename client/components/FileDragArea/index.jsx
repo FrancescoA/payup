@@ -17,26 +17,34 @@ const createDefaultDragAreaState = () => {
  * dragEnter
  * dropSuccess
  * dropFail
+ * uploadingFile
  *
  * Possible iconModes:
  * default
  * delete
+ * uploadingFile
  */
 class FileDragArea extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = this.stateForFile(props.file)
+    this.state = this.stateForFile(props.file, props.isUploading)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.shouldReset) {
       this.setState(createDefaultDragAreaState())
     } else {
-      this.setState(this.stateForFile(nextProps.file))
+      this.setState(this.stateForFile(nextProps.file, nextProps.isUploading))
     }
   }
 
-  stateForFile(file) {
+  stateForFile(file, isUploading) {
+    if (isUploading) {
+      return {
+        displayMode: 'uploadingFile',
+        iconMode: 'uploadingFile',
+      }
+    }
     return {
       displayMode: file ? 'dropSuccess' : 'default',
       iconMode: 'default',
@@ -58,7 +66,7 @@ class FileDragArea extends Component {
   }
 
   iconForFileType(type) {
-    switch (type.split('/')[0]){
+    switch (type.split('/')[0]) {
       case 'text': return 'file text outline'
       case 'image': return 'file image outline'
       case 'audio': return 'file audio outline'
@@ -70,10 +78,10 @@ class FileDragArea extends Component {
   determineIcon() {
     const { iconMode } = this.state
     const { file } = this.props
-    if (iconMode == 'delete') {
-      return 'trash outline'
-    } else {
-      return file ? this.iconForFileType(file.type) : 'cloud upload'
+    switch(iconMode) {
+      case 'delete': return 'trash outline'
+      case 'uploadingFile': return 'loading refresh'
+      default: return file ? this.iconForFileType(file.type) : 'cloud upload'
     }
   }
 
@@ -92,7 +100,8 @@ class FileDragArea extends Component {
         disableClick={iconMode === 'delete'}
         className={classnames(style.base, 'ui center aligned very padded container segment',{
           [style.dragEnter]: displayMode === 'dragEnter',
-          [style.dropFail]: displayMode === 'dropFail'
+          [style.fileUploading]: displayMode === 'uploadingFile',
+          [style.dropFail]: displayMode === 'dropFail',
         })}
         onDragEnter={() => this.setState({displayMode: 'dragEnter'})}
         onDragLeave={() => this.setState({displayMode: 'default'})}
@@ -102,14 +111,14 @@ class FileDragArea extends Component {
         <div 
           className={style.fileInfoContainer}
           onMouseEnter={() => displayMode === 'dropSuccess' && this.setState({iconMode: 'delete'})}
-          onMouseLeave={() => this.setState({iconMode: 'default'})}
+          onMouseLeave={() => displayMode !== 'uploadingFile' && this.setState({iconMode: 'default'})}
           onClick={::this.handleIconClick}
         >
-          <i 
+          <i
           className={classnames(this.determineIcon(), 'icon huge', {
             blue: displayMode === 'default' || displayMode === 'dropSuccess',
-            green: displayMode === 'dragEnter',
-            red: displayMode === 'dropFail'
+            green: displayMode === 'dragEnter' || displayMode === 'uploadingFile',
+            red: displayMode === 'dropFail',
           })}/>
           <div>
             <h3>
@@ -117,7 +126,8 @@ class FileDragArea extends Component {
                 (() => { // TODO: Display file.size = # bytes
                   switch (displayMode) {
                     case 'dragEnter': return 'Now drop it!'
-                    case 'dropFail': return 'Oops! Something went wrong. Please try again. '
+                    case 'uploadingFile': return 'Uploading your file!'
+                    case 'dropFail': return 'Oops! Something went wrong. Please try again.'
                     default: return file ? file.name : 'Click or drag your file here!' 
                   }
                 })()  
