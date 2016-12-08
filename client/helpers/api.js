@@ -117,9 +117,13 @@ export const deleteListingAndFile = (listing) => {
 export const uploadNewFile = (userId, file) => {
   const userFileRef = database.ref(`users/${userId}/files`).push()
   const fileId = userFileRef.key
+  const metaData = {
+    contentType: file.type || null,
+    name: file.name || null,
+  }
   // We want to allow duplicate files
   const ref = storage.ref(`listingFiles/${userId}/${fileId}/${file.name}`)
-  return ref.put(file).then(snapshot => snapshot.downloadURL)
+  return ref.put(file, metaData).then(snapshot => snapshot.downloadURL)
     .then((url) => {
       return Promise.all([Promise.resolve(url), userFileRef.update({ url })])
     }).then((values) => {
