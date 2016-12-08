@@ -49,7 +49,9 @@ class ListingForm extends Component {
   componentWillReceiveProps(nextProps) {
     const newForm = this.getNewFormDataOrDefault(nextProps)
     this.setState({
-      form: newForm
+      formErrors: {},
+      form: newForm,
+      newFile: null,
     })
   }
 

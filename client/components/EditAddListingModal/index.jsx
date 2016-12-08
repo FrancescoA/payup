@@ -26,6 +26,7 @@ class EditAddListingModal extends Component {
           defaultFormData={listing}
           handleSubmit={(listingFormData, file) => {
             if (listingFormData.id) { // existing listing
+              console.log(file)
               if (file) { // We should delete the previous file
                 this.setState({ isFileUploading: true })
                 Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
