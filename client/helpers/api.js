@@ -114,7 +114,7 @@ export const deleteListingAndFile = (listing) => {
     .then(() => listing)
 }
 
-export const uploadNewFile = (userId, file) => {
+export const uploadNewFile = (userId, file, progressCallback) => {
   const userFileRef = database.ref(`users/${userId}/files`).push()
   const fileId = userFileRef.key
   const metaData = {
@@ -123,7 +123,14 @@ export const uploadNewFile = (userId, file) => {
   }
   // We want to allow duplicate files
   const ref = storage.ref(`listingFiles/${userId}/${fileId}/${file.name}`)
-  return ref.put(file, metaData).then(snapshot => snapshot.downloadURL)
+  const task = ref.put(file, metaData)
+  task.on('state_changed', (snapshot) => {
+    if (progressCallback) {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+      progressCallback(progress)
+    }
+  })
+  return task.then(snapshot => snapshot.downloadURL)
     .then((url) => {
       return Promise.all([Promise.resolve(url), userFileRef.update({ url })])
     }).then((values) => {
@@ -133,3 +140,4 @@ export const uploadNewFile = (userId, file) => {
       }
     })
 }
+

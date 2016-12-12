@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import DropZone from 'react-dropzone'
 import classnames from 'classnames'
-import ProgressBar from '../ProgressBar'
+import { Line } from 'rc-progress'
 import style from './style.css'
 
 const createDefaultDragAreaState = () => {
@@ -94,7 +94,7 @@ class FileDragArea extends Component {
 
   render() {
     const { displayMode, iconMode } = this.state
-    const { file } = this.props
+    const { file, percentLoading } = this.props
     return (
       <DropZone
         multiple={false}
@@ -136,7 +136,7 @@ class FileDragArea extends Component {
               }
             </h3>
           </div>
-          <ProgressBar color='green' size='small' percent={50} />
+          {displayMode === 'uploadingFile' && <Line percent={percentLoading} strokeColor="#21BA45"/>}
         </div>
       </DropZone>
     )

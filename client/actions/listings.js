@@ -7,6 +7,7 @@ const editListingLocally = createAction('edit listing')
 const updateListingLocally = createAction('update listing')
 const replaceFileUrlsLocally = createAction('replace file urls')
 const updateFileUrl = createAction('update file url')
+const setFileLoadingState = createAction('set file loading state')
 
 export const addToLocalFileUrls = createAction('add url')
 export const completeListing = createAction('complete listing')
@@ -26,7 +27,14 @@ export const uploadNewFile = (userId, file) => (dispatch, getState, api) => {
     type: 'upload new file',
     data: { id: 1 },
   }
-  return api.wrapPromise(api.uploadNewFile(userId, file), updateFileUrl, req, dispatch)
+  dispatch(setFileLoadingState({ isUploading: true, percentage: 0 }))
+  return api.wrapPromise(api.uploadNewFile(userId, file, (progress) => {
+    dispatch(setFileLoadingState({ isUploading: true, percentage: progress }))
+  }), updateFileUrl, req, dispatch)
+  .then((data) => {
+    dispatch(setFileLoadingState({ isUploading: false, percentage: 0 }))
+    return data
+  })
 }
 
 export const addListing = listing => (dispatch, getState, api) => {

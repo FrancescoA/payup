@@ -13,6 +13,8 @@ const MAX_PENDING_REQUEST_AGE = 60 * 1000
 const initialState = {
   pendingRequests: [],
   failedRequests: [],
+  fileUploading: false,
+  fileUploadingPercentage: 0,
 }
 
 export default handleActions({
@@ -48,5 +50,9 @@ export default handleActions({
         return obj.data.id !== id && obj.type !== type
       }),
     }
+  },
+  'set file loading state': (state, action) => {
+    const { isUploading, percentage } = action.payload
+    return { ...state, fileUploading: isUploading, fileUploadingPercentage: percentage }
   },
 }, initialState)

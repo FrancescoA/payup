@@ -136,6 +136,7 @@ class ListingForm extends Component {
         <FileDragArea
           file={this.createMockFile()}
           isUploading={this.props.isFileUploading}
+          percentLoading={this.props.fileUploadingPercentage}
           onDropSuccess={this.handleFileDropSuccess}
           onFileDelete={this.handleFileDelete}
         />

@@ -30,6 +30,7 @@
     "file-loader": "^0.8.5",
     "firebase": "^3.6.3",
     "postcss-loader": "^0.8.1",
+    "rc-progress": "^2.0.3",
     "react": "~15.3.0",
     "react-dom": "~15.3.0",
     "react-dropzone": "^3.5.1",
