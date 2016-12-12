@@ -3,8 +3,6 @@ import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AuthActions from '../../actions/auth'
-import firebase, { facebookAuthProvider, database } from '../../constants/firebase'
-
 
 class LoginSection extends Component {
 
@@ -15,9 +13,9 @@ class LoginSection extends Component {
         <div>
           <h1 className='ui header'> Login </h1>
         </div>
-        <div className='ui clearing divider'/>
+        <div className='ui clearing divider' />
         <button onClick={() => actions.facebookLogIn().then(() => router.push('/'))} className='ui big facebook button'>
-          <i className='facebook icon'/>
+          <i className='facebook icon' />
           Log in with Facebook
         </button>
       </div>
@@ -27,13 +25,13 @@ class LoginSection extends Component {
 
 function mapStateToProps(state) {
   return {
-    auth: state.auth
+    auth: state.auth,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(AuthActions, dispatch)
+    actions: bindActionCreators(AuthActions, dispatch),
   }
 }
 

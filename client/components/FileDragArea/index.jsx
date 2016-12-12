@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import DropZone from 'react-dropzone'
 import classnames from 'classnames'
+import ProgressBar from '../ProgressBar'
 import style from './style.css'
 
 const createDefaultDragAreaState = () => {
   return {
     displayMode: 'default',
     iconMode: 'default',
-    file: null
+    file: null,
   }
 }
 
@@ -25,20 +26,7 @@ const createDefaultDragAreaState = () => {
  * uploadingFile
  */
 class FileDragArea extends Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = this.stateForFile(props.file, props.isUploading)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.shouldReset) {
-      this.setState(createDefaultDragAreaState())
-    } else {
-      this.setState(this.stateForFile(nextProps.file, nextProps.isUploading))
-    }
-  }
-
-  stateForFile(file, isUploading) {
+  static stateForFile(file, isUploading) {
     if (isUploading) {
       return {
         displayMode: 'uploadingFile',
@@ -51,21 +39,12 @@ class FileDragArea extends Component {
     }
   }
 
-  onDropSuccess(files, e) {
-    const file = files.length ? files[0] : null
-    this.props.onDropSuccess(file, e)
-  }
-
-  onDropFail(files, e) {
-    this.setState({displayMode: 'dropFail'})
-  }
-
-  supportsAdvancedUpload() {
+  static supportsAdvancedUpload() {
     const div = document.createElement('div')
-    return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
+    return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window
   }
 
-  iconForFileType(type) {
+  static iconForFileType(type) {
     switch (type.split('/')[0]) {
       case 'text': return 'file text outline'
       case 'image': return 'file image outline'
@@ -73,20 +52,42 @@ class FileDragArea extends Component {
       case 'application': return 'file pdf outline'
       default: return 'file outline'
     }
-  } 
+  }
+
+  constructor(props, context) {
+    super(props, context)
+    this.state = FileDragArea.stateForFile(props.file, props.isUploading)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.shouldReset) {
+      this.setState(createDefaultDragAreaState())
+    } else {
+      this.setState(FileDragArea.stateForFile(nextProps.file, nextProps.isUploading))
+    }
+  }
+
+  onDropSuccess(files, e) {
+    const file = files.length ? files[0] : null
+    this.props.onDropSuccess(file, e)
+  }
+
+  onDropFail(files, e) {
+    this.setState({ displayMode: 'dropFail' })
+  }
 
   determineIcon() {
     const { iconMode } = this.state
     const { file } = this.props
-    switch(iconMode) {
+    switch (iconMode) {
       case 'delete': return 'trash outline'
       case 'uploadingFile': return 'loading refresh'
-      default: return file ? this.iconForFileType(file.type) : 'cloud upload'
+      default: return file ? FileDragArea.iconForFileType(file.type) : 'cloud upload'
     }
   }
 
   handleIconClick() {
-    if (this.state.iconMode == 'delete') {
+    if (this.state.iconMode === 'delete') {
       this.props.onFileDelete()
     }
   }
@@ -98,42 +99,44 @@ class FileDragArea extends Component {
       <DropZone
         multiple={false}
         disableClick={iconMode === 'delete'}
-        className={classnames(style.base, 'ui center aligned very padded container segment',{
+        className={classnames(style.base, 'ui center aligned very padded container segment', {
           [style.dragEnter]: displayMode === 'dragEnter',
           [style.fileUploading]: displayMode === 'uploadingFile',
           [style.dropFail]: displayMode === 'dropFail',
         })}
-        onDragEnter={() => this.setState({displayMode: 'dragEnter'})}
-        onDragLeave={() => this.setState({displayMode: 'default'})}
-        onDropAccepted={::this.onDropSuccess}
-        onDropRejected={::this.onDropFail}
+        onDragEnter={() => this.setState({ displayMode: 'dragEnter' })}
+        onDragLeave={() => this.setState({ displayMode: 'default' })}
+        onDropAccepted={this.onDropSuccess.bind(this)}
+        onDropRejected={this.onDropFail.bind(this)}
       >
-        <div 
+        <div
           className={style.fileInfoContainer}
-          onMouseEnter={() => displayMode === 'dropSuccess' && this.setState({iconMode: 'delete'})}
-          onMouseLeave={() => displayMode !== 'uploadingFile' && this.setState({iconMode: 'default'})}
-          onClick={::this.handleIconClick}
+          onMouseEnter={() => displayMode === 'dropSuccess' && this.setState({ iconMode: 'delete' })}
+          onMouseLeave={() => displayMode !== 'uploadingFile' && this.setState({ iconMode: 'default' })}
+          onClick={this.handleIconClick.bind(this)}
         >
           <i
-          className={classnames(this.determineIcon(), 'icon huge', {
-            blue: displayMode === 'default' || displayMode === 'dropSuccess',
-            green: displayMode === 'dragEnter' || displayMode === 'uploadingFile',
-            red: displayMode === 'dropFail',
-          })}/>
+            className={classnames(this.determineIcon(), 'icon huge', {
+              blue: displayMode === 'default' || displayMode === 'dropSuccess',
+              green: displayMode === 'dragEnter' || displayMode === 'uploadingFile',
+              red: displayMode === 'dropFail',
+            })}
+          />
           <div>
             <h3>
-              { 
+              {
                 (() => { // TODO: Display file.size = # bytes
                   switch (displayMode) {
                     case 'dragEnter': return 'Now drop it!'
                     case 'uploadingFile': return 'Uploading your file!'
                     case 'dropFail': return 'Oops! Something went wrong. Please try again.'
-                    default: return file ? file.name : 'Click or drag your file here!' 
+                    default: return file ? file.name : 'Click or drag your file here!'
                   }
-                })()  
+                })()
               }
             </h3>
           </div>
+          <ProgressBar color='green' size='small' percent={50} />
         </div>
       </DropZone>
     )

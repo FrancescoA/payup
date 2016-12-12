@@ -6,18 +6,19 @@ class SliderToggle extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      checked: this.props.checked
+      checked: this.props.checked,
     }
+    this.handleToggle = this.handleToggle.bind(this)
   }
 
   componentWillReceiveProps(props) {
-    this.setState({checked: props.checked})
+    this.setState({ checked: props.checked })
   }
 
   handleToggle() {
     const { checked } = this.state
     this.setState({ checked: !checked }, () => {
-      this.props.onSave && this.props.onSave(this.state.checked)
+      if (this.props.onSave) this.props.onSave(this.state.checked)
     })
   }
 
@@ -25,18 +26,17 @@ class SliderToggle extends Component {
     const { checked } = this.state
     const { classes, label } = this.props
     return (
-      <div 
-        className={classnames('ui checkbox toggle', classes, {checked: checked})}
+      <div
+        className={classnames('ui checkbox toggle', classes, { checked })}
       >
-        <input 
-          type='checkbox' 
+        <input
+          type='checkbox'
           checked={checked}
-          onChange={::this.handleToggle}
-          />
-        <label> {label} </label>
+          onChange={this.handleToggle}
+        />
+        <label htmlFor='checkbox'> {label} </label>
       </div>
     )
-
   }
 }
 

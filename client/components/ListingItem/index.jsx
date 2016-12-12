@@ -3,18 +3,19 @@ import { Link } from 'react-router'
 import SliderToggle from '../SliderToggle'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
-import classnames from 'classnames'
 
 class ListingItem extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      editing: false
+      editing: false,
     }
+    this.handleDoubleClick = this.handleDoubleClick.bind(this)
+    this.handleSave = this.handleSave.bind(this)
   }
 
   handleDoubleClick() {
-    this.props.editable && this.setState({ editing: true })
+    if (this.props.editable) this.setState({ editing: true })
   }
 
   handleSave(value) {
@@ -34,10 +35,10 @@ class ListingItem extends Component {
     const { editing } = this.state
     if (name === 'live') {
       return (
-        <td className='collapsing'> 
-          <SliderToggle 
+        <td className='collapsing'>
+          <SliderToggle
             checked={value}
-            onSave={(value) => this.handleSave(value)}
+            onSave={this.handleSave}
             classes='fitted'
           />
         </td>
@@ -52,8 +53,8 @@ class ListingItem extends Component {
     } else if (name === 'filename') {
       return (
         <td>
-          <a target='_blank' href={fileUrl}> 
-          {value} 
+          <a rel='noopener noreferrer' target='_blank' href={fileUrl}>
+            {value}
           </a>
         </td>
       )
@@ -65,19 +66,19 @@ class ListingItem extends Component {
         <ListingTextInput
           placeholder='Untitled'
           text={value}
-          onSave={(value) => this.handleSave(value)} 
+          onSave={this.handleSave}
         />
       )
     } else {
       element = (
-        <ListingItemLabel 
+        <ListingItemLabel
           text={value}
-          handleDoubleClick={::this.handleDoubleClick} 
+          handleDoubleClick={this.handleDoubleClick}
         />
       )
     }
 
-    return ( 
+    return (
       <td>
         {element}
       </td>
@@ -85,11 +86,10 @@ class ListingItem extends Component {
   }
 }
 
-const ListingPageUrlDisplay = (props) => {
-  const { listingId } = props
+const ListingPageUrlDisplay = ({ listingId }) => {
   return (
     <td>
-      <Link target='_blank' to={`${window.location.origin}/listings/${listingId}`}> 
+      <Link rel='noopener noreferrer' target='_blank' to={`${window.location.origin}/listings/${listingId}`}>
         {`${window.location.hostname}/listings/${listingId}`}
       </Link>
     </td>

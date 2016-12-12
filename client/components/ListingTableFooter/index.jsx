@@ -1,13 +1,12 @@
-
 import React, { Component } from 'react'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import classnames from 'classnames'
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
 
 const FILTER_TITLES = {
   [SHOW_ALL]: 'All',
   [SHOW_ACTIVE]: 'Active',
-  [SHOW_COMPLETED]: 'Completed'
+  [SHOW_COMPLETED]: 'Completed',
 }
 
 class Footer extends Component {
@@ -27,9 +26,11 @@ class Footer extends Component {
     const { filter: selectedFilter, onShow } = this.props
 
     return (
-      <a className={classnames({ [style.selected]: filter === selectedFilter })}
-         style={{ cursor: 'pointer' }}
-         onClick={() => onShow(filter)}>
+      <a
+        className={classnames({ [style.selected]: filter === selectedFilter })}
+        style={{ cursor: 'pointer' }}
+        onClick={() => onShow(filter)}
+      >
         {title}
       </a>
     )
@@ -44,6 +45,7 @@ class Footer extends Component {
         </button>
       )
     }
+    return null
   }
 
   render() {

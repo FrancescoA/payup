@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
-import SliderToggle from '../SliderToggle'
-import FileDragArea from '../FileDragArea'
 import classnames from 'classnames'
-import style from './style.css'
 import validate from 'validate.js'
 import _ from 'underscore'
+import SliderToggle from '../SliderToggle'
+import FileDragArea from '../FileDragArea'
+import style from './style.css'
 
 const formConstraints = {
   title: {
     presence: true,
     length: {
-      minimum: 4
+      minimum: 4,
     },
   },
   filename: {
-    presence: { 
+    presence: {
       message: 'is required',
     },
   },
@@ -36,34 +36,33 @@ const createDefaultFormState = () => {
 }
 
 class ListingForm extends Component {
-  constructor(props, context) {
-    super(props, context)
-    const initialForm = this.getNewFormDataOrDefault(this.props)
-    this.state = {
-      formErrors: {},
-      form: initialForm,
-      newFile: null,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const newForm = this.getNewFormDataOrDefault(nextProps)
-    this.setState({
-      formErrors: {},
-      form: newForm,
-      newFile: null,
-    })
-  }
-
-  getNewFormDataOrDefault(props) {
+  static getNewFormDataOrDefault(props) {
     return props.defaultFormData
       ? Object.assign({}, props.defaultFormData)
       : createDefaultFormState()
   }
 
-  handleChange(event) {
-    const { name, value } = event.target
-    this.setFormField(name, value)
+  constructor(props, context) {
+    super(props, context)
+    const initialForm = ListingForm.getNewFormDataOrDefault(this.props)
+    this.state = {
+      formErrors: {},
+      form: initialForm,
+      newFile: null,
+    }
+    this.handleFileDropSuccess = this.handleFileDropSuccess.bind(this)
+    this.handleFileDelete = this.handleFileDelete.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const newForm = ListingForm.getNewFormDataOrDefault(nextProps)
+    this.setState({
+      formErrors: {},
+      form: newForm,
+      newFile: null,
+    })
   }
 
   setFormField(name, value) {
@@ -78,6 +77,11 @@ class ListingForm extends Component {
       previousState.form = Object.assign({}, previousState.form, form)
       return previousState
     })
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target
+    this.setFormField(name, value)
   }
 
   hasAllFileInfo() {
@@ -116,11 +120,11 @@ class ListingForm extends Component {
     event.preventDefault()
     const { form } = this.state
     const errors = validate(form, formConstraints)
-    this.setState({formErrors: errors || {}})
+    this.setState({ formErrors: errors || {} })
 
     if (!errors) {
       const timeStampedListing = Object.assign(form, { dateCreated: Date.now() })
-      this.props.handleSubmit && this.props.handleSubmit(timeStampedListing, this.state.newFile)
+      if (this.props.handleSubmit) this.props.handleSubmit(timeStampedListing, this.state.newFile)
       this.setFormState(createDefaultFormState())
     }
   }
@@ -129,48 +133,48 @@ class ListingForm extends Component {
     const { form, formErrors } = this.state
     return (
       <div className={this.props.classes}>
-        <FileDragArea 
+        <FileDragArea
           file={this.createMockFile()}
           isUploading={this.props.isFileUploading}
-          onDropSuccess={::this.handleFileDropSuccess}
-          onFileDelete={::this.handleFileDelete}
-          />
-        <form className={classnames('ui form', {error: !_.isEmpty(formErrors)})}>
-          <div className={classnames('field', {error: formErrors.title})}>
-            <label>Title</label>
-            <input onChange={::this.handleChange} type='text' value={form.title} name='title' maxLength='64'/>
+          onDropSuccess={this.handleFileDropSuccess}
+          onFileDelete={this.handleFileDelete}
+        />
+        <form className={classnames('ui form', { error: !_.isEmpty(formErrors) })}>
+          <div className={classnames('field', { error: formErrors.title })}>
+            <label htmlFor='title'>Title</label>
+            <input onChange={this.handleChange} type='text' value={form.title} name='title' maxLength='64' />
           </div>
           <div className='two fields'>
-            <div className={classnames('field', {disabled: form.noSellLimit})}>
-              <label> Amount To Sell </label>
-              <input onChange={::this.handleChange} type='number' value={form.amountToSell} name='amountToSell' min='1'/>
+            <div className={classnames('field', { disabled: form.noSellLimit })}>
+              <label htmlFor='amountToSell'> Amount To Sell </label>
+              <input onChange={this.handleChange} type='number' value={form.amountToSell} name='amountToSell' min='1' />
             </div>
             <div className='field'>
-              <label> Price </label>
-              <input onChange={::this.handleChange} type='number' value={form.price} name='price' min='0'/>
+              <label htmlFor='price'> Price </label>
+              <input onChange={this.handleChange} type='number' value={form.price} name='price' min='0' />
             </div>
           </div>
           <div className='field'>
-            <label> Description </label>
-            <textarea onChange={::this.handleChange} rows="3" value={form.description} name='description' maxLength='1024'></textarea>
+            <label htmlFor='description'> Description </label>
+            <textarea onChange={this.handleChange} rows='3' value={form.description} name='description' maxLength='1024' />
           </div>
           <div className='inline field'>
             <SliderToggle
               checked={form.live}
-              onSave={(val) => this.setFormField('live', val)}
-              label='Live' 
+              onSave={val => this.setFormField('live', val)}
+              label='Live'
             />
             <SliderToggle
               checked={form.noSellLimit}
-              onSave={(val) => this.setFormField('noSellLimit', val)}
+              onSave={val => this.setFormField('noSellLimit', val)}
               label='Sell unlimited'
               classes={style.checkbox}
             />
           </div>
-          <button onClick={::this.handleSubmit} className='ui button'>Submit</button>
+          <button onClick={this.handleSubmit} className='ui button'>Submit</button>
           <div className='ui error message'>
             <ul>
-              {_.flatten(Object.values(formErrors)).map(errorMessage => 
+              {_.flatten(Object.values(formErrors)).map(errorMessage =>
                 <li key={errorMessage}> {errorMessage} </li>
               )}
             </ul>

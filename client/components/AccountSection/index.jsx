@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import classnames from 'classnames'
 
 class AccountSection extends Component {
 
@@ -9,7 +8,7 @@ class AccountSection extends Component {
         <div>
           <h1 className='ui header'> Account </h1>
         </div>
-        <div className='ui clearing divider'/>
+        <div className='ui clearing divider' />
       </div>
     )
   }

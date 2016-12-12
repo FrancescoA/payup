@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import style from './style.css'
 
 class TableHeading extends Component {
   render() {
     const { openAddModal } = this.props
     return (
       <div className='ui container'>
-        <button 
+        <button
           className='ui basic green button fluid massive'
           onClick={() => openAddModal()}
-        > 
-          <i className='cloud upload icon'/>
-          Add a Listing 
+        >
+          <i className='cloud upload icon' />
+          Add a Listing
         </button>
       </div>
     )

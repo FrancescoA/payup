@@ -1,14 +1,15 @@
-
 import React, { Component } from 'react'
-import classnames from 'classnames'
 import style from './style.css'
 
 class ListingTextInput extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      text: this.props.text || ''
+      text: this.props.text || '',
     }
+    this.handleBlur = this.handleBlur.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(e) {
@@ -38,15 +39,15 @@ class ListingTextInput extends Component {
     //   [style.new]: this.props.newListing
     // }, style.normal)
     return (
-      <input 
+      <input
         className={style.edit}
-        type="text"
-        autoFocus="true"
+        type='text'
+        autoFocus='true'
         placeholder={this.props.placeholder}
         value={this.state.text}
-        onBlur={::this.handleBlur}
-        onChange={::this.handleChange}
-        onKeyDown={::this.handleSubmit} 
+        onBlur={this.handleBlur}
+        onChange={this.handleChange}
+        onKeyDown={this.handleSubmit}
       />
     )
   }

@@ -1,31 +1,30 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 import * as listingActions from '../../actions/listings'
 import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
-import SliderToggle from '../SliderToggle'
-import Modal from '../Modal'
 import EditAddListingModal from '../EditAddListingModal'
-import ListingForm from '../ListingForm'
-import classnames from 'classnames'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters'
 import style from './style.css'
 
 const LISTING_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: listing => !listing.completed,
-  [SHOW_COMPLETED]: listing => listing.completed
+  [SHOW_COMPLETED]: listing => listing.completed,
 }
 
 class MainSection extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = { 
+    this.state = {
       filter: SHOW_ALL,
       editAddModalShowing: false,
       listingInModal: null,
     }
+    this.openAddEditModal = this.openAddEditModal.bind(this)
+    this.closeAddEditModal = this.closeAddEditModal.bind(this)
   }
 
   componentDidMount() {
@@ -47,14 +46,14 @@ class MainSection extends Component {
   openAddEditModal(listing) {
     this.setState({
       editAddModalShowing: true,
-      listingInModal: listing || null
+      listingInModal: listing || null,
     })
   }
 
   closeAddEditModal() {
     this.setState({
       editAddModalShowing: false,
-      listingInModal: null
+      listingInModal: null,
     })
   }
 
@@ -64,18 +63,18 @@ class MainSection extends Component {
     const { filter, editAddModalShowing, listingInModal } = this.state
     // this.renderToggleAll(liveCount)
     const filteredListings = listings.filter(LISTING_FILTERS[filter])
-    const liveCount = listings.reduce((count, listing) => {
-      return listing.live ? count + 1 : count
-    }, 0)
+    // const liveCount = listings.reduce((count, listing) => {
+    //   return listing.live ? count + 1 : count
+    // }, 0)
 
-    let content = ( 
+    let content = (
       <ListingTable
         isLoading={loadingState.pendingRequests.length}
         listings={filteredListings}
         fileToUrlMapping={files}
         actions={actions}
-        openEditListingModal={::this.openAddEditModal}
-      /> 
+        openEditListingModal={this.openAddEditModal}
+      />
     )
 
     if (!listings.length) {
@@ -88,7 +87,7 @@ class MainSection extends Component {
       <div className='ui raised padded container segment'>
         <EditAddListingModal
           showing={editAddModalShowing}
-          close={::this.closeAddEditModal}
+          close={this.closeAddEditModal}
           user={auth.user}
           listing={listingInModal}
           actions={actions}
@@ -96,9 +95,9 @@ class MainSection extends Component {
         <div>
           <h1 className={classnames(style.heading, 'ui header')}> Listings </h1>
         </div>
-        <div className='ui clearing divider'/>
+        <div className='ui clearing divider' />
         <TableHeading
-          openAddModal={::this.openAddEditModal}
+          openAddModal={this.openAddEditModal}
         />
         {content}
       </div>
@@ -116,8 +115,8 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispath) {
-  return { 
-    actions: bindActionCreators(listingActions, dispath)
+  return {
+    actions: bindActionCreators(listingActions, dispath),
   }
 }
 

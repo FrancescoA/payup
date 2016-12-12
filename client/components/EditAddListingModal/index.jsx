@@ -6,7 +6,7 @@ class EditAddListingModal extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      isFileUploading: false
+      isFileUploading: false,
     }
   }
 
@@ -16,7 +16,7 @@ class EditAddListingModal extends Component {
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
       <Modal showing={showing}>
-        <i onClick={close} className='close icon'/>
+        <i onClick={close} className='close icon' />
         <div className='header'>
           {headerText}
         </div>
@@ -30,26 +30,23 @@ class EditAddListingModal extends Component {
               if (file) { // We should delete the previous file
                 this.setState({ isFileUploading: true })
                 Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
-                .then((res) => Promise.resolve(res[1]))
+                .then(res => Promise.resolve(res[1]))
                 .then(({ fileId, fileUrl }) => {
                   this.setState({ isFileUploading: false })
                   close()
-                  listingFormData.fileId = fileId
-                  updateListing(listingFormData)
+                  updateListing(Object.assign({}, listingFormData, { fileId }))
                 })
               } else { // There was no update to the file
                 updateListing(listingFormData)
                 close()
               }
             } else { // new listing
-              listingFormData.owner = user.uid
               // there has to be a file if it's a new listing
               this.setState({ isFileUploading: true })
               uploadNewFile(user.uid, file).then(({ fileId, fileUrl }) => {
                 this.setState({ isFileUploading: false })
                 close()
-                listingFormData.fileId = fileId
-                addListing(listingFormData)
+                addListing(Object.assign({}, listingFormData, { fileId, owner: user.uid }))
               })
             }
           }}
