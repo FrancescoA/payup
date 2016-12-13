@@ -66,18 +66,18 @@ class MainSection extends Component {
     // const liveCount = listings.reduce((count, listing) => {
     //   return listing.live ? count + 1 : count
     // }, 0)
-
-    let content = (
-      <ListingTable
-        isLoading={loadingState.pendingRequests.length}
-        listings={filteredListings}
-        fileToUrlMapping={files}
-        actions={actions}
-        openEditListingModal={this.openAddEditModal}
-      />
-    )
-
-    if (!listings.length) {
+    let content = null
+    if (listings) {
+      content = (
+        <ListingTable
+          isLoading={loadingState.pendingRequests.length}
+          listings={filteredListings}
+          fileToUrlMapping={files}
+          actions={actions}
+          openEditListingModal={this.openAddEditModal}
+        />
+      )
+    } else {
       content = (
         <h3> You have no listings! </h3>
       )
