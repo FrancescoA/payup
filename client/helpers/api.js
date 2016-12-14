@@ -95,7 +95,8 @@ export const logOut = () => {
 }
 
 export const getListings = (userId) => {
-  return database.ref(`users/${userId}/listings`).once('value').then(snapshot => Object.values(snapshot.val() || {}))
+  return database.ref(`users/${userId}/listings`).orderByChild('dateCreated').once('value')
+    .then(snapshot => Object.values(snapshot.val() || {}).reverse())
 }
 
 export const deleteFile = (userId, fileId, filename) => {
