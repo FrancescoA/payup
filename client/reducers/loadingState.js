@@ -30,6 +30,7 @@ export default handleActions({
     const { type, data } = action.payload
     const { id } = data
     return {
+      ...state,
       pendingRequests: state.pendingRequests.filter((obj) => {
         return obj.data.id !== id && obj.type !== type
       }),
@@ -46,6 +47,7 @@ export default handleActions({
     const { type, data } = action.payload
     const { id } = data
     return {
+      ...state,
       failedRequests: state.failedRequests.filter((obj) => {
         return obj.data.id !== id && obj.type !== type
       }),

@@ -32,11 +32,10 @@ class Header extends Component {
   }
 }
 
-const LogInButton = () => {
-  return (
-    <Link to='login'><div className='ui primary button'>Login</div></Link>
-  )
-}
+const LogInButton = () => (
+  <Link to='login'><div className='ui primary button'>Login</div></Link>
+)
+
 
 const LogOutItem = (props) => {
   const { router } = props

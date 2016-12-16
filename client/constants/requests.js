@@ -1,0 +1,7 @@
+export const DELETE_FILE = 'delete file'
+export const UPLOAD_NEW_FILE = 'upload new file'
+export const ADD_LISTING = 'add listing'
+export const UPDATE_LISTING = 'update listing'
+export const DELETE_LISTING = 'delete listing'
+export const EDIT_LISTING = 'edit listing'
+export const GET_LISTINGS = 'get listings'

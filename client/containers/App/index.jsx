@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import Messages from '../../components/Messages'
 import style from './style.css'
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <div className={style.normal}>
         <Header/>
+        <Messages />
         <div className='container-fluid' style={contentStyle}>
           {children}
         </div>

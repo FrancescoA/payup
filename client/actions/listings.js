@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import * as requestType from '../constants/requests'
 
 const addListingLocally = createAction('add listing')
 const replaceListingsLocally = createAction('replace listings')
@@ -16,7 +17,7 @@ export const clearCompleted = createAction('clear complete')
 
 export const deleteFileOfListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'delete file',
+    type: requestType.DELETE_FILE,
     data: listing,
   }
   return api.wrapPromise(api.deleteFileOfListing(listing), null, req, dispatch)
@@ -24,7 +25,7 @@ export const deleteFileOfListing = listing => (dispatch, getState, api) => {
 
 export const uploadNewFile = (userId, file) => (dispatch, getState, api) => {
   const req = {
-    type: 'upload new file',
+    type: requestType.UPLOAD_NEW_FILE,
     data: { id: 1 },
   }
   dispatch(setFileLoadingState({ isUploading: true, percentage: 0 }))
@@ -39,7 +40,7 @@ export const uploadNewFile = (userId, file) => (dispatch, getState, api) => {
 
 export const addListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'add listing',
+    type: requestType.ADD_LISTING,
     data: listing,
   }
   return api.wrapPromise(api.addListing(listing), addListingLocally, req, dispatch)
@@ -47,7 +48,7 @@ export const addListing = listing => (dispatch, getState, api) => {
 
 export const updateListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'update listing',
+    type: requestType.UPDATE_LISTING,
     data: listing,
   }
   return api.wrapPromise(api.updateListing(listing), updateListingLocally, req, dispatch)
@@ -55,7 +56,7 @@ export const updateListing = listing => (dispatch, getState, api) => {
 
 export const deleteListing = listing => (dispatch, getState, api) => {
   const req = {
-    type: 'delete listing',
+    type: requestType.DELETE_LISTING,
     data: listing,
   }
   return api.wrapPromise(
@@ -67,7 +68,7 @@ export const deleteListing = listing => (dispatch, getState, api) => {
 
 export const editListing = (listing, field, value) => (dispatch, getState, api) => {
   const req = {
-    type: 'edit listing',
+    type: requestType.EDIT_LISTING,
     data: listing,
   }
   return api.wrapPromise(api.editListing(listing, field, value), editListingLocally, req, dispatch)
@@ -75,7 +76,7 @@ export const editListing = (listing, field, value) => (dispatch, getState, api) 
 
 export const refreshListings = userId => (dispatch, getState, api) => {
   const req = {
-    type: 'get listings',
+    type: requestType.GET_LISTINGS,
     data: { id: 1 },
   }
 
