@@ -4,6 +4,7 @@ import SliderToggle from '../SliderToggle'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
 
+// TODO: refactor this class
 class ListingItem extends Component {
   constructor(props, context) {
     super(props, context)
@@ -53,9 +54,9 @@ class ListingItem extends Component {
     } else if (name === 'filename') {
       return (
         <td>
-          <a rel='noopener noreferrer' target='_blank' href={fileUrl}>
+          <Link rel='noopener noreferrer' target='_blank' to={fileUrl}>
             {value}
-          </a>
+          </Link>
         </td>
       )
     }

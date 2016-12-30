@@ -71,7 +71,7 @@ class ListingTable extends Component {
         })}
       >
         {this.renderDeleteModal()}
-        <table className={classnames('ui compact definition table', style.table)}>
+        <table className={classnames('ui compact selectable definition table', style.table)}>
           <thead>
             <tr>
               <th>
