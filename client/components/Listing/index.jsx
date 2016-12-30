@@ -14,8 +14,8 @@ class Listing extends Component {
     return (
       <tr>
         <td className='collapsing'>
-          <i className='big link setting icon' onClick={() => openEditListingModal(listing)} />
-          <i className='big link red remove icon' onClick={() => deleteListing(listing)} />
+          <i className='large link setting icon' onClick={() => openEditListingModal(listing)} />
+          <i className='large link red remove icon' onClick={() => deleteListing(listing)} />
         </td>
         {visibleFields.map((fieldName) => {
           return (
