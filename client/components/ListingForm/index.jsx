@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import CurrencyInput from 'react-currency-masked-input'
 import validate from 'validate.js'
 import _ from 'underscore'
 import SliderToggle from '../SliderToggle'
@@ -29,7 +30,7 @@ const createDefaultFormState = () => {
     amountToSell: 1,
     noSellLimit: false,
     sold: 0,
-    price: 0,
+    price: '0.00',
     description: '',
     live: true,
   }
@@ -151,8 +152,15 @@ class ListingForm extends Component {
               <input onChange={this.handleChange} type='number' value={form.amountToSell} name='amountToSell' min='1' />
             </div>
             <div className='field'>
-              <label htmlFor='price'> Price </label>
-              <input onChange={this.handleChange} type='number' value={form.price} name='price' min='0' />
+              <label htmlFor='price'> Price ($) </label>
+              <CurrencyInput 
+                name='price' 
+                onChange={(event, value) => {
+                  event.target.value = value
+                  this.handleChange(event)
+                }}
+                value={form.price} 
+                min='0.00'/>
             </div>
           </div>
           <div className='field'>
