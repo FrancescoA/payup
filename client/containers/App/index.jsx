@@ -17,6 +17,7 @@ class App extends Component {
         <div className='container-fluid' style={contentStyle}>
           {children}
         </div>
+        <Footer />
       </div>
     )
   }

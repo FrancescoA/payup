@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Modal from '../Modal'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import Modal from '../Modal'
 import * as ListingActions from '../../actions/listings'
 import ListingForm from '../ListingForm'
 
@@ -12,7 +12,7 @@ class EditAddListingModal extends Component {
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
       <Modal showing={showing}>
-        <i onClick={close} className='close icon'/>
+        <i onClick={close} className='close icon' />
         <div className='header'>
           {headerText}
         </div>
@@ -23,10 +23,9 @@ class EditAddListingModal extends Component {
           defaultFormData={listing}
           handleSubmit={(listingFormData, file) => {
             if (listingFormData.id) { // existing listing
-              console.log(file)
               if (file) { // We should delete the previous file
                 Promise.all([deleteFileOfListing(listing), uploadNewFile(user.uid, file)])
-                .then((res) => Promise.resolve(res[1]))
+                .then(res => Promise.resolve(res[1]))
                 .then(({ fileId, fileUrl }) => {
                   close()
                   updateListing(Object.assign({}, listingFormData, { fileId }))

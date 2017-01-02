@@ -136,7 +136,7 @@ class FileDragArea extends Component {
               }
             </h3>
           </div>
-          {displayMode === 'uploadingFile' && <Line percent={percentLoading} strokeColor="#21BA45"/>}
+          {displayMode === 'uploadingFile' && <Line percent={percentLoading} strokeColor='#21BA45' />}
         </div>
       </DropZone>
     )

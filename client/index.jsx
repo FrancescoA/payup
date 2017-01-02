@@ -24,10 +24,10 @@ const requireAuth = (nextState, replace) => {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}>
-        <IndexRoute component={MainSection} onEnter={requireAuth}/>
-        <Route path="login" component={LoginSection}/>
-        <Route path="account" component={AccountSection}/>
+      <Route path='/' component={App}>
+        <IndexRoute component={MainSection} onEnter={requireAuth} />
+        <Route path='login' component={LoginSection} />
+        <Route path='account' component={AccountSection} />
       </Route>
     </Router>
   </Provider>,

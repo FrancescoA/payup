@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --fix client/*.js client/**/*.js client/components/**/*.jsx",
+    "lint": "eslint --fix client/*.js* client/**/*.js* client/components/**/*.jsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build": "webpack --progress --colors",
@@ -45,6 +45,7 @@
     "redux-thunk": "^2.1.0",
     "rucksack-css": "^0.8.5",
     "semantic-ui-modal": "^2.2.3",
+    "semantic-ui-react": "^0.63.4",
     "style-loader": "^0.13.0",
     "underscore": "^1.8.3",
     "validate.js": "^0.10.0",

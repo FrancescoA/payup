@@ -15,8 +15,8 @@ const Messages = ({ messages, removeMessage }) => {
       {messages.map((message, index) => {
         const { header, text } = errorTypeToMessage[message.type]
         return (
-          <Message 
-            key={index} 
+          <Message
+            key={index}
             close={() => removeMessage(message)}
             type='error'
             header={header}
@@ -31,7 +31,7 @@ const Messages = ({ messages, removeMessage }) => {
 
 const Message = ({ header, text, type, close }) => (
   <div className={classnames('ui message', type)}>
-    <i className='close icon' onClick={close}/>
+    <i className='close icon' onClick={close} />
     <div className='header'>
       {header}
     </div>

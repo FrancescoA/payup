@@ -153,14 +153,15 @@ class ListingForm extends Component {
             </div>
             <div className='field'>
               <label htmlFor='price'> Price ($) </label>
-              <CurrencyInput 
-                name='price' 
+              <CurrencyInput
+                name='price'
                 onChange={(event, value) => {
                   event.target.value = value
                   this.handleChange(event)
                 }}
-                value={form.price} 
-                min='0.00'/>
+                value={form.price}
+                min='0.00'
+              />
             </div>
           </div>
           <div className='field'>
