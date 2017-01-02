@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ListingItem from '../ListingItem'
 import { fieldEditableMappings } from '../../constants/mappings'
-
+import { Table, Icon } from 'semantic-ui-react'
 
 class Listing extends Component {
   handleSave(field, value) {
@@ -12,11 +12,11 @@ class Listing extends Component {
   render() {
     const { fileUrl, listing, visibleFields, deleteListing, openEditListingModal } = this.props
     return (
-      <tr>
-        <td className='collapsing'>
-          <i className='large link setting icon' onClick={() => openEditListingModal(listing)} />
-          <i className='large link red remove icon' onClick={() => deleteListing(listing)} />
-        </td>
+      <Table.Row>
+        <Table.Cell collapsing>
+          <Icon name='setting' size='large' link onClick={() => openEditListingModal(listing)} />
+          <Icon name='remove' size='large' color='red' link onClick={() => deleteListing(listing)} />
+        </Table.Cell>
         {visibleFields.map((fieldName) => {
           return (
             <ListingItem
@@ -31,7 +31,7 @@ class Listing extends Component {
           )
         }
         )}
-      </tr>
+      </Table.Row>
     )
   }
 }

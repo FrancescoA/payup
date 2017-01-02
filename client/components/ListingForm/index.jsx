@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import CurrencyInput from 'react-currency-masked-input'
 import validate from 'validate.js'
 import _ from 'underscore'
+import { Form, Button, Message } from 'semantic-ui-react'
 import SliderToggle from '../SliderToggle'
 import FileDragArea from '../FileDragArea'
 import style from './style.css'
@@ -141,17 +142,17 @@ class ListingForm extends Component {
           onDropSuccess={this.handleFileDropSuccess}
           onFileDelete={this.handleFileDelete}
         />
-        <form className={classnames('ui form', { error: !_.isEmpty(formErrors) })}>
-          <div className={classnames('field', { error: formErrors.title })}>
+        <Form error={!_.isEmpty(formErrors)}>
+          <Form.Field error= {formErrors.title}>
             <label htmlFor='title'>Title</label>
             <input onChange={this.handleChange} type='text' value={form.title} name='title' maxLength='64' />
-          </div>
-          <div className='two fields'>
-            <div className={classnames('field', { disabled: form.noSellLimit })}>
+          </Form.Field>
+          <Form.Group widths='equal'>
+            <Form.Field disabled={form.noSellLimit}>
               <label htmlFor='amountToSell'> Amount To Sell </label>
               <input onChange={this.handleChange} type='number' value={form.amountToSell} name='amountToSell' min='1' />
-            </div>
-            <div className='field'>
+            </Form.Field>
+            <Form.Field>
               <label htmlFor='price'> Price ($) </label>
               <CurrencyInput
                 name='price'
@@ -162,13 +163,13 @@ class ListingForm extends Component {
                 value={form.price}
                 min='0.00'
               />
-            </div>
-          </div>
-          <div className='field'>
+            </Form.Field>
+          </Form.Group>
+          <Form.Field>
             <label htmlFor='description'> Description </label>
             <textarea onChange={this.handleChange} rows='3' value={form.description} name='description' maxLength='1024' />
-          </div>
-          <div className='inline field'>
+          </Form.Field>
+          <Form.Field inline>
             <SliderToggle
               checked={form.live}
               onSave={val => this.setFormField('live', val)}
@@ -180,16 +181,16 @@ class ListingForm extends Component {
               label='Sell unlimited'
               classes={style.checkbox}
             />
-          </div>
-          <button onClick={this.handleSubmit} className='ui button'>Submit</button>
-          <div className='ui error message'>
-            <ul>
+          </Form.Field>
+          <Button onClick={this.handleSubmit}>Submit</Button>
+          <Message error>
+            <Message.List>
               {_.flatten(Object.values(formErrors)).map(errorMessage =>
-                <li key={errorMessage}> {errorMessage} </li>
+                <Message.Item key={errorMessage}> {errorMessage} </Message.Item>
               )}
-            </ul>
-          </div>
-        </form>
+            </Message.List>
+          </Message>
+        </Form>
       </div>
     )
   }

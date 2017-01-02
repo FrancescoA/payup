@@ -87,14 +87,13 @@ class ListingItem extends Component {
   }
 }
 
-const ListingPageUrlDisplay = ({ listingId }) => {
-  return (
-    <td>
-      <Link rel='noopener noreferrer' target='_blank' to={`${window.location.origin}/listings/${listingId}`}>
-        {`${window.location.hostname}/listings/${listingId}`}
-      </Link>
-    </td>
-  )
-}
+const ListingPageUrlDisplay = ({ listingId }) => (
+  <td>
+    <Link rel='noopener noreferrer' target='_blank' to={`${window.location.origin}/listings/${listingId}`}>
+      {`${window.location.hostname}/listings/${listingId}`}
+    </Link>
+  </td>
+)
+
 
 export default ListingItem

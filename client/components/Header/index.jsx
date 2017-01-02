@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router'
+import { Menu, Container, Item, Image } from 'semantic-ui-react'
 
 import SimpleDropdown from '../SimpleDropdown'
 import * as AuthActions from '../../actions/auth'
@@ -11,12 +12,12 @@ class Header extends Component {
   render() {
     const { auth, actions, router } = this.props
     return (
-      <div className='ui large menu'>
-        <div className='ui container'>
-          <div className='item'>
-            <img className='ui image tiny' alt='logo' src={img} />
-          </div>
-          <div className='right menu'>
+      <Menu size='large'>
+        <Container>
+          <Item>
+            <Image size='tiny' alt='logo' src={img} />
+          </Item>
+          <Menu.Menu position='right'>
             <SimpleDropdown
               title={auth.auth ?
                 auth.user.email :
@@ -25,9 +26,9 @@ class Header extends Component {
             >
               {auth.auth && <LogOutItem actions={actions} router={router} />}
             </SimpleDropdown>
-          </div>
-        </div>
-      </div>
+          </Menu.Menu>
+        </Container>
+      </Menu>
     )
   }
 }

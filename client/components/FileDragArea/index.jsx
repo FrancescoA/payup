@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DropZone from 'react-dropzone'
+import { Icon } from 'semantic-ui-react'
 import classnames from 'classnames'
 import { Line } from 'rc-progress'
 import style from './style.css'
@@ -115,8 +116,9 @@ class FileDragArea extends Component {
           onMouseLeave={() => displayMode !== 'uploadingFile' && this.setState({ iconMode: 'default' })}
           onClick={this.handleIconClick.bind(this)}
         >
-          <i
-            className={classnames(this.determineIcon(), 'icon huge', {
+          <Icon
+            size='huge'
+            className={classnames(this.determineIcon(), {
               blue: displayMode === 'default' || displayMode === 'dropSuccess',
               green: displayMode === 'dragEnter' || displayMode === 'uploadingFile',
               red: displayMode === 'dropFail',

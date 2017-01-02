@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
+import { Segment, Header, Divider } from 'semantic-ui-react'
 
 class AccountSection extends Component {
 
   render() {
     return (
-      <div className='ui raised padded container segment'>
-        <div>
-          <h1 className='ui header'> Account </h1>
-        </div>
-        <div className='ui clearing divider' />
-      </div>
+      <Segment raised padded className='container'>
+        <Header as='h1'> Account </Header>
+        <Divider clearing />
+      </Segment>
     )
   }
 }

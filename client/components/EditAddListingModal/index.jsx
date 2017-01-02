@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Modal from '../Modal'
+import { Modal, Icon, Header } from 'semantic-ui-react'
 import * as ListingActions from '../../actions/listings'
 import ListingForm from '../ListingForm'
 
@@ -11,11 +11,11 @@ class EditAddListingModal extends Component {
     const { addListing, updateListing, uploadNewFile, deleteFileOfListing } = actions
     const headerText = listing ? 'Edit Your Listing' : 'Add a Listing'
     return (
-      <Modal showing={showing}>
-        <i onClick={close} className='close icon' />
-        <div className='header'>
+      <Modal open={showing}>
+        <Icon onClick={close} name='close' />
+        <Header>
           {headerText}
-        </div>
+        </Header>
         <ListingForm
           classes='content'
           isFileUploading={this.props.isFileUploading}
