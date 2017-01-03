@@ -2,6 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
+import { Message } from 'semantic-ui-react'
 
 import { removeFailedRequest } from '../../actions/loadingState'
 import { errorTypeToMessage } from '../../constants/mappings'
@@ -15,29 +16,17 @@ const Messages = ({ messages, removeMessage }) => {
       {messages.map((message, index) => {
         const { header, text } = errorTypeToMessage[message.type]
         return (
-          <Message
+          <Message error
             key={index}
-            close={() => removeMessage(message)}
-            type='error'
+            onDismiss={() => removeMessage(message)}
             header={header}
-            text={text}
+            content={text}
           />
         )
       })}
     </div>
   )
 }
-
-
-const Message = ({ header, text, type, close }) => (
-  <div className={classnames('ui message', type)}>
-    <i className='close icon' onClick={close} />
-    <div className='header'>
-      {header}
-    </div>
-    <p> {text} </p>
-  </div>
-)
 
 function mapStateToProps(state) {
   return {

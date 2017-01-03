@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
+import { Segment, Header, Divider } from 'semantic-ui-react'
 import * as listingActions from '../../actions/listings'
 import ListingTable from '../ListingTable'
 import TableHeading from '../TableHeading'
@@ -84,7 +85,7 @@ class MainSection extends Component {
     }
 
     return (
-      <div className='ui raised padded container segment'>
+      <Segment raised padded className='container'>
         <EditAddListingModal
           showing={editAddModalShowing}
           close={this.closeAddEditModal}
@@ -92,15 +93,13 @@ class MainSection extends Component {
           listing={listingInModal}
           actions={actions}
         />
-        <div>
-          <h1 className={classnames(style.heading, 'ui header')}> Listings </h1>
-        </div>
-        <div className='ui clearing divider' />
+        <Header className={style.heading} as='h1'> Listings </Header>
+        <Divider clearing />
         <TableHeading
           openAddModal={this.openAddEditModal}
         />
         {content}
-      </div>
+      </Segment>
     )
   }
 }

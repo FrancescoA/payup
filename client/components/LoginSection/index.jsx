@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Segment, Header, Divider, Button, Icon } from 'semantic-ui-react'
 import * as AuthActions from '../../actions/auth'
 
 class LoginSection extends Component {
@@ -9,16 +10,13 @@ class LoginSection extends Component {
   render() {
     const { actions, router } = this.props
     return (
-      <div className='ui raised padded container segment'>
-        <div>
-          <h1 className='ui header'> Login </h1>
-        </div>
-        <div className='ui clearing divider' />
-        <button onClick={() => actions.facebookLogIn().then(() => router.push('/'))} className='ui big facebook button'>
-          <i className='facebook icon' />
-          Log in with Facebook
-        </button>
-      </div>
+      <Segment raised padded className='container'>
+        <Header as='h1'> Login </Header>
+        <Divider clearing />
+        <Button size='big' color='facebook' onClick={() => actions.facebookLogIn().then(() => router.push('/'))}>
+          <Icon name='facebook' /> Log in with Facebook
+        </Button>
+      </Segment>
     )
   }
 }

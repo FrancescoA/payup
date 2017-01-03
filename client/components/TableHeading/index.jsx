@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
+import { Container, Button, Icon } from 'semantic-ui-react'
 
-class TableHeading extends Component {
-  render() {
-    const { openAddModal } = this.props
-    return (
-      <div className='ui container'>
-        <button
-          className='ui basic green button fluid massive'
-          onClick={() => openAddModal()}
-        >
-          <i className='cloud upload icon' />
-          Add a Listing
-        </button>
-      </div>
-    )
-  }
-
-}
+const TableHeading = ({ openAddModal }) => (
+  <Container>
+    <Button fluid inverted
+      color='green'
+      size='massive'
+      onClick={() => openAddModal()}
+    >
+      <Icon name='cloud upload' /> Add a Listing
+    </Button>
+  </Container>
+)
 
 export default TableHeading

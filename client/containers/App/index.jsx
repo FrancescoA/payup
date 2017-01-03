@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Container } from 'semantic-ui-react'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Messages from '../../components/Messages'
@@ -14,9 +15,9 @@ class App extends Component {
       <div className={style.normal}>
         <Header/>
         <Messages />
-        <div className='container-fluid' style={contentStyle}>
+        <Container fluid style={contentStyle}>
           {children}
-        </div>
+        </Container>
         <Footer />
       </div>
     )

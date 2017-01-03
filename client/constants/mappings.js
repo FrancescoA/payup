@@ -6,6 +6,7 @@ import {
   DELETE_LISTING,
   EDIT_LISTING,
   GET_LISTINGS,
+  FACEBOOK_LOGIN,
 } from './requests'
 
 export const fieldDisplayMappings = {
@@ -56,5 +57,9 @@ export const errorTypeToMessage = {
   [GET_LISTINGS]: {
     header: 'There was a problem fetching your listings! Sorry about that.',
     text: 'Please try again soon.',
+  },
+  [FACEBOOK_LOGIN]: {
+    header: 'There was a problem logging in! Sorry about that.',
+    text: 'Please try again soon.'
   },
 }

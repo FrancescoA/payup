@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
-import Modal from '../Modal'
+import { Modal, Button, Icon, Table, Segment } from 'semantic-ui-react'
 import Listing from '../Listing'
 import style from './style.css'
 import { fieldDisplayMappings } from '../../constants/mappings'
@@ -33,29 +33,29 @@ class ListingTable extends Component {
 
   renderDeleteModal() {
     return (
-      <Modal showing={this.state.deleteModalShowing} classes='small basic'>
-        <div className='header'>
+      <Modal basic size='small' open={this.state.deleteModalShowing}>
+        <Modal.Header>
           Are you sure you want to delete this listing?
-        </div>
-        <div className='actions'>
-          <div
+        </Modal.Header>
+        <Modal.Actions>
+          <Button
+            basic
+            color='red'
             onClick={this.closeDeleteModal}
-            className='ui red basic cancel button'
           >
-            <i className='remove icon' />
-            No
-          </div>
-          <div
+            <Icon name='remove'/> No
+          </Button>
+          <Button
+            basic
+            color='green'
             onClick={() => {
               this.props.actions.deleteListing(this.state.deleteModalListing)
               this.closeDeleteModal()
             }}
-            className='ui green basic ok button'
           >
-            <i className='checkmark icon' />
-            Yes
-          </div>
-        </div>
+            <Icon name='checkmark' /> Yes
+          </Button>
+        </Modal.Actions>
       </Modal>
     )
   }
@@ -64,27 +64,28 @@ class ListingTable extends Component {
     const { listings, actions, openEditListingModal, isLoading, fileToUrlMapping } = this.props
     const { visibleFields } = this.state
     return (
-      <div
+      <Segment
+        basic
         style={{ padding: 0 }}
-        className={classnames('ui basic segment', {
+        className={classnames({
           loading: isLoading,
         })}
       >
         {this.renderDeleteModal()}
-        <table className={classnames('ui compact selectable definition table', style.table)}>
-          <thead>
-            <tr>
-              <th>
+        <Table compact selectable definition className={classnames(style.table)}>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>
                 {/* col for edit/delete buttons */}
-              </th>
+              </Table.HeaderCell>
               {visibleFields.map(fieldName =>
-                <th key={fieldName}>
+                <Table.HeaderCell key={fieldName}>
                   {fieldDisplayMappings[fieldName]}
-                </th>
+                </Table.HeaderCell>
               )}
-            </tr>
-          </thead>
-          <tbody>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {listings.map(listing =>
               <Listing
                 visibleFields={visibleFields}
@@ -95,10 +96,10 @@ class ListingTable extends Component {
                 editListing={actions.editListing}
                 openEditListingModal={openEditListingModal}
               />
-              )}
-          </tbody>
-        </table>
-      </div>
+            )}
+          </Table.Body>
+        </Table>
+      </Segment>
     )
   }
 }

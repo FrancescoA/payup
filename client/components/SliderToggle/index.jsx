@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import classnames from 'classnames'
+import { Checkbox } from 'semantic-ui-react'
 
 
 class SliderToggle extends Component {
@@ -26,16 +27,12 @@ class SliderToggle extends Component {
     const { checked } = this.state
     const { classes, label } = this.props
     return (
-      <div
-        className={classnames('ui checkbox toggle', classes, { checked })}
-      >
-        <input
-          type='checkbox'
-          checked={checked}
-          onChange={this.handleToggle}
-        />
-        <label htmlFor='checkbox'> {label} </label>
-      </div>
+      <Checkbox toggle
+        className='classes'
+        checked={checked}
+        onChange={this.handleToggle}
+        label={label}
+      />
     )
   }
 }

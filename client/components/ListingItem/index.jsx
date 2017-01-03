@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import { Table } from 'semantic-ui-react'
 import SliderToggle from '../SliderToggle'
 import ListingTextInput from '../ListingTextInput'
 import ListingItemLabel from '../ListingItemLabel'
@@ -36,13 +37,13 @@ class ListingItem extends Component {
     const { editing } = this.state
     if (name === 'live') {
       return (
-        <td className='collapsing'>
+        <Table.Cell className='collapsing'>
           <SliderToggle
             checked={value}
             onSave={this.handleSave}
             classes='fitted'
           />
-        </td>
+        </Table.Cell>
       )
     } else if (name === 'listingPageUrl') { // Compute this field
       return (
@@ -53,11 +54,11 @@ class ListingItem extends Component {
       )
     } else if (name === 'filename') {
       return (
-        <td>
+        <Table.Cell>
           <Link rel='noopener noreferrer' target='_blank' to={fileUrl}>
             {value}
           </Link>
-        </td>
+        </Table.Cell>
       )
     }
 
@@ -80,19 +81,19 @@ class ListingItem extends Component {
     }
 
     return (
-      <td>
+      <Table.Cell>
         {element}
-      </td>
+      </Table.Cell>
     )
   }
 }
 
 const ListingPageUrlDisplay = ({ listingId }) => (
-  <td>
+  <Table.Cell>
     <Link rel='noopener noreferrer' target='_blank' to={`${window.location.origin}/listings/${listingId}`}>
       {`${window.location.hostname}/listings/${listingId}`}
     </Link>
-  </td>
+  </Table.Cell>
 )
 
 

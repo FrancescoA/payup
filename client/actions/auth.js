@@ -1,12 +1,13 @@
 import { createAction } from 'redux-actions'
 import * as loadingState from './loadingState'
+import { FACEBOOK_LOGIN } from '../constants/requests'
 
 const logInLocally = createAction('log in')
 const logOutLocally = createAction('log out')
 
 export const facebookLogIn = () => (dispatch, getState, api) => {
   const req = {
-    type: 'facebook log in',
+    type: FACEBOOK_LOGIN,
     data: { id: 1 }, // id doesn't really matter in this case
   }
   dispatch(loadingState.addPendingRequest(req))
