@@ -60,6 +60,6 @@ export const errorTypeToMessage = {
   },
   [FACEBOOK_LOGIN]: {
     header: 'There was a problem logging in! Sorry about that.',
-    text: 'Please try again soon.'
+    text: 'Please try again soon.',
   },
 }
