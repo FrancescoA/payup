@@ -5,6 +5,7 @@ import Header from '../../components/Header'
 import Messages from '../../components/Messages'
 import style from './style.css'
 
+
 class App extends Component {
   render() {
     const contentStyle = {

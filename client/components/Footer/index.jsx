@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
+import classnames from 'classnames'
+import style from './style.css'
 
 class Footer extends Component {
   render() {
     return (
-      <div className='ui footer bottom attached'>
-        <Container textAlign='center'>
-          <h1>Sell whatever, wherever</h1>
+      <footer className={classnames('ui footer bottom attached', style.footer)}>
+        <Container className={style.content} textAlign='center'>
+          <h2>Sell whatever, wherever</h2>
         </Container>
-      </div>
+      </footer>
     )
   }
 }

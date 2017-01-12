@@ -27,7 +27,7 @@ ReactDOM.render(
       <Route path='/' component={App}>
         <IndexRoute component={MainSection} onEnter={requireAuth} />
         <Route path='login' component={LoginSection} />
-        <Route path='account' component={AccountSection} />
+        <Route path='account' component={AccountSection} onEnter={requireAuth}/>
       </Route>
     </Router>
   </Provider>,

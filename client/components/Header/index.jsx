@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router'
-import { Menu, Container, Item, Image } from 'semantic-ui-react'
+import { Menu, Container, Item, Image, Button } from 'semantic-ui-react'
 
 import SimpleDropdown from '../SimpleDropdown'
 import * as AuthActions from '../../actions/auth'
@@ -12,11 +12,21 @@ class Header extends Component {
   render() {
     const { auth, actions, router } = this.props
     return (
-      <Menu size='large'>
+      <Menu size='huge'>
         <Container>
-          <Item>
+          <Menu.Item>
             <Image size='tiny' alt='logo' src={img} />
-          </Item>
+          </Menu.Item>
+          {auth.auth && 
+            <Menu.Item as={Link} to='/'>
+              Listings 
+            </Menu.Item>
+          }
+          {auth.auth && 
+            <Menu.Item as={Link} to='account'>
+                Account
+            </Menu.Item>
+          }
           <Menu.Menu position='right'>
             <SimpleDropdown
               title={auth.auth ?
@@ -33,22 +43,18 @@ class Header extends Component {
   }
 }
 
-const LogInButton = () => (
-  <Link to='login'><div className='ui primary button'>Login</div></Link>
-)
-
+const LogInButton = () => <Button primary as={Link} to='login'>Login</Button>
 
 const LogOutItem = (props) => {
   const { router } = props
   const { logOut } = props.actions
   return (
-    <a
-      className='item'
+    <Item as='a'
       onClick={() => {
         router.push('login')
         logOut()
       }}
-    >Logout</a>
+    >Logout</Item>
   )
 }
 
