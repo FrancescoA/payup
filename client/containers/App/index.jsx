@@ -8,15 +8,12 @@ import style from './style.css'
 
 class App extends Component {
   render() {
-    const contentStyle = {
-      height: '100%'
-    }
     const { children } = this.props
     return (
-      <div className={style.normal}>
+      <div className={style.app}>
         <Header/>
         <Messages />
-        <Container fluid style={contentStyle}>
+        <Container fluid className={style.container}>
           {children}
         </Container>
         <Footer />
